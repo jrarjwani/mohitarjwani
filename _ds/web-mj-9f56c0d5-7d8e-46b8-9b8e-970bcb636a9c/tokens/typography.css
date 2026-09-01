@@ -1,0 +1,37 @@
+/* Melius — Typography tokens
+   Display: Newsreader (substitute for the site's "Reckless" serif — see readme).
+   Text: native grotesque system stack (the site uses ui-sans-serif). */
+:root {
+  --font-display: "Newsreader", "Reckless", Georgia, "Times New Roman", serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale (px) — display is serif; the rest are sans */
+  --text-display: 58px;   /* hero */
+  --text-h1: 50px;
+  --text-h2: 38px;
+  --text-h3: 30px;
+  --text-h4: 24px;
+  --text-body-lg: 20px;
+  --text-body: 17px;
+  --text-sm: 15px;
+  --text-xs: 13px;
+  --text-caption: 12px;
+
+  /* Line heights */
+  --leading-display: 1.02;
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+
+  /* Letter spacing — Reckless-like display runs slightly tight */
+  --tracking-display: -0.02em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.14em;   /* small caps / spine labels */
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+}

@@ -1,0 +1,66 @@
+/* Melius — Color tokens
+   Light marketing canvas + dark product canvas.
+   Base scale first, then semantic aliases. */
+:root {
+  /* ---- Base palette ---- */
+  --mel-orange: #f04e23;        /* primary accent / CTA */
+  --mel-orange-600: #d63d16;    /* pressed / hover-dark */
+  --mel-orange-100: #fde7df;    /* orange tint surface */
+  --mel-yellow: #fff78b;        /* secondary accent — Sign In, label tags */
+  --mel-yellow-600: #f2e35a;    /* yellow hover */
+
+  --mel-ink: #0e0e0e;           /* primary text (never pure #000) */
+  --mel-ink-800: #1a1616;       /* borders, dark surfaces, canvas frame */
+  --mel-ink-700: #202020;       /* dark button / nav pill */
+  --mel-ink-600: #2a2a2a;       /* raised dark section */
+  --mel-graphite: #676767;      /* muted text, captions */
+  --mel-silver: #a3a3a3;        /* disabled text, faint icons */
+  --mel-mist: #d9d9d9;          /* hairline on light, neutral badge */
+  --mel-cloud: #ebebeb;         /* light divider / placeholder border */
+  --mel-paper: #f2f1ef;         /* raised light surface */
+  --mel-canvas: #fafafa;        /* page background (warm light gray) */
+  --mel-white: #ffffff;
+
+  /* dark-canvas surfaces (the node editor) */
+  --mel-night: #0e0e0e;         /* canvas base */
+  --mel-night-2: #161616;       /* canvas panel */
+  --mel-night-3: #202020;       /* node card */
+  --mel-night-line: #2e2e2e;    /* dot grid / node border */
+
+  /* ---- Semantic aliases ---- */
+  --color-bg: var(--mel-canvas);
+  --color-surface: var(--mel-white);
+  --color-surface-raised: var(--mel-paper);
+  --color-text: var(--mel-ink);
+  --color-text-secondary: var(--mel-graphite);
+  --color-text-inverse: var(--mel-canvas);
+  --color-border: var(--mel-ink-800);
+  --color-border-subtle: var(--mel-cloud);
+  --color-hairline: var(--mel-mist);
+
+  --color-primary: var(--mel-orange);
+  --color-primary-hover: var(--mel-orange-600);
+  --color-primary-tint: var(--mel-orange-100);
+  --color-on-primary: var(--mel-canvas);
+  --color-secondary: var(--mel-yellow);
+  --color-secondary-hover: var(--mel-yellow-600);
+  --color-on-secondary: var(--mel-ink);
+
+  --color-dark-surface: var(--mel-ink-700);
+  --color-on-dark: var(--mel-canvas);
+  --color-on-dark-muted: var(--mel-mist);
+
+  /* product canvas */
+  --color-canvas-bg: var(--mel-night);
+  --color-canvas-panel: var(--mel-night-2);
+  --color-canvas-node: var(--mel-night-3);
+  --color-canvas-line: var(--mel-night-line);
+  --color-canvas-edge: var(--mel-orange);
+
+  /* focus */
+  --color-focus-ring: var(--mel-orange);
+
+  /* links */
+  --color-link: var(--mel-orange);
+  --color-link-hover: var(--mel-orange-600);
+}

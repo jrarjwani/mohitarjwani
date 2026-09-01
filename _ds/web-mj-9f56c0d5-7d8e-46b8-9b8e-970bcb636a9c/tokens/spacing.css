@@ -1,0 +1,28 @@
+/* Melius — Spacing, radii, layout. Base unit 8px. */
+:root {
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Border radii — rounded, friendly */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;   /* buttons */
+  --radius-lg: 10px;  /* inputs, chips */
+  --radius-xl: 14px;  /* cards, nodes */
+  --radius-2xl: 20px; /* large media cards */
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container-max: 1200px;
+  --container-wide: 1440px;
+  --gutter: 24px;
+}
