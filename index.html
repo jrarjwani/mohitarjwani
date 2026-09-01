@@ -8,6 +8,11 @@
 <meta property="og:title" content="Mohit Arjwani">
 <meta property="og:description" content="Marketer, storyteller, restless learner. Work, story and contact.">
 <meta name="theme-color" content="#0b0b0c">
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preload" as="image" href="uploads/brandsense.webp">
+<link rel="preload" as="image" href="uploads/xlri.webp">
+<link rel="preload" as="image" href="uploads/untitled5.webp">
+<link rel="preload" as="image" href="uploads/areymohit.webp">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -21,9 +26,7 @@
   <script src="_ds/web-mj-9f56c0d5-7d8e-46b8-9b8e-970bcb636a9c/_ds_bundle.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kaushan+Script&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Caveat:wght@600;700&family=Kaushan+Script&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *{ box-sizing:border-box; }
     html,body{ margin:0; padding:0; }
@@ -280,12 +283,12 @@
               <sc-if value="{{ c.headingPill }}"><div class="wk-headpill">{{ c.headingPill }}</div></sc-if>
               <sc-if value="{{ c.isClout }}">
                 <div class="wk-cl">
-                  <img src="uploads/clout_full_trim.png" alt="Clout, Pocket Aces \u2014 creator growth and content work" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;">
+                  <img decoding="async" src="uploads/clout_full_trim.webp" alt="Clout, Pocket Aces \u2014 creator growth and content work" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;">
                 </div>
                 <div class="wk-cl" style="display:none;">
                   <div class="wk-cl-stat">3000+</div>
                   <div class="wk-cl-sub">content pieces analyzed</div>
-                  <div class="wk-cl-cw"><img src="uploads/clout_cw_crop.png" alt="Meta Creator Week 2022"></div>
+                  <div class="wk-cl-cw"><img decoding="async" src="uploads/clout_cw_crop.webp" alt="Meta Creator Week 2022"></div>
                   <svg class="wk-cl-svg" viewBox="0 0 800 560" fill="none" aria-hidden="true">
                     <path id="cloutArc" d="M 394 198 C 452 98 520 126 596 156 C 664 174 724 180 764 182" fill="none" stroke="none"></path>
                     <text font-family="'Space Mono', monospace" font-size="12.5" letter-spacing="0.7" fill="#f5d520">
@@ -294,14 +297,14 @@
                     <path d="M 322 136 C 358 94 410 102 414 146 C 417 172 404 178 402 186" stroke="#f5d520" stroke-width="1.7" stroke-dasharray="6 6" fill="none" stroke-linecap="round"></path>
                     <path d="M 290 312 C 332 352 330 402 352 444" stroke="#f5d520" stroke-width="1.7" stroke-dasharray="6 6" fill="none" stroke-linecap="round"></path>
                   </svg>
-                  <div class="wk-cl-think"><img src="uploads/clout_think.png" alt="Content ideation"></div>
+                  <div class="wk-cl-think"><img decoding="async" src="uploads/clout_think.webp" alt="Content ideation"></div>
                   <div class="wk-cl-bub">
                     <div class="wk-cl-bub-cap">Conceptualized and shaped content ideas, many of which went&#8230;</div>
                     <div class="wk-cl-bub-viral">VIRAL!</div>
                   </div>
                   <div class="wk-cl-card">
                     <span class="wk-cl-card-pill">Influencer Growth &amp; Management</span>
-                    <div class="wk-cl-card-img"><img src="uploads/clout_fit.png" alt="Influencer growth and management"></div>
+                    <div class="wk-cl-card-img"><img decoding="async" src="uploads/clout_fit.webp" alt="Influencer growth and management"></div>
                   </div>
                 </div>
               </sc-if>
@@ -361,7 +364,7 @@
                               </div>
                               <div class="wk-melius-split-r" data-iw="{{ n.iw }}">
                                 <div class="wk-melius-imghold" style="aspect-ratio:{{ n.ar }};">
-                                  <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;"></sc-if>
+                                  <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img decoding="async" src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;"></sc-if>
                                 </div>
                               </div>
                             </div>
@@ -370,7 +373,7 @@
                             <div class="wk-melius-vrow">
                               <div class="wk-vpill"><span>{{ n.pill }}</span></div>
                               <div class="wk-melius-imghold" style="aspect-ratio:{{ n.ar }};">
-                                <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;"></sc-if>
+                                <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img decoding="async" src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;"></sc-if>
                               </div>
                             </div>
                           </sc-if>
@@ -381,7 +384,7 @@
                           <sc-if value="{{ n.notBare }}">
                           <div class="wk-melius-imghold">
                             <div class="wk-melius-imgwrap" style="aspect-ratio:{{ n.ar }};">
-                              <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:{{ n.fit }}; display:block;"></sc-if>
+                              <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img decoding="async" src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:{{ n.fit }}; display:block;"></sc-if>
                             </div>
                             <sc-if value="{{ n.portL }}"><span class="wk-port wk-port-l"></span></sc-if>
                             <sc-if value="{{ n.portR }}"><span class="wk-port wk-port-r"></span></sc-if>
@@ -390,7 +393,7 @@
                           <sc-if value="{{ n.extend }}"><div style="height:9px;"></div></sc-if>
                           <sc-if value="{{ n.bare }}">
                           <div class="wk-melius-imghold" style="aspect-ratio:{{ n.ar }};">
-                            <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;"></sc-if>
+                            <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img decoding="async" src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block;"></sc-if>
                           </div>
                           </sc-if>
                           <sc-if value="{{ n.extend }}"><div style="height:3px;"></div></sc-if>
@@ -404,12 +407,12 @@
                         <sc-if value="{{ n.isImage }}">
                           <sc-if value="{{ n.float }}">
                             <div class="wk-node-floatimg">
-                              <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img src="{{ n.img }}" alt="{{ n.title }}" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;"></sc-if>
+                              <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img decoding="async" src="{{ n.img }}" alt="{{ n.title }}" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block;"></sc-if>
                             </div>
                           </sc-if>
                           <sc-if value="{{ n.framed }}">
                             <div class="wk-node-imgwrap">
-                              <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:{{ n.fit }}; display:block;"></sc-if>
+                              <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img decoding="async" src="{{ n.img }}" alt="{{ n.title }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:{{ n.fit }}; display:block;"></sc-if>
                             </div>
                           </sc-if>
                         </sc-if>
@@ -417,7 +420,7 @@
                           <div class="wk-frame-swiggy">
                             <div class="wk-swiggy-num">{{ n.metric }}</div>
                             <div class="wk-swiggy-line">{{ n.metricSub }}</div>
-                            <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img class="wk-swiggy-logo" src="{{ n.img }}" alt="Swiggy"></sc-if>
+                            <sc-if value="{{ n.img }}" hint-placeholder-val="{{ false }}"><img decoding="async" class="wk-swiggy-logo" src="{{ n.img }}" alt="Swiggy"></sc-if>
                           </div>
                         </sc-if>
                         <sc-if value="{{ n.isMetric }}">
@@ -483,7 +486,7 @@
 
         <div>
           <span style="display:block; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#6f6f75;">more</span>
-          <a class="ct-link" href="uploads/Mohit%20Arjwani%20Resume.pdf" download="Mohit Arjwani Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener">Resume<span class="ct-arrow">&darr;</span></a>
+          <a class="ct-link" href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener">Resume<span class="ct-arrow">&darr;</span></a>
           <span class="ct-sub" style="display:block; margin:-6px 0 8px; font-size:13px; color:#9a9aa1;">download PDF</span>
           <a class="ct-link" href="https://areymohit.vercel.app/" target="_blank" rel="noopener">Arey Mohit<span class="ct-arrow">&rarr;</span></a>
           <span class="ct-sub" style="display:block; margin:-6px 0 0; font-size:13px; color:#9a9aa1;">passion project</span>
@@ -494,7 +497,7 @@
       <div class="ct-ctas" style="grid-column:1 / -1; display:flex; flex-wrap:nowrap; align-items:center; gap:14px; margin-top:8px; padding-top:26px; border-top:1px solid rgba(255,255,255,0.08);">
         <a class="ct-btn" href="mailto:marjwani@gmail.com?subject=Hi%20Mohit" onClick="{{ onProtocol }}" target="_top" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect><path d="M3 7l9 6 9-6"></path></svg>Email Me</a>
         <a class="ct-btn" href="tel:+918989439880" onClick="{{ onProtocol }}" target="_top" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11.5 11.5 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5z"></path></svg>Call Me</a>
-        <a class="ct-btn" href="uploads/Mohit%20Arjwani%20Resume.pdf" download="Mohit Arjwani Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7.5 11.5L12 16l4.5-4.5"></path><path d="M5 19.5h14"></path></svg>Download My Resume</a>
+        <a class="ct-btn" href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7.5 11.5L12 16l4.5-4.5"></path><path d="M5 19.5h14"></path></svg>Download My Resume</a>
       </div>
     </div>
 
@@ -520,7 +523,7 @@ class Component extends DCLogic {
     this.data = [
       {
         id:'enparadigm', name:'enParadigm', short:'enParadigm', sector:'Talent Transformation \u00b7 B2B SaaS',
-        bg:'uploads/7.png', accent:'#f04e23',
+        bg:'uploads/7.webp', accent:'#f04e23',
         role:'Growth Marketing Consultant',
         scope:'Building growth systems across branding, PR, sales enablement, lead generation, and SaaS positioning for enterprise talent transformation.',
         tags:['Brand & Rebranding','PR','Sales Enablement','Lead Gen'],
@@ -535,16 +538,16 @@ class Component extends DCLogic {
         ],
         edges:[],
         cards:[
-          { type:'image', bare:true, extend:true, capLg:true, title:'Website Rebranding', line:'**Reimagining** enParadigm\u2019s **digital identity** across its **website and brand touchpoints**', img:'uploads/rebrand_v3.png', x:2, y:2, w:43, fr:0.556 },
-          { type:'image', bare:true, title:'Building B2C Platform', line:'Prototype-led **B2C brand repositioning** for **market validation**', side:'right', iw:66, img:'uploads/catalyx_fit.png', x:52, y:2, w:47, fr:0.45 },
-          { type:'image', rowSplit:true, tightPill:true, title:'Sales Enablement', line:'**Accelerating sales** through high-impact product and marketing collaterals', iw:45, img:'uploads/decks_fit.png', x:52, y:33, w:47, fr:0.59 },
-          { type:'image', bare:true, capLg:true, title:'Lead Generation', line:'**via LinkedIn Campaigns**', img:'uploads/leadgen_fit.png', x:2, y:58.5, w:26.5, fr:0.6 },
-          { type:'image', vpill:true, title:'Public Relations', img:'uploads/press_fit.png', x:31.5, y:58.5, w:67, fr:0.4 }
+          { type:'image', bare:true, extend:true, capLg:true, title:'Website Rebranding', line:'**Reimagining** enParadigm\u2019s **digital identity** across its **website and brand touchpoints**', img:'uploads/rebrand_v3.webp', x:2, y:2, w:43, fr:0.556 },
+          { type:'image', bare:true, title:'Building B2C Platform', line:'Prototype-led **B2C brand repositioning** for **market validation**', side:'right', iw:66, img:'uploads/catalyx_fit.webp', x:52, y:2, w:47, fr:0.45 },
+          { type:'image', rowSplit:true, tightPill:true, title:'Sales Enablement', line:'**Accelerating sales** through high-impact product and marketing collaterals', iw:45, img:'uploads/decks_fit.webp', x:52, y:33, w:47, fr:0.59 },
+          { type:'image', bare:true, capLg:true, title:'Lead Generation', line:'**via LinkedIn Campaigns**', img:'uploads/leadgen_fit.webp', x:2, y:58.5, w:26.5, fr:0.6 },
+          { type:'image', vpill:true, title:'Public Relations', img:'uploads/press_fit.webp', x:31.5, y:58.5, w:67, fr:0.4 }
         ]
       },
       {
         id:'cocacola', name:'The Coca-Cola Company', short:'Coca-Cola', sector:'FMCG \u00b7 Customer & Commercial',
-        bg:'uploads/8.png', accent:'#e4141b',
+        bg:'uploads/8.webp', accent:'#e4141b',
         role:'Customer & Commercial Leadership, Summer Internship, XLRI',
         scope:'Built commercial growth systems to increase beverage orders on Swiggy, from revenue modeling to FSA dashboards and bottler playbook strategy.',
         tags:['Revenue Modelling','FSA Growth','Swiggy','Bottler Strategy'],
@@ -558,14 +561,14 @@ class Component extends DCLogic {
         ],
         edges:[],
         cards:[
-          { type:'image', bare:true, extend:true, capTop:true, capLg:true, title:'Order Growth', line:'**Drove pilot of revenue growth model to achieve**', img:'uploads/coke_fit.png', x:2, y:18.6, w:40.7, fr:0.84 },
-          { type:'image', bare:true, title:'FSA Dashboard', line:'**Built India-first dashboard to track order, SKU, & platform performance across Zomato and Swiggy**', side:'right', iw:66, img:'uploads/coke_fsa_crop.png', x:48, y:4, w:50, fr:0.834 },
-          { type:'image', rowSplit:true, title:'Bottler Strategy', line:'**Transformed a 100-page field playbook into a scalable guide for bottler acquisition**', iw:55, img:'uploads/bottler_fit.png', x:51.8, y:64, w:41.8, fr:0.72 }
+          { type:'image', bare:true, extend:true, capTop:true, capLg:true, title:'Order Growth', line:'**Drove pilot of revenue growth model to achieve**', img:'uploads/coke_fit.webp', x:2, y:18.6, w:40.7, fr:0.84 },
+          { type:'image', bare:true, title:'FSA Dashboard', line:'**Built India-first dashboard to track order, SKU, & platform performance across Zomato and Swiggy**', side:'right', iw:66, img:'uploads/coke_fsa_crop.webp', x:48, y:4, w:50, fr:0.834 },
+          { type:'image', rowSplit:true, title:'Bottler Strategy', line:'**Transformed a 100-page field playbook into a scalable guide for bottler acquisition**', iw:55, img:'uploads/bottler_fit.webp', x:51.8, y:64, w:41.8, fr:0.72 }
         ]
       },
       {
         id:'oml', name:'OML Entertainment', short:'OML', sector:'Creator Economy \u00b7 Global Creator Network',
-        bg:'uploads/Final (3).png', accent:'#b933e0',
+        bg:'uploads/final3.webp', accent:'#b933e0',
         role:'Junior Associate, Global Creator Network',
         headingPill:'Led Digital Campaigns for',
         scope:'Worked across creator-led campaigns leading YouTube Shorts GTM, influencer execution, brand pitches, cost optimization, and campaign performance.',
@@ -583,17 +586,17 @@ class Component extends DCLogic {
         ],
         edges:[],
         cards:[
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'YouTube Shorts', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_yt_fit.png', x:1.5, y:9.5, w:24.6, fr:1.0 },
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Coursera', line:'**10+ creators\n2.3L+ YouTube views**', img:'uploads/oml_coursera_fit.png', x:36.6, y:9.5, w:24.6, fr:1.0 },
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Saffola', line:'**30 influencers | 8.9M+ views\n9.2% ER**', img:'uploads/oml_saffola_fit.png', x:72.3, y:9.5, w:24.6, fr:1.0 },
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Bummer', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_bummer_fit.png', x:1.5, y:62.5, w:24.6, fr:1.0 },
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Cadbury', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_mondelez_fit.png', x:36.6, y:62.5, w:24.6, fr:1.0 },
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, capTop:true, hl:true, title:'Brand Pitches', line:'**Developed branded content strategies across 15 client pitches**', img:'uploads/oml_loreal_fit.png', x:72.3, y:62.5, w:24.6, fr:0.94 }
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'YouTube Shorts', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_yt_fit.webp', x:1.5, y:9.5, w:24.6, fr:1.0 },
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Coursera', line:'**10+ creators\n2.3L+ YouTube views**', img:'uploads/oml_coursera_fit.webp', x:36.6, y:9.5, w:24.6, fr:1.0 },
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Saffola', line:'**30 influencers | 8.9M+ views\n9.2% ER**', img:'uploads/oml_saffola_fit.webp', x:72.3, y:9.5, w:24.6, fr:1.0 },
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Bummer', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_bummer_fit.webp', x:1.5, y:62.5, w:24.6, fr:1.0 },
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Cadbury', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_mondelez_fit.webp', x:36.6, y:62.5, w:24.6, fr:1.0 },
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, capTop:true, hl:true, title:'Brand Pitches', line:'**Developed branded content strategies across 15 client pitches**', img:'uploads/oml_loreal_fit.webp', x:72.3, y:62.5, w:24.6, fr:0.94 }
         ]
       },
       {
         id:'clout', name:'Clout, Pocket Aces', short:'Clout', sector:'Creator Growth \u00b7 Social-First',
-        bg:'uploads/Final (2).png', accent:'#f5c518',
+        bg:'uploads/final2.webp', accent:'#f5c518',
         role:'Growth & Brand Solutions Intern',
         scope:'Performed content analysis for creator growth analysis while working on content development, event execution, artist coordination, social strategy, and branded digital campaigns.',
         tags:['Creator Growth','Content','Events','Artist Management'],
@@ -603,7 +606,7 @@ class Component extends DCLogic {
       },
       {
         id:'omnicom', name:'Omnicom Media Group', short:'Omnicom', sector:'Performance Marketing \u00b7 Paid Media',
-        bg:'uploads/Final.png', accent:'#2f6bff',
+        bg:'uploads/final1.webp', accent:'#2f6bff',
         role:'Performance Marketing Intern',
         scope:'Built a foundation in paid media campaigns, platform thinking, analytics, engagement, and conversion-led digital marketing.',
         tags:['Paid Media','Meta','Google','Analytics'],
@@ -617,8 +620,8 @@ class Component extends DCLogic {
         ],
         edges:[],
         cards:[
-          { type:'image', pillLg:true, capOmni:true, title:'Paid Media Campaigns', line:'Built Performance Marketing Foundations across Google, Meta & YouTube', img:'uploads/google ads-65d8d030.png', x:8.4, y:31.8, w:38.4, fr:0.833 },
-          { type:'image', pillLg:true, capOmni:true, title:'Campaign Performance', line:'Learned to Translate Campaign\nMetrics into Insights', img:'uploads/omni_meta_crop.png', x:55.2, y:10.1, w:38.4, fr:0.778 }
+          { type:'image', pillLg:true, capOmni:true, title:'Paid Media Campaigns', line:'Built Performance Marketing Foundations across Google, Meta & YouTube', img:'uploads/googleads.webp', x:8.4, y:31.8, w:38.4, fr:0.833 },
+          { type:'image', pillLg:true, capOmni:true, title:'Campaign Performance', line:'Learned to Translate Campaign\nMetrics into Insights', img:'uploads/omni_meta_crop.webp', x:55.2, y:10.1, w:38.4, fr:0.778 }
         ]
       }
     ];
@@ -959,7 +962,7 @@ class Component extends DCLogic {
     /* The preview serves files cross-origin, where the download attribute is ignored —
        save the PDF from a same-origin blob instead. */
     const onResume = (e) => {
-      const url = 'uploads/Mohit%20Arjwani%20Resume.pdf';
+      const url = 'uploads/MohitArjwani_Resume.pdf';
       if (e && e.preventDefault) e.preventDefault();
       fetch(url)
         .then((r) => { if (!r.ok) throw new Error(r.status); return r.blob(); })
@@ -967,7 +970,7 @@ class Component extends DCLogic {
           const href = URL.createObjectURL(b);
           const a = document.createElement('a');
           a.href = href;
-          a.download = 'Mohit Arjwani Resume.pdf';
+          a.download = 'MohitArjwani_Resume.pdf';
           document.body.appendChild(a);
           a.click();
           a.remove();

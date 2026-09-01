@@ -16,8 +16,6 @@
   <script src="_ds/web-mj-9f56c0d5-7d8e-46b8-9b8e-970bcb636a9c/_ds_bundle.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700&display=swap" rel="stylesheet">
-  <script src="./image-slot.js"></script>
   <style>
     *{ box-sizing:border-box; }
     html,body{ margin:0; padding:0; }
@@ -56,7 +54,7 @@
       <a href="#top" ref="{{ nameRef }}" style="justify-self:center; font-family:var(--font-display); font-weight:600; font-size:55px; line-height:1; letter-spacing:-0.02em; color:#0e0e0e; transition:color 260ms cubic-bezier(0.4,0,0.2,1);">mohit arjwani</a>
       <div style="display:flex; gap:34px; justify-self:end; align-items:center;">
         <a href="#contact" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">contact</a>
-        <a href="uploads/Mohit%20Arjwani%20Resume.pdf" download="Mohit Arjwani Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">resume</a>
+        <a href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">resume</a>
       </div>
     </nav>
 
@@ -64,7 +62,7 @@
 
       <div class="mj-card" data-i="0" data-color="#ff6a1a" data-ink="#e0550d" onMouseEnter="{{ onEnter }}" onClick="{{ onCardClick }}" style="position:absolute; left:660px; top:148px; width:599px; height:750px; display:flex; flex-direction:column; gap:15px; padding:13px; background:#fdfdfb; border:5px solid #ff6a1a; border-radius:28px; overflow:hidden; cursor:pointer; box-shadow:0 26px 44px -26px rgba(14,14,14,0.34); z-index:40; transition:left 460ms cubic-bezier(0.4,0,0.2,1), top 460ms cubic-bezier(0.4,0,0.2,1), width 460ms cubic-bezier(0.4,0,0.2,1), height 460ms cubic-bezier(0.4,0,0.2,1), border-color 320ms ease, box-shadow 420ms ease, transform 420ms cubic-bezier(0.4,0,0.2,1); animation:mjFadeIn 520ms ease both;">
         <div class="mj-mediabox" style="position:relative; flex:1 1 auto; min-height:0; border-radius:18px; overflow:hidden; background:#e9e9e4;">
-          <video ref="{{ videoRef }}" src="uploads/Even before I was sure that I wanna do my masters, I was sure of going to Australia for this BGT.mp4" autoplay loop muted playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></video>
+          <video ref="{{ videoRef }}" src="uploads/hero.mp4" autoplay loop muted playsinline preload="metadata" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></video>
         </div>
         <div style="flex:none; padding:0 10px 8px;">
           <span class="mj-eyebrow" style="display:block; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#ff6a1a;">origins</span>
@@ -77,7 +75,7 @@
 
       <div class="mj-card" data-i="1" data-color="#651fff" data-ink="#651fff" onMouseEnter="{{ onEnter }}" onClick="{{ onCardClick }}" style="position:absolute; left:1314px; top:148px; width:465px; height:331px; display:flex; flex-direction:column; gap:13px; padding:12px; background:#fdfdfb; border:5px solid rgba(101,31,255,0.42); border-radius:26px; overflow:hidden; cursor:pointer; box-shadow:0 12px 26px -20px rgba(14,14,14,0.26); z-index:10; transition:left 460ms cubic-bezier(0.4,0,0.2,1), top 460ms cubic-bezier(0.4,0,0.2,1), width 460ms cubic-bezier(0.4,0,0.2,1), height 460ms cubic-bezier(0.4,0,0.2,1), border-color 320ms ease, box-shadow 420ms ease, transform 420ms cubic-bezier(0.4,0,0.2,1); animation:mjFadeIn 520ms ease 90ms both;">
         <div class="mj-mediabox" style="position:relative; flex:1 1 auto; min-height:0; border-radius:17px; overflow:hidden; background:#e9e9e4;">
-          <img src="uploads/brand%20sense.png" alt="Reading feeds, moodboards and content trends on a live canvas" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 26%; display:block;">
+          <img decoding="async" fetchpriority="high" src="uploads/brandsense.webp" alt="Reading feeds, moodboards and content trends on a live canvas" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 26%; display:block;">
         </div>
         <div style="flex:none; padding:0 8px 6px;">
           <span class="mj-eyebrow" style="display:block; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#651fff;">brand sense</span>
@@ -90,7 +88,7 @@
 
       <div class="mj-card" data-i="2" data-color="#0b7a45" data-ink="#0b7a45" onMouseEnter="{{ onEnter }}" onClick="{{ onCardClick }}" style="position:absolute; left:142px; top:567px; width:465px; height:331px; display:flex; flex-direction:column; gap:13px; padding:12px; background:#fdfdfb; border:5px solid rgba(11,122,69,0.42); border-radius:26px; overflow:hidden; cursor:pointer; box-shadow:0 12px 26px -20px rgba(14,14,14,0.26); z-index:10; transition:left 460ms cubic-bezier(0.4,0,0.2,1), top 460ms cubic-bezier(0.4,0,0.2,1), width 460ms cubic-bezier(0.4,0,0.2,1), height 460ms cubic-bezier(0.4,0,0.2,1), border-color 320ms ease, box-shadow 420ms ease, transform 420ms cubic-bezier(0.4,0,0.2,1); animation:mjFadeIn 520ms ease 270ms both;">
         <div class="mj-mediabox" style="position:relative; flex:1 1 auto; min-height:0; border-radius:17px; overflow:hidden; background:#e9e9e4;">
-          <img src="uploads/XLRI%20Graduate.png" alt="Receiving the XLRI PGDM diploma at convocation" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 28%; display:block;">
+          <img decoding="async" fetchpriority="high" src="uploads/xlri.webp" alt="Receiving the XLRI PGDM diploma at convocation" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 28%; display:block;">
         </div>
         <div style="flex:none; padding:0 8px 6px;">
           <span class="mj-eyebrow" style="display:block; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#0b7a45;">xlri graduate</span>
@@ -103,7 +101,7 @@
 
       <div class="mj-card" data-i="3" data-color="#d40000" data-ink="#d40000" onMouseEnter="{{ onEnter }}" onClick="{{ onCardClick }}" style="position:absolute; left:142px; top:148px; width:465px; height:331px; display:flex; flex-direction:column; gap:13px; padding:12px; background:#fdfdfb; border:5px solid rgba(212,0,0,0.42); border-radius:26px; overflow:hidden; cursor:pointer; box-shadow:0 12px 26px -20px rgba(14,14,14,0.26); z-index:10; transition:left 460ms cubic-bezier(0.4,0,0.2,1), top 460ms cubic-bezier(0.4,0,0.2,1), width 460ms cubic-bezier(0.4,0,0.2,1), height 460ms cubic-bezier(0.4,0,0.2,1), border-color 320ms ease, box-shadow 420ms ease, transform 420ms cubic-bezier(0.4,0,0.2,1); animation:mjFadeIn 520ms ease 180ms both;">
         <div class="mj-mediabox" style="position:relative; flex:1 1 auto; min-height:0; border-radius:17px; overflow:hidden; background:#e9e9e4;">
-          <img src="uploads/Untitled%20design%20(5).png" alt="Snorkelling, mask on, both hands up" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 40%; display:block;">
+          <img decoding="async" fetchpriority="high" src="uploads/untitled5.webp" alt="Snorkelling, mask on, both hands up" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 40%; display:block;">
         </div>
         <div style="flex:none; padding:0 8px 6px;">
           <span class="mj-eyebrow" style="display:block; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#d40000;">presence</span>
@@ -116,7 +114,7 @@
 
       <div class="mj-card" data-i="4" data-color="#ffd500" data-ink="#a88b00" onMouseEnter="{{ onEnter }}" onClick="{{ onCardClick }}" style="position:absolute; left:1314px; top:567px; width:465px; height:331px; display:flex; flex-direction:column; gap:13px; padding:12px; background:#fdfdfb; border:5px solid rgba(255,213,0,0.55); border-radius:26px; overflow:hidden; cursor:pointer; box-shadow:0 12px 26px -20px rgba(14,14,14,0.26); z-index:10; transition:left 460ms cubic-bezier(0.4,0,0.2,1), top 460ms cubic-bezier(0.4,0,0.2,1), width 460ms cubic-bezier(0.4,0,0.2,1), height 460ms cubic-bezier(0.4,0,0.2,1), border-color 320ms ease, box-shadow 420ms ease, transform 420ms cubic-bezier(0.4,0,0.2,1); animation:mjFadeIn 520ms ease 360ms both;">
         <div class="mj-mediabox" style="position:relative; flex:1 1 auto; min-height:0; border-radius:17px; overflow:hidden; background:#e9e9e4;">
-          <img src="uploads/Arey%20Mohit.png" alt="Arey Mohit cricket content thumbnails" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 35%; display:block;">
+          <img decoding="async" fetchpriority="high" src="uploads/areymohit.webp" alt="Arey Mohit cricket content thumbnails" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 35%; display:block;">
         </div>
         <div style="flex:none; padding:0 8px 6px;">
           <span class="mj-eyebrow" style="display:block; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#a88b00;">ex-cricketer</span>
@@ -387,7 +385,7 @@ class Component extends DCLogic {
       /* The preview serves files from a different origin, where the download attribute is
          ignored — fetch the PDF and save it from a same-origin blob instead. */
       onResume: (e) => {
-        const url = 'uploads/Mohit%20Arjwani%20Resume.pdf';
+        const url = 'uploads/MohitArjwani_Resume.pdf';
         if (e && e.preventDefault) e.preventDefault();
         fetch(url)
           .then((r) => { if (!r.ok) throw new Error(r.status); return r.blob(); })
@@ -395,7 +393,7 @@ class Component extends DCLogic {
             const href = URL.createObjectURL(b);
             const a = document.createElement('a');
             a.href = href;
-            a.download = 'Mohit Arjwani Resume.pdf';
+            a.download = 'MohitArjwani_Resume.pdf';
             document.body.appendChild(a);
             a.click();
             a.remove();
