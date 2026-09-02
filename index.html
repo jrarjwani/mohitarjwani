@@ -14,6 +14,55 @@
 <link rel="preload" as="image" href="uploads/xlri.webp">
 <link rel="preload" as="image" href="uploads/untitled5.webp">
 <link rel="preload" as="image" href="uploads/areymohit.webp">
+<script>
+(function(){
+  if (window.__mjPre) return; window.__mjPre = 1;
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+  window.scrollTo(0,0);
+  var root = document.documentElement;
+  var o = document.createElement('div');
+  o.id = 'mj-preloader'; o.setAttribute('aria-hidden','true');
+  o.style.cssText = 'position:fixed;inset:0;z-index:2147483000;background:#0b0b0c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity 420ms cubic-bezier(0.4,0,0.2,1);opacity:1;';
+  var num = document.createElement('div');
+  num.style.cssText = "font-family:'Newsreader',ui-serif,Georgia,serif;font-weight:400;font-size:clamp(96px,18vw,260px);line-height:0.9;letter-spacing:-0.04em;color:#f4f4f5;font-variant-numeric:tabular-nums;";
+  num.textContent = '1';
+  var track = document.createElement('div');
+  track.style.cssText = 'width:min(240px,42vw);height:1px;background:rgba(244,244,245,0.16);overflow:hidden;';
+  var fill = document.createElement('div');
+  fill.style.cssText = 'width:1%;height:100%;background:#ff6a1a;';
+  track.appendChild(fill); o.appendChild(num); o.appendChild(track);
+  root.appendChild(o);
+  var loaded = false, t0 = Date.now(), shown = 1, done = false;
+  window.addEventListener('load', function(){ loaded = true; });
+  function ratio(){
+    var im = document.images, t = im.length, d = 0;
+    if (!t) return 0;
+    for (var i=0;i<t;i++) if (im[i].complete) d++;
+    return d/t;
+  }
+  function finish(){
+    if (done) return; done = true;
+    num.textContent = '100'; fill.style.width = '100%';
+    window.scrollTo(0,0);
+    setTimeout(function(){
+      o.style.opacity = '0';
+      window.scrollTo(0,0);
+      setTimeout(function(){ if (o.parentNode) o.parentNode.removeChild(o); window.scrollTo(0,0); }, 460);
+    }, 130);
+  }
+  var iv = setInterval(function(){
+    var el = Date.now() - t0;
+    var base = document.readyState === 'loading' ? 14 : (document.readyState === 'interactive' ? 40 : 58);
+    var target = Math.min(96, base + 38 * ratio());
+    if (loaded && el > 800) target = 100;
+    if (el > 7000) target = 100;
+    shown = Math.min(target, shown + Math.max(0.8, (target - shown) * 0.14));
+    var v = Math.min(100, Math.floor(shown));
+    num.textContent = v; fill.style.width = Math.max(1, v) + '%';
+    if (v >= 100) { clearInterval(iv); finish(); }
+  }, 16);
+})();
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
