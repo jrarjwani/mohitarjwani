@@ -251,6 +251,8 @@
     [data-bgdrift="false"] .wk-bgimg{ animation:none !important; }
     .wk-stage{ position:fixed; inset:0; z-index:0; overflow:hidden; background:#0b0b0c; }
 
+    @keyframes wkSlideIn{ from{ opacity:0; transform:translateX(30px); } to{ opacity:1; transform:none; } }
+    .wk-popup-slide > div:nth-child(2){ animation:wkSlideIn 400ms cubic-bezier(.16,1,.3,1) both; }
     @keyframes ctIn{ from{ opacity:0; transform:translateY(22px); } to{ opacity:1; transform:none; } }
     @keyframes ctDrift{ from{ transform:translateY(34px); } to{ transform:translateY(-14px); } }
     .ct-panel{ animation:ctIn linear both; animation-timeline:view(); animation-range:entry 8% cover 34%; }
@@ -266,35 +268,65 @@
     .ct-btn:hover{ background:#ff6a1a !important; border-color:#ff6a1a !important; color:#12100f !important; }
     @media (prefers-reduced-motion: reduce){ .ct-panel, .ct-mark{ animation:none !important; } }
     @media (max-width: 900px){
-      .ct-sec{ padding:80px 16px 32px !important; }
-      .ct-panel{ padding:32px 22px 28px !important; grid-template-columns:1fr !important; gap:34px !important; border-radius:22px !important; }
-      .ct-head{ font-size:34px !important; }
-      .ct-cols{ grid-template-columns:1fr !important; gap:26px !important; }
-      .ct-link{ padding:14px 0 !important; min-height:44px !important; align-items:center !important; }
-      .ct-ctas{ flex-wrap:wrap !important; flex-direction:column !important; align-items:stretch !important; }
+      .ct-sec{ padding:52px 16px 26px !important; }
+      .ct-panel{ padding:26px 18px 22px !important; grid-template-columns:1fr !important; gap:22px !important; border-radius:20px !important; }
+      .ct-head{ font-size:27px !important; margin-top:12px !important; }
+      .ct-panel > div:first-of-type > p{ margin-top:12px !important; font-size:14px !important; }
+      .ct-cols{ grid-template-columns:1fr 1fr !important; gap:14px 18px !important; }
+      .ct-cols > div:nth-child(3){ grid-column:1 / -1 !important; }
+      .ct-cols > div:nth-child(3) > *:nth-child(2), .ct-cols > div:nth-child(3) > *:nth-child(3){ display:none !important; }
+      .ct-link{ padding:11px 0 !important; min-height:44px !important; align-items:center !important; font-size:14.5px !important; }
+      .ct-ctas{ flex-wrap:wrap !important; flex-direction:column !important; align-items:stretch !important; gap:10px !important; margin-top:0 !important; padding-top:18px !important; }
+      .ct-ctas > a:nth-child(1){ order:3; }
+      .ct-ctas > a:nth-child(2){ order:2; }
+      .ct-ctas > a:nth-child(3){ order:1; }
       .ct-btn{ justify-content:center !important; }
       .ct-mark{ font-size:22vw !important; }
-      .ct-bottom{ flex-direction:column !important; gap:10px !important; align-items:flex-start !important; }
+      .ct-bottom{ flex-direction:column !important; gap:10px !important; align-items:flex-start !important; margin-top:16px !important; padding-top:14px !important; }
     }
     @media (max-width: 780px){
       .wk-stage{ display:none !important; }
       .wk-right{ width:100% !important; }
       .wk-box{ min-height:auto !important; flex-direction:column !important; align-items:stretch !important; justify-content:flex-start !important; padding:64px 20px !important; gap:18px !important; }
-      .wk-popup-fixed{ position:static !important; width:auto !important; transform:none !important; margin:0 20px 18px; }
-      .wk-popup-fixed[data-show="true"]{ transform:none !important; }
-      .wk-panel{ position:static !important; right:auto !important; top:auto !important; width:100% !important; height:auto !important; max-height:none !important; padding:18px !important; }
+      #mj-namebar{ display:flex !important; }
+      [data-wk-root]{ padding-top:48px !important; }
+      .wk-popup-fixed{ position:fixed !important; left:10px !important; right:10px !important; top:56px !important; width:auto !important; max-height:none !important; margin:0 !important; z-index:90 !important; transition:none !important; }
+      .wk-popup-fixed[data-show="false"]{ opacity:0 !important; pointer-events:none !important; }
+      .wk-popup-fixed[data-show="true"]{ opacity:1 !important; }
+      .wk-popup-fixed h4{ font-size:16px !important; margin-bottom:6px !important; }
+      .wk-popup-fixed p{ font-size:13px !important; min-height:3.1em !important; }
+      .wk-popup-fixed > div:nth-child(2){ padding:12px 14px 14px !important; }
+      .wk-box{ padding:28px 20px 26px !important; }
+      .wk-popup-fixed{ background:#141210 !important; }
+      .wk-box:has(.wk-cl){ display:none !important; }
+      .wk-tab:nth-of-type(4){ display:none !important; }
+      .wk-panel{ position:static !important; right:auto !important; top:auto !important; width:auto !important; max-width:none !important; min-width:0 !important; align-self:stretch !important; flex:1 1 auto !important; box-sizing:border-box !important; height:auto !important; max-height:none !important; padding:18px !important; }
       .wk-canvas{ position:static !important; inset:auto !important; height:auto !important; }
       .wk-plane{ position:static !important; width:auto !important; height:auto !important; transform:none !important; }
       .wk-heading{ position:static !important; display:block; margin-bottom:14px; }
       .wk-conn{ display:none !important; }
-      .wk-nodes{ position:static !important; display:grid !important; grid-template-columns:1fr 1fr; gap:18px 14px; }
-      .wk-node{ position:static !important; left:auto !important; top:auto !important; width:auto !important; opacity:1 !important; transform:none !important; }
-      .wk-node[data-module="true"]{ grid-column:1 / -1; }
-      .wk-node-frame{ aspect-ratio:1/0.9; }
+      .wk-canvas{ width:100% !important; max-width:none !important; }
+      .wk-plane{ width:100% !important; max-width:none !important; }
+      .wk-nodes{ position:static !important; display:flex !important; flex-direction:column !important; width:100% !important; gap:30px !important; }
+      .wk-node{ position:relative !important; left:auto !important; top:auto !important; width:100% !important; opacity:1 !important; transform:none !important; }
+      .wk-node::after{ display:none !important; }
+      .wk-rails, .wk-rail-caps, .wk-rail-origin, .wk-conn{ display:none !important; }
+      .wk-headpill{ position:relative !important; left:auto !important; top:auto !important; margin:0 0 14px !important; }
+      .wk-nodes{ margin:0 !important; padding:0 !important; }
+      .wk-node-frame{ aspect-ratio:1/0.58 !important; }
+      .wk-node-role, .wk-node[data-big="true"] .wk-node-role{ font-size:15px !important; -webkit-line-clamp:3 !important; }
+      .wk-node-cap, .wk-node[data-big="true"] .wk-node-cap{ font-size:12.5px !important; -webkit-line-clamp:4 !important; }
+      .wk-node-kicker{ font-size:10px !important; }
+      .wk-tabs{ padding:8px 16px !important; scroll-snap-type:x proximity; }
+      .wk-tab{ padding:12px 14px !important; min-height:44px !important; display:flex !important; align-items:center !important; font-size:13px !important; scroll-snap-align:start; }
     }
   </style>
 </helmet>
 <div data-wk-root ref="{{ rootRef }}" data-bgdrift="{{ bgDrift }}" style="position:relative; background:#0b0b0c; color:#f4f4f5; font-family:'Hanken Grotesk', var(--font-sans), sans-serif; min-height:100vh;">
+
+  <div id="mj-namebar" style="display:none; position:fixed; top:0; left:0; right:0; z-index:95; align-items:center; justify-content:center; height:48px; background:#12100f; border-bottom:1px solid #26221f;">
+    <a href="#top" style="font-family:'Newsreader', var(--font-display), serif; font-weight:600; font-size:22px; line-height:1; letter-spacing:-0.02em; color:#f4f4f5;">mohit arjwani</a>
+  </div>
 
   <dc-import name="Mohit Homepage v3" hint-size="100%,100vh" style="position:relative; z-index:3; display:block;"></dc-import>
 
@@ -838,6 +870,15 @@ class Component extends DCLogic {
     const c = this.data[this.state.active];
     const popup = this.popupRef.current;
     if (popup && c){ popup.style.setProperty('--wk-accent', c.accent); }
+    /* Phone: the pinned company box slides its copy across on each change. */
+    if (popup && this._lastActive !== this.state.active){
+      this._lastActive = this.state.active;
+      if (window.innerWidth <= 780){
+        popup.classList.remove('wk-popup-slide');
+        void popup.offsetWidth;
+        popup.classList.add('wk-popup-slide');
+      }
+    }
   }
 
   startTyping(){
@@ -861,20 +902,50 @@ class Component extends DCLogic {
     if (!boxes.length) return;
     const vh = window.innerHeight;
     const center = vh * 0.42;
+    /* Phone sections are several viewports tall, so "midpoint nearest the centre"
+       switches companies long after you have entered the next one. Pick the box
+       that owns the band just under the pinned header instead. */
+    const narrow = window.innerWidth <= 780;
     let best = this.state.active, bestDist = Infinity;
     const seen = Object.assign({}, this.state.seen);
     let changed = false;
     boxes.forEach((b, i) => {
       const r = b.getBoundingClientRect();
+      /* A box hidden at this breakpoint (Clout on phones) has a zero rect —
+         skip it so it can never win the "nearest to centre" test. */
+      if (!r.height) return;
       const mid = r.top + r.height / 2;
-      const d = Math.abs(mid - center);
-      if (d < bestDist){ bestDist = d; best = i; }
+      if (!narrow){
+        const d = Math.abs(mid - center);
+        if (d < bestDist){ bestDist = d; best = i; }
+      }
       if (r.top < vh * 0.82 && r.bottom > vh * 0.18 && !seen[i]){ seen[i] = true; changed = true; }
     });
+    /* Phone: a company owns the pinned box until the bottom of its LAST story
+       block rises past the box, then the next company takes over. When the last
+       company's final block clears it, nothing owns it and the box retires. */
+    let owner = -1;
+    if (narrow){
+      const pop = this.popupRef.current;
+      const line = pop ? pop.getBoundingClientRect().bottom : 216;
+      for (let i = 0; i < boxes.length; i++){
+        const r = boxes[i].getBoundingClientRect();
+        if (!r.height) continue;
+        const ns = boxes[i].querySelectorAll('.wk-node');
+        const last = ns[ns.length - 1];
+        const bottom = last ? last.getBoundingClientRect().bottom : r.bottom;
+        if (bottom > line){ owner = i; break; }
+      }
+      if (owner !== -1) best = owner;
+    }
     const patch = {};
     if (best !== this.state.active) patch.active = best;
     if (changed) patch.seen = seen;
-    const inWork = window.scrollY > vh * 0.55;
+    /* The phone card stack is several viewports tall, so a fixed scroll offset
+       flips this far too early — gate on where the work section actually is. */
+    const wk = document.getElementById('work');
+    const started = wk ? wk.getBoundingClientRect().top <= vh * 0.45 : window.scrollY > vh * 0.55;
+    const inWork = narrow ? (started && owner !== -1) : started;
     if (inWork !== this.state.inWork) patch.inWork = inWork;
     this.release(boxes[boxes.length - 1], vh);
     if (Object.keys(patch).length){

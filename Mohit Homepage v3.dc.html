@@ -35,7 +35,26 @@
       .mj-nav{ position:relative !important; order:1; top:auto !important; left:auto !important; right:auto !important; padding:18px 0 6px !important; }
       .mj-deck{ position:relative !important; order:2; inset:auto !important; height:auto !important; display:flex !important; flex-direction:column !important; gap:18px !important; }
       .mj-card{ position:relative !important; left:auto !important; top:auto !important; right:auto !important; bottom:auto !important; width:100% !important; height:auto !important; min-height:0 !important; transform:none !important; }
-      .mj-mediabox{ height:52vw !important; max-height:340px !important; flex:none !important; }
+      .mj-mediabox{ height:76vw !important; max-height:430px !important; flex:none !important; }
+      .mj-eyebrow{ font-size:11px !important; letter-spacing:0.15em !important; }
+      .mj-desc p{ font-size:15.5px !important; line-height:1.46 !important; }
+      .mj-stage{ padding-bottom:104px !important; }
+      .mj-nav{ display:flex !important; flex-direction:row !important; flex-wrap:wrap !important; align-items:center !important; gap:0 10px !important; font-size:11px !important; padding:10px 0 2px !important; }
+      .mj-nav > *{ display:flex !important; flex-wrap:nowrap !important; flex:0 1 auto !important; min-width:0 !important; gap:0 10px !important; justify-content:flex-start !important; justify-self:start !important; text-align:left !important; }
+      .mj-nav > *:nth-child(2){ order:-1; flex:0 0 100% !important; font-size:30px !important; }
+      .mj-nav a{ white-space:nowrap !important; }
+      .mj-scaler{ overflow:visible !important; }
+      .mj-nav{ position:sticky !important; top:48px !important; z-index:80 !important; background:#ffffff !important; margin:0 -16px !important; padding:9px 16px !important; box-shadow:0 10px 18px -16px rgba(14,14,14,0.55) !important; }
+      .mj-nav > *:nth-child(2){ display:none !important; }
+      .mj-nav a{ min-height:44px !important; display:inline-flex !important; align-items:center !important; }
+      .mj-desc{ max-height:none !important; opacity:1 !important; margin-top:9px !important; }
+      .mj-h{ font-size:23px !important; }
+      .mj-prompt{ position:fixed !important; left:12px !important; right:12px !important; top:auto !important; bottom:12px !important; width:auto !important; height:auto !important; transform:none !important; overflow:visible !important; z-index:90 !important; }
+      .mj-prompt-skin{ opacity:0 !important; }
+      .mj-prompt-inner{ position:relative !important; width:100% !important; transform:none !important; padding:10px 10px 10px 14px !important; gap:10px !important; }
+      .mj-prompt-inner > svg{ width:22px !important; height:34px !important; }
+      .mj-prompt{ transition:opacity 280ms cubic-bezier(0.4,0,0.2,1) !important; }
+      .mj-prompt[data-past="true"]{ opacity:0 !important; pointer-events:none !important; }
     }
   </style>
 </helmet>
@@ -129,9 +148,9 @@
 
   </div>
 
-  <div ref="{{ promptRef }}" onClick="{{ onScrollDown }}" style="position:fixed; left:24px; bottom:24px; width:391px; height:70px; z-index:65; border-radius:18px; overflow:hidden; cursor:pointer;">
-    <div ref="{{ skinRef }}" aria-hidden="true" style="position:absolute; inset:0; opacity:0; border-radius:16px; background-color:#12100f; box-shadow:0 24px 60px -24px rgba(0,0,0,0.7), inset 0 0 0 1px #2a2624; pointer-events:none;"></div>
-    <div ref="{{ promptInnerRef }}" style="position:absolute; left:0; top:0; width:391px; transform-origin:0 0; display:flex; align-items:center; gap:12px; padding:12px 12px 12px 16px; border-radius:18px; background:#1a1616; box-shadow:0 14px 32px -16px rgba(0,0,0,0.6);">
+  <div class="mj-prompt" ref="{{ promptRef }}" onClick="{{ onScrollDown }}" style="position:fixed; left:24px; bottom:24px; width:391px; height:70px; z-index:65; border-radius:18px; overflow:hidden; cursor:pointer;">
+    <div class="mj-prompt-skin" ref="{{ skinRef }}" aria-hidden="true" style="position:absolute; inset:0; opacity:0; border-radius:16px; background-color:#12100f; box-shadow:0 24px 60px -24px rgba(0,0,0,0.7), inset 0 0 0 1px #2a2624; pointer-events:none;"></div>
+    <div class="mj-prompt-inner" ref="{{ promptInnerRef }}" style="position:absolute; left:0; top:0; width:391px; transform-origin:0 0; display:flex; align-items:center; gap:12px; padding:12px 12px 12px 16px; border-radius:18px; background:#1a1616; box-shadow:0 14px 32px -16px rgba(0,0,0,0.6);">
       <svg width="30" height="46" viewBox="0 0 30 46" fill="none" aria-hidden="true" style="flex:0 0 auto;">
         <rect x="4.2" y="3.2" width="21.6" height="39.6" rx="10.8" fill="none" stroke="#f4f4f5" stroke-width="2.1" opacity="0.9"></rect>
         <circle cx="15" cy="13.5" r="2.9" fill="#f4f4f5" style="animation:mjWheel 1.6s cubic-bezier(0.4,0,0.2,1) infinite;"></circle>
@@ -234,6 +253,18 @@ class Component extends DCLogic {
   morph(){
     const wrap = this.promptRef.current, inner = this.promptInnerRef.current, skin = this.skinRef.current;
     if (!wrap || !inner) return;
+    /* Phone: the cue is a plain bottom bar, so skip the fly-into-panel animation
+       entirely and clear anything it wrote — it stays with the card stack and
+       retires once the last card (arey mohit) has passed. */
+    const deck = this.deckRef.current;
+    if (window.innerWidth <= 900){
+      if (deck) wrap.setAttribute('data-past', deck.getBoundingClientRect().bottom < 96 ? 'true' : 'false');
+      ['opacity','pointerEvents','top','left','width','height','transform','borderRadius'].forEach(k => { wrap.style[k] = ''; });
+      ['transform','width','opacity'].forEach(k => { inner.style[k] = ''; });
+      if (skin) skin.style.opacity = '';
+      return;
+    }
+    wrap.removeAttribute('data-past');
     const vw = window.innerWidth, vh = window.innerHeight;
     const scaler = this.scalerRef.current;
     const heroH = scaler ? scaler.offsetHeight : vh;
@@ -354,6 +385,18 @@ class Component extends DCLogic {
     this._t = setTimeout(() => this._fit(), 250);
     window.addEventListener('scroll', this._onScroll, { passive: true });
     this.morph();
+    /* Mobile browsers refuse the autoplay attribute on a preload="none" source —
+       ask for playback directly, and again on the first user gesture. */
+    const vid = this.videoRef.current;
+    if (vid){
+      vid.muted = true;
+      vid.loop = true;
+      vid.autoplay = true;
+      const kick = () => { const p = vid.play(); if (p && p.catch) p.catch(() => {}); };
+      kick();
+      vid.addEventListener('loadeddata', kick, { once: true });
+      ['touchstart', 'pointerdown'].forEach(ev => window.addEventListener(ev, kick, { once: true, passive: true }));
+    }
     /* The line types itself in, like a brief being written into the composer. */
     this._typeAt = setTimeout(() => {
       let i = 0;
