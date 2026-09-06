@@ -66,11 +66,11 @@
 
     <nav class="mj-nav" style="position:absolute; top:24px; left:66px; right:66px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; font-size:19px; letter-spacing:-0.01em; z-index:70;">
       <div style="display:flex; gap:34px; justify-self:start;">
-        <a href="#top" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">about my life</a>
+        <a href="#top" class="mj-nav-about" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px; text-decoration-line:underline;">about my life</a>
         <a href="#work" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">work</a>
         <a href="https://areymohit.vercel.app/" target="_blank" rel="noopener" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">arey mohit (passion project)</a>
       </div>
-      <a href="#top" ref="{{ nameRef }}" style="justify-self:center; font-family:var(--font-display); font-weight:600; font-size:55px; line-height:1; letter-spacing:-0.02em; color:#0e0e0e; transition:color 260ms cubic-bezier(0.4,0,0.2,1);">mohit arjwani</a>
+      <a href="#top" ref="{{ nameRef }}" style="justify-self:center; font-family:var(--font-display); font-weight:600; font-size:55px; line-height:1; letter-spacing:-0.02em; color:var(--accent, #e8590c); transition:color 260ms cubic-bezier(0.4,0,0.2,1);">mohit arjwani</a>
       <div style="display:flex; gap:34px; justify-self:end; align-items:center;">
         <a href="#contact" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">contact</a>
         <a href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">resume</a>
@@ -364,8 +364,13 @@ class Component extends DCLogic {
       if (v){ v.muted = true; v.volume = 0; v.play().catch(()=>{}); }
     });
 
+    const tint = cards[act] ? (cards[act].dataset.ink || cards[act].dataset.color) : '#0e0e0e';
     const name = this.nameRef.current;
-    if (name && cards[act]) name.style.color = act === 0 && this.state.locked === null && !this._hovered ? '#0e0e0e' : (cards[act].dataset.ink || cards[act].dataset.color);
+    if (name) name.style.color = tint;
+    /* The nav lives only on the homepage, so "about my life" reads as the current
+       section — tinted and underlined in step with the wordmark. */
+    const about = stage && stage.querySelector('.mj-nav-about');
+    if (about){ about.style.color = tint; about.style.textDecorationColor = tint; }
 
   }
 

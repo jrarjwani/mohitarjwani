@@ -106,7 +106,8 @@
     .wk-panel::after{ content:''; position:absolute; inset:0; border-radius:26px; box-shadow:inset 0 1px 0 rgba(255,255,255,0.04); pointer-events:none; }
     .wk-canvas{ position:absolute; top:clamp(24px,2.6vw,44px); left:clamp(24px,2.6vw,44px); right:clamp(24px,2.6vw,44px); height:calc(min(78vh - 48px, 792px) - 2 * clamp(24px,2.6vw,44px)); }
     .wk-heading{ position:absolute; left:2%; top:-2%; font-family:'Newsreader',serif; font-style:italic; font-size:clamp(15px,1.5vw,20px); color:var(--wk-accent); letter-spacing:-0.01em; z-index:2; }
-    .wk-conn{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; z-index:0; opacity:0.85; }
+    .wk-conn{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; z-index:0; opacity:0.85; transform:translateY(18px); transition:transform .6s cubic-bezier(.16,1,.3,1) .05s; }
+    [data-inview="true"] .wk-conn{ transform:none; }
     .wk-nodes{ position:absolute; inset:0; z-index:1; }
     .wk-node{ position:absolute; opacity:0; transform:translateY(18px); transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1); }
     [data-inview="true"] .wk-node{ opacity:1; transform:none; }
@@ -161,7 +162,7 @@
     .wk-port-r{ right:-5px; }
 
     .wk-melius-box{ position:relative; width:100%; border:1px solid rgba(255,255,255,0.1); border-radius:9px; background:#0f0f10; padding:8px 9px 9px; box-shadow:0 26px 55px -26px rgba(0,0,0,0.85); transition:border-color .3s ease, transform .35s cubic-bezier(.16,1,.3,1); }
-    .wk-node:hover .wk-melius-box{ transform:translateY(-3px); border-color:var(--wk-accent); }
+    .wk-node:hover .wk-melius-box{ border-color:var(--wk-accent); }
     .wk-melius-pill{ display:inline-flex; align-items:center; max-width:100%; white-space:nowrap; font-size:12px; font-weight:600; letter-spacing:-0.01em; color:#fff; background:var(--wk-accent); padding:4px 10px; border-radius:5px; margin-bottom:6px; box-shadow:0 4px 12px -4px rgba(0,0,0,0.5); }
     .wk-melius-box[data-tight="true"] .wk-melius-pill{ font-size:10.5px; padding:4px 8px; letter-spacing:-0.015em; }
     .wk-melius-line{ margin-top:7px; padding-right:2px; font-size:12px; line-height:1.42; color:#b3aea8; letter-spacing:-0.005em; text-wrap:pretty; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
@@ -223,16 +224,16 @@
     .wk-melius-box .wk-port-r{ right:-17px; }
     .wk-rail-origin{ position:absolute; left:-4px; transform:translateY(-50%); width:9px; height:9px; border-radius:999px; background:#0e0e0e; border:2px solid var(--wk-accent); box-shadow:0 0 0 3px #0e0e0e; z-index:2; }
 
-    .wk-rails{ position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0; transition:opacity .7s cubic-bezier(.4,0,.2,1) .15s; }
-    [data-inview="true"] .wk-rails{ opacity:1; }
+    .wk-rails{ position:absolute; inset:0; z-index:0; pointer-events:none; opacity:0; transform:translateY(18px); transition:opacity .6s cubic-bezier(.16,1,.3,1) .05s, transform .6s cubic-bezier(.16,1,.3,1) .05s; }
+    [data-inview="true"] .wk-rails{ opacity:1; transform:none; }
     .wk-rail-seg{ position:absolute; }
     .wk-rail-seg[data-dir="h"]{ background-image:repeating-linear-gradient(to right, var(--wk-accent) 0 6px, transparent 6px 12px); }
-    .wk-rail-seg[data-dir="v"]{ background-image:repeating-linear-gradient(to bottom, var(--wk-accent) 0 6px, transparent 6px 12px); width:2px !important; margin-left:-0.5px; }
+    .wk-rail-seg[data-dir="v"]{ background-image:linear-gradient(to bottom, var(--wk-accent) 0 50%, transparent 50% 100%); background-repeat:repeat-y; background-size:100% 12px; width:2px !important; margin-left:-0.5px; }
     .wk-rail-dot{ position:absolute; width:5px; height:5px; border-radius:1px; background:var(--wk-accent); transform:translate(-50%,-50%); }
     .wk-rail-seg[data-dir="h"][data-dash="8"]{ background-image:repeating-linear-gradient(to right, var(--wk-accent) 0 8px, transparent 8px 16px); }
-    .wk-rail-seg[data-dir="v"][data-dash="8"]{ background-image:repeating-linear-gradient(to bottom, var(--wk-accent) 0 8px, transparent 8px 16px); }
-    .wk-rail-caps{ position:absolute; inset:0; z-index:2; pointer-events:none; opacity:0; transition:opacity .7s cubic-bezier(.4,0,.2,1) .15s; }
-    [data-inview="true"] .wk-rail-caps{ opacity:1; }
+    .wk-rail-seg[data-dir="v"][data-dash="8"]{ background-size:100% 16px; }
+    .wk-rail-caps{ position:absolute; inset:0; z-index:2; pointer-events:none; opacity:0; transform:translateY(18px); transition:opacity .6s cubic-bezier(.16,1,.3,1) .05s, transform .6s cubic-bezier(.16,1,.3,1) .05s; }
+    [data-inview="true"] .wk-rail-caps{ opacity:1; transform:none; }
     .wk-rail-cap{ position:absolute; background:var(--wk-accent); border-radius:999px; }
     .wk-rail-cap[data-dir="h"]{ width:1px; height:13px; margin-left:-0.5px; margin-top:-6.5px; }
     .wk-rail-cap[data-dir="v"]{ width:13px; height:2px; margin-left:-6.5px; margin-top:-1px; }
@@ -320,6 +321,15 @@
       .wk-tabs{ padding:8px 16px !important; scroll-snap-type:x proximity; }
       .wk-tab{ padding:12px 14px !important; min-height:44px !important; display:flex !important; align-items:center !important; font-size:13px !important; scroll-snap-align:start; }
     }
+
+    .mj-totop{ position:fixed; right:clamp(20px,3vw,40px); bottom:clamp(20px,3vw,36px); will-change:transform; z-index:96; display:flex; align-items:center; gap:8px; height:40px; padding:0 17px 0 14px; border-radius:999px; border:1px solid #2e2a27; background:rgba(18,16,15,0.9); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); color:#f4f4f5; font-family:inherit; font-size:13px; font-weight:500; letter-spacing:0.005em; line-height:1; cursor:pointer; opacity:0; pointer-events:none; box-shadow:0 10px 30px rgba(0,0,0,0.45); transition:opacity 260ms cubic-bezier(.4,0,.2,1), background 200ms ease, border-color 200ms ease; }
+    .mj-totop[data-show="true"]{ opacity:1; pointer-events:auto; }
+    .mj-totop:hover{ background:#1c1917; border-color:#4a423c; }
+    .mj-totop:active{ filter:brightness(1.15); }
+    @media (max-width: 900px){
+      .mj-totop{ right:14px; bottom:16px; height:44px; padding:0 18px 0 15px; }
+    }
+    @media (prefers-reduced-motion: reduce){ .mj-totop{ transition:opacity 160ms linear; } }
   </style>
 </helmet>
 <div data-wk-root ref="{{ rootRef }}" data-bgdrift="{{ bgDrift }}" style="position:relative; background:#0b0b0c; color:#f4f4f5; font-family:'Hanken Grotesk', var(--font-sans), sans-serif; min-height:100vh;">
@@ -545,16 +555,16 @@
       <div>
         <span style="display:block; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; color:#ff6a1a;">contact</span>
         <h2 class="ct-head" style="margin:16px 0 0; font-family:var(--font-display), 'Newsreader', serif; font-weight:600; font-size:44px; line-height:1.06; letter-spacing:-0.02em; color:#f5f5f5; text-wrap:pretty;">Don&rsquo;t make it weird. Just say hi.</h2>
-        <p style="margin:18px 0 0; max-width:34ch; font-size:15px; line-height:1.6; color:#8a8a90; text-wrap:pretty;">For roles, collaborations, campaigns, conversations, or cricket opinions that need defending.</p>
+        <p style="margin:18px 0 0; max-width:34ch; font-size:15px; line-height:1.6; color:#8a8a90; text-wrap:pretty;">For full-time roles, interesting teams, career conversations, or cricket opinions that need defending.</p>
         </div>
 
       <div class="ct-cols" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:34px;">
 
         <div>
-          <span style="display:block; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#6f6f75;">reach</span>
+          <span style="display:block; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#6f6f75;">connect</span>
           <a class="ct-link" href="tel:+918989439880" onClick="{{ onProtocol }}" target="_top" rel="noopener">Phone<span class="ct-arrow">&rarr;</span></a>
           <span class="ct-sub" style="display:block; margin:-6px 0 8px; font-size:13px; color:#9a9aa1;">+91 89894 39880</span>
-          <a class="ct-link" href="mailto:marjwani@gmail.com" onClick="{{ onProtocol }}" target="_top" rel="noopener">Email<span class="ct-arrow">&rarr;</span></a>
+          <a class="ct-link" role="button" tabindex="0" onClick="{{ onCopyEmail }}" style="cursor:pointer;"><span data-lbl="true">Email</span><span class="ct-arrow">&rarr;</span></a>
           <span class="ct-sub" style="display:block; margin:-6px 0 0; font-size:13px; color:#9a9aa1;">marjwani@gmail.com</span>
         </div>
 
@@ -577,18 +587,23 @@
       </div>
 
       <div class="ct-ctas" style="grid-column:1 / -1; display:flex; flex-wrap:nowrap; align-items:center; gap:14px; margin-top:8px; padding-top:26px; border-top:1px solid rgba(255,255,255,0.08);">
-        <a class="ct-btn" href="mailto:marjwani@gmail.com?subject=Hi%20Mohit" onClick="{{ onProtocol }}" target="_top" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect><path d="M3 7l9 6 9-6"></path></svg>Email Me</a>
+        <a class="ct-btn" role="button" tabindex="0" onClick="{{ onCopyEmail }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect><path d="M3 7l9 6 9-6"></path></svg><span data-lbl="true">Get In Touch</span></a>
         <a class="ct-btn" href="tel:+918989439880" onClick="{{ onProtocol }}" target="_top" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h3l1.5 4-2 1.5a11.5 11.5 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5z"></path></svg>Call Me</a>
         <a class="ct-btn" href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; padding:13px 22px; background:transparent; color:#f5f5f5; border:1.5px solid #ff6a1a; border-radius:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.005em;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="M7.5 11.5L12 16l4.5-4.5"></path><path d="M5 19.5h14"></path></svg>Download My Resume</a>
       </div>
     </div>
 
     <div class="ct-bottom" style="position:relative; max-width:1180px; margin:26px auto 0; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:18px 8px 0; border-top:1px solid rgba(255,255,255,0.07); font-size:12.5px; color:#9a9aa1;">
-      <span style="display:inline-flex; align-items:center; gap:9px;"><span aria-hidden="true" style="width:7px; height:7px; border-radius:999px; background:#ff6a1a; box-shadow:0 0 0 4px rgba(255,106,26,0.16);"></span>Open to meaningful roles, sharp briefs, and good conversations.</span>
+      <span style="display:inline-flex; align-items:center; gap:9px;"><span aria-hidden="true" style="width:7px; height:7px; border-radius:999px; background:#ff6a1a; box-shadow:0 0 0 4px rgba(255,106,26,0.16);"></span>Open to roles with ambitious teams doing interesting work.</span>
       <span>&copy; 2026 Mohit Arjwani</span>
     </div>
 
   </section>
+
+  <button type="button" class="mj-totop" ref="{{ topRef }}" data-show="false" onClick="{{ onTop }}" aria-label="Back to top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"></path><path d="M5 12l7-7 7 7"></path></svg>
+    <span>Back to top</span>
+  </button>
 
 </div>
 </x-dc>
@@ -601,6 +616,7 @@ class Component extends DCLogic {
     this.popupRef = React.createRef();
     this.tabRowRef = React.createRef();
     this.pillRef = React.createRef();
+    this.topRef = React.createRef();
     this._rafId = null;
     this.data = [
       {
@@ -637,7 +653,7 @@ class Component extends DCLogic {
         railsRaw:[
           { dir:'h', l:'-74px', t:'43px', w:'458px', h:'1px', edge:'l', anchor:384 },
           { dir:'h', l:'784px', t:'43px', w:'90px', h:'1px', edge:'r', anchor:784 },
-          { dir:'v', l:'8.8%', t:'43px', w:'1px', h:'79px', cap:'end' },
+          { dir:'v', l:'8.8%', t:'43px', w:'1px', h:'64px', cap:'' },
           { dir:'h', l:'342px', t:'379px', w:'72px', h:'1px' },
           { dir:'h', l:'749px', t:'379px', w:'126px', h:'1px', edge:'r', anchor:749 }
         ],
@@ -662,8 +678,8 @@ class Component extends DCLogic {
           { dir:'h', l:'2px', t:'150px', w:'10px', h:'1px', cap:'end' },
           { dir:'h', l:'209px', t:'150px', w:'84px', h:'1px' },
           { dir:'h', l:'490px', t:'150px', w:'88px', h:'1px' },
-          { dir:'v', l:'13.1%', t:'304px', w:'1px', h:'66px' },
-          { dir:'v', l:'49.2%', t:'304px', w:'1px', h:'66px' },
+          { dir:'v', l:'13.1%', t:'286px', w:'1px', h:'64px' },
+          { dir:'v', l:'49.2%', t:'286px', w:'1px', h:'64px' },
           { dir:'h', l:'209px', t:'447px', w:'84px', h:'1px' }
         ],
         edges:[],
@@ -785,6 +801,7 @@ class Component extends DCLogic {
       try {
         const y = window.scrollY || document.documentElement.scrollTop || 0;
         if (y !== this._lastY){ this._lastY = y; this.track(); }
+        this.updateTopBtn();
       } catch (e) {}
       this._rafId = requestAnimationFrame(this._loop);
     };
@@ -795,14 +812,56 @@ class Component extends DCLogic {
       boxes.forEach((b) => this.io.observe(b));
     } catch (e) {}
     this.fitPlanes();
-    this._onScroll = () => { try { this.track(); } catch (e) {} };
+    this._onScroll = () => { try { this.track(); this.updateTopBtn(); } catch (e) {} };
     window.addEventListener('scroll', this._onScroll, { passive: true });
-    this._onResize = () => { this.updateTabs(); this.fitPlanes(); };
+    this._onResize = () => { this.updateTabs(); this.fitPlanes(); this.updateTopBtn(); };
     window.addEventListener('resize', this._onResize);
+    /* Card heights settle only once their lazy .webp images land, so the rails
+       have to be re-derived after that — not just at mount and on resize. */
+    this._refit = () => {
+      if (this._refitRaf) return;
+      this._refitRaf = requestAnimationFrame(() => { this._refitRaf = 0; this.fitPlanes(); });
+    };
+    try {
+      this.ro = new ResizeObserver(this._refit);
+      root.querySelectorAll('.wk-plane, .wk-nodes > .wk-node').forEach((el) => this.ro.observe(el));
+    } catch (_) {}
+    root.querySelectorAll('.wk-canvas img').forEach((img) => {
+      if (img.complete) return;
+      img.addEventListener('load', this._refit, { once: true });
+      img.addEventListener('error', this._refit, { once: true });
+    });
     this.track();
     this.updateTabs();
-    setTimeout(() => this.updateTabs(), 300);
+    setTimeout(() => { this.updateTopBtn(); this.updateTabs(); }, 300);
     if (this.state.inWork) this.startTyping();
+  }
+  updateTopBtn(){
+    const el = this.topRef && this.topRef.current; if (!el) return;
+    const root = this.rootRef.current;
+    const work = root && root.querySelector('#work');
+    /* Park the pill above the copyright rule: once its resting spot is reached it
+       stops tracking the viewport and scrolls away with the page. */
+    const stop = root && root.querySelector('.ct-bottom');
+    if (stop){
+      const gap = 22;
+      const limit = stop.getBoundingClientRect().top - gap;
+      const rest = el.getBoundingClientRect();
+      const bottom = rest.bottom - (this._topShift || 0);
+      const shift = Math.min(0, limit - bottom);
+      if (shift !== this._topShift){ this._topShift = shift; el.style.transform = shift ? 'translateY(' + shift + 'px)' : ''; }
+    }
+    /* Pre-layout the homepage import has no height, which would latch the pill on. */
+    if (work && !work.getBoundingClientRect().height) return;
+    /* Appears only once the homepage/hero section has fully scrolled past. */
+    let show = work ? work.getBoundingClientRect().top <= 0
+                    : (window.scrollY || 0) > window.innerHeight * 0.9;
+    /* Phone: step aside while the pinned company box owns the screen. */
+    if (show && window.innerWidth <= 900){
+      const popup = this.popupRef.current;
+      if (popup && popup.getAttribute('data-show') === 'true') show = false;
+    }
+    el.setAttribute('data-show', show ? 'true' : 'false');
   }
   componentDidUpdate(){ this.updateTabs(); this.fitPlanes(); }
   fitPlanes(){
@@ -835,10 +894,11 @@ class Component extends DCLogic {
         const ix = key.split(',').map(Number);
         const na = nodeEls[ix[0]], nb = nodeEls[ix[1]];
         if (!na || !nb) return;
-        const ra = na.getBoundingClientRect(), rb = nb.getBoundingClientRect();
+        /* Layout coords, not rects: pre-inview every node carries the +18px
+           entrance translate, which would bake a permanent offset into style.top. */
         const vert = seg.dataset.dir === 'v';
-        const from = ((vert ? ra.bottom - pr.top : ra.right - pr.left) / s) - 1.5;
-        const to = ((vert ? rb.top - pr.top : rb.left - pr.left) / s) + 1.5;
+        const from = (vert ? na.offsetTop + na.offsetHeight : na.offsetLeft + na.offsetWidth) - 1.5;
+        const to = (vert ? nb.offsetTop : nb.offsetLeft) + 1.5;
         const size = Math.max(8, to - from);
         if (vert) { seg.style.top = from.toFixed(1) + 'px'; seg.style.height = size.toFixed(1) + 'px'; }
         else { seg.style.left = from.toFixed(1) + 'px'; seg.style.width = size.toFixed(1) + 'px'; }
@@ -846,6 +906,29 @@ class Component extends DCLogic {
         const cb = p.querySelector('.wk-rail-cap[data-bt="' + key + '"][data-bt-end="b"]');
         if (ca) ca.style[vert ? 'top' : 'left'] = from.toFixed(1) + 'px';
         if (cb) cb.style[vert ? 'top' : 'left'] = (from + size).toFixed(1) + 'px';
+      });
+      /* Vertical rails run into an opaque card that clips their tail. Fit the dash
+         period to the VISIBLE span so ink lands flush on both ends at any length.
+         Measured in layout coords — rails and nodes both carry an entrance
+         translate, which getBoundingClientRect would fold in. */
+      p.querySelectorAll('.wk-rail-seg[data-dir="v"]').forEach((seg) => {
+        const st = seg.offsetTop, hgt = seg.offsetHeight;
+        const cx = seg.offsetLeft + seg.offsetWidth / 2;
+        if (hgt <= 0) return;
+        let clip = st + hgt;
+        nodeEls.forEach((n) => {
+          const face = n.firstElementChild; if (!face) return;
+          const l = n.offsetLeft + face.offsetLeft, t = n.offsetTop + face.offsetTop;
+          const r = l + face.offsetWidth, b = t + face.offsetHeight;
+          if (cx < l - 1 || cx > r + 1) return;
+          if (t <= st || t >= st + hgt || b <= st + hgt) return;
+          clip = Math.min(clip, t);
+        });
+        const visible = clip - st;
+        if (visible <= 2) return;
+        const d0 = seg.dataset.dash === '8' ? 8 : 6;
+        const n = Math.max(1, Math.round((visible + d0) / (d0 * 2)));
+        seg.style.backgroundSize = '100% ' + ((visible / (2 * n - 1)) * 2).toFixed(2) + 'px';
       });
     });
   }
@@ -975,6 +1058,7 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount(){
+    try { if (this.ro) this.ro.disconnect(); } catch (_) {}
     if (this._rafId) cancelAnimationFrame(this._rafId);
     if (this.io) this.io.disconnect();
     if (this._onResize) window.removeEventListener('resize', this._onResize);
@@ -1113,12 +1197,49 @@ class Component extends DCLogic {
         if (!w) window.location.href = href;
       }
     };
+    /* The email actions copy the address instead of firing a mailto: the site is
+       often opened where no mail client is wired up. */
+    const onCopyEmail = (e) => {
+      const a = e && e.currentTarget;
+      if (e) e.preventDefault();
+      const addr = 'marjwani@gmail.com';
+      const done = () => {
+        if (!a) return;
+        const lbl = a.querySelector('[data-lbl]');
+        if (!lbl || a.dataset.copying === '1') return;
+        a.dataset.copying = '1';
+        const was = lbl.textContent;
+        lbl.textContent = 'Copied';
+        setTimeout(() => { lbl.textContent = was; a.dataset.copying = ''; }, 1600);
+      };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(addr).then(done, () => { legacyCopy(addr); done(); });
+          return;
+        }
+      } catch (_) {}
+      legacyCopy(addr);
+      done();
+    };
+    const legacyCopy = (t) => {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = t; ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed; top:0; left:0; opacity:0; pointer-events:none;';
+        document.body.appendChild(ta);
+        ta.select(); ta.setSelectionRange(0, t.length);
+        document.execCommand('copy');
+        ta.remove();
+      } catch (_) {}
+    };
     return {
-      onResume, onProtocol,
+      onResume, onProtocol, onCopyEmail,
       rootRef: this.rootRef, popupRef: this.popupRef, tabRowRef: this.tabRowRef, pillRef: this.pillRef,
       companies, layers, tabs,
       activeRole: ac.role,
       typedScope: this.state.typed || '', typing: this._typeTimer ? 'true' : 'false',
+      topRef: this.topRef,
+      onTop: () => { try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(_) { window.scrollTo(0,0); } },
       inWork: this.state.inWork ? 'true' : 'false',
       showConnectors: this.props.showConnectors !== false,
       bgDrift: this.props.bgDrift === false ? 'false' : 'true'
