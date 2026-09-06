@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mohit Arjwani — marketer, storyteller, restless learner</title>
+<title>Mohit Arjwani | Growth, Brand &amp; GTM Marketer</title>
 <meta name="description" content="Mohit Arjwani — marketing and brand work across enParadigm, Coca-Cola, OML, Clout and Omnicom, plus Arey Mohit, a cricket passion project.">
 <meta property="og:title" content="Mohit Arjwani">
 <meta property="og:description" content="Marketer, storyteller, restless learner. Work, story and contact.">
@@ -94,6 +94,15 @@
 
     .wk-popup-fixed{ position:fixed; left:clamp(24px,4vw,64px); top:clamp(90px,12vh,150px); z-index:40; width:clamp(300px,30vw,400px); background:rgba(18,16,15,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid #2a2624; border-radius:16px; box-shadow:0 24px 60px -24px rgba(0,0,0,0.7); overflow:hidden; opacity:0; transform:translateX(-14px); pointer-events:none; transition:opacity .5s ease, transform .5s cubic-bezier(.16,1,.3,1); }
     .wk-popup-fixed[data-show="true"]{ opacity:1; transform:translateX(0); pointer-events:auto; }
+    .wk-dateline{ display:flex; align-items:center; gap:8px; margin:0 0 10px; font-size:11.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#c9c9d0; }
+    .wk-dateline::before{ content:''; width:6px; height:6px; border-radius:999px; background:var(--wk-accent,#ff6a1a); box-shadow:0 0 0 3px color-mix(in oklab, var(--wk-accent,#ff6a1a) 22%, transparent); flex:0 0 auto; }
+    .wk-next{ position:absolute; right:clamp(150px,15vw,250px); bottom:clamp(22px,4vh,44px); z-index:35; display:inline-flex; align-items:center; gap:11px; padding:13px 20px 13px 16px; border-radius:999px; background:#111110; border:1px solid color-mix(in oklab, var(--wk-accent,#ff6a1a) 55%, #2a2624); box-shadow:0 18px 42px -20px rgba(0,0,0,0.9); color:#f4f4f5; font-size:14.5px; font-weight:600; letter-spacing:-0.01em; cursor:pointer; text-decoration:none; opacity:0; transform:translateY(14px); transition:opacity .6s cubic-bezier(.16,1,.3,1) .25s, transform .6s cubic-bezier(.16,1,.3,1) .25s, background 200ms, border-color 200ms; }
+    [data-inview="true"] .wk-next{ opacity:1; transform:none; }
+    [data-atcontact="true"] .wk-next{ opacity:0 !important; transform:translateY(10px) !important; pointer-events:none !important; }
+    .wk-next:hover{ background:#1a1817; border-color:var(--wk-next,#ff6a1a); color:#fff; }
+    .wk-next:active{ transform:scale(0.985); }
+    .wk-next-dot{ width:9px; height:9px; border-radius:999px; background:var(--wk-next,#ff6a1a); flex:0 0 auto; }
+    .wk-next-arw{ font-size:15px; line-height:1; color:var(--wk-next,#ff6a1a); }
     .wk-tabs{ position:relative; padding:10px 16px; overflow-x:auto; overflow-y:hidden; border-bottom:1px solid #26221f; scrollbar-width:none; -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain; }
     .wk-tabs::-webkit-scrollbar{ display:none; }
     .wk-tabrow{ position:relative; display:flex; align-items:center; gap:6px; width:max-content; }
@@ -298,6 +307,7 @@
       .wk-popup-fixed p{ font-size:13px !important; min-height:3.1em !important; }
       .wk-popup-fixed > div:nth-child(2){ padding:12px 14px 14px !important; }
       .wk-box{ padding:28px 20px 26px !important; }
+      .wk-next{ right:12px !important; bottom:74px !important; padding:10px 15px 10px 12px !important; font-size:13px !important; }
       .wk-popup-fixed{ background:#141210 !important; }
       .wk-box:has(.wk-cl){ display:none !important; }
       .wk-tab:nth-of-type(4){ display:none !important; }
@@ -350,7 +360,7 @@
     </sc-for>
   </div>
 
-  <div class="wk-popup-fixed" ref="{{ popupRef }}" data-show="{{ inWork }}">
+  <div class="wk-popup-fixed" ref="{{ popupRef }}" data-show="{{ inWork }}" style="--wk-accent:{{ activeAccent }};">
     <div class="wk-tabs">
       <div class="wk-tabrow" ref="{{ tabRowRef }}">
         <div class="wk-tabpill" ref="{{ pillRef }}"></div>
@@ -360,7 +370,8 @@
       </div>
     </div>
     <div style="padding:16px 18px 20px;">
-      <h4 style="margin:0 0 9px; font-size:19px; font-weight:600; letter-spacing:-0.01em; color:#fff; line-height:1.22;">{{ activeRole }}</h4>
+      <h4 style="margin:0 0 8px; font-size:19px; font-weight:600; letter-spacing:-0.01em; color:#fff; line-height:1.22;">{{ activeRole }}</h4>
+      <sc-if value="{{ activeDates }}" hint-placeholder-val=""><div class="wk-dateline">{{ activeDates }}</div></sc-if>
       <p style="margin:0; font-size:14px; line-height:1.55; color:#a9a9b0; text-wrap:pretty; min-height:4.3em;">{{ typedScope }}<span class="wk-caret" data-on="{{ typing }}"></span></p>
     </div>
   </div>
@@ -539,6 +550,7 @@
               </div>
             </div>
           </div>
+          <sc-if value="{{ c.nextLabel }}" hint-placeholder-val=""><a class="wk-next" role="button" tabindex="0" onClick="{{ c.goNext }}" style="--wk-next:{{ c.nextAccent }};"><span class="wk-next-dot"></span><span>Next: {{ c.nextLabel }}</span><span class="wk-next-arw">&rarr;</span></a></sc-if>
         </section>
       </sc-for>
     </div>
@@ -622,7 +634,7 @@ class Component extends DCLogic {
       {
         id:'enparadigm', name:'enParadigm', short:'enParadigm', sector:'Talent Transformation \u00b7 B2B SaaS',
         bg:'uploads/7.webp', accent:'#f04e23',
-        role:'Growth Marketing Consultant',
+        role:'Growth Marketing Consultant', dates:'Apr 2026 – Present',
         scope:'Building growth systems across branding, PR, sales enablement, lead generation, and SaaS positioning for enterprise talent transformation.',
         tags:['Brand & Rebranding','PR','Sales Enablement','Lead Gen'],
         rails:[],
@@ -646,7 +658,7 @@ class Component extends DCLogic {
       {
         id:'cocacola', name:'The Coca-Cola Company', short:'Coca-Cola', sector:'FMCG \u00b7 Customer & Commercial',
         bg:'uploads/8.webp', accent:'#e4141b',
-        role:'Customer & Commercial Leadership, Summer Internship, XLRI',
+        role:'Customer & Commercial Leadership, Summer Internship, XLRI', dates:'Apr 2025 – May 2025',
         scope:'Built commercial growth systems to increase beverage orders on Swiggy, from revenue modeling to FSA dashboards and bottler playbook strategy.',
         tags:['Revenue Modelling','FSA Growth','Swiggy','Bottler Strategy'],
         rails:[],
@@ -667,7 +679,7 @@ class Component extends DCLogic {
       {
         id:'oml', name:'OML Entertainment', short:'OML', sector:'Creator Economy \u00b7 Global Creator Network',
         bg:'uploads/final3.webp', accent:'#b933e0',
-        role:'Junior Associate, Global Creator Network',
+        role:'Junior Associate, Global Creator Network', dates:'Feb 2023 – Aug 2023',
         headingPill:'Led Digital Campaigns for',
         scope:'Worked across creator-led campaigns leading YouTube Shorts GTM, influencer execution, brand pitches, cost optimization, and campaign performance.',
         tags:['Influencer Strategy','YouTube Shorts','Brand Pitches','Performance'],
@@ -687,15 +699,15 @@ class Component extends DCLogic {
           { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'YouTube Shorts', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_yt_fit.webp', x:1.5, y:9.5, w:24.6, fr:1.0 },
           { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Coursera', line:'**10+ creators\n2.3L+ YouTube views**', img:'uploads/oml_coursera_fit.webp', x:36.6, y:9.5, w:24.6, fr:1.0 },
           { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Saffola', line:'**30 influencers | 8.9M+ views\n9.2% ER**', img:'uploads/oml_saffola_fit.webp', x:72.3, y:9.5, w:24.6, fr:1.0 },
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Bummer', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_bummer_fit.webp', x:1.5, y:62.5, w:24.6, fr:1.0 },
-          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Cadbury', line:'**600+ assets | 633M+ views\n55M+ engagements**', img:'uploads/oml_mondelez_fit.webp', x:36.6, y:62.5, w:24.6, fr:1.0 },
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Bummer', line:'**400K+ views | 40K+ engagement\n7.53% ER**', img:'uploads/oml_bummer_fit.webp', x:1.5, y:62.5, w:24.6, fr:1.0 },
+          { type:'image', bare:true, noPill:true, align:'center', capSm:true, title:'Cadbury', line:'**35M+ Plays**', img:'uploads/oml_mondelez_fit.webp', x:36.6, y:62.5, w:24.6, fr:1.0 },
           { type:'image', bare:true, noPill:true, align:'center', capSm:true, capTop:true, hl:true, title:'Brand Pitches', line:'**Developed branded content strategies across 15 client pitches**', img:'uploads/oml_loreal_fit.webp', x:72.3, y:62.5, w:24.6, fr:0.94 }
         ]
       },
       {
         id:'clout', name:'Clout, Pocket Aces', short:'Clout', sector:'Creator Growth \u00b7 Social-First',
         bg:'uploads/final2.webp', accent:'#f5c518',
-        role:'Growth & Brand Solutions Intern',
+        role:'Growth & Brand Solutions Intern', dates:'Jul 2022 – Jan 2023',
         scope:'Performed content analysis for creator growth analysis while working on content development, event execution, artist coordination, social strategy, and branded digital campaigns.',
         tags:['Creator Growth','Content','Events','Artist Management'],
         rails:[],
@@ -705,7 +717,7 @@ class Component extends DCLogic {
       {
         id:'omnicom', name:'Omnicom Media Group', short:'Omnicom', sector:'Performance Marketing \u00b7 Paid Media',
         bg:'uploads/final1.webp', accent:'#2f6bff',
-        role:'Performance Marketing Intern',
+        role:'Performance Marketing Intern', dates:'May 2022 – Jun 2022',
         scope:'Built a foundation in paid media campaigns, platform thinking, analytics, engagement, and conversion-led digital marketing.',
         tags:['Paid Media','Meta','Google','Analytics'],
         rails:[],
@@ -718,7 +730,7 @@ class Component extends DCLogic {
         ],
         edges:[],
         cards:[
-          { type:'image', pillLg:true, capOmni:true, title:'Paid Media Campaigns', line:'Built Performance Marketing Foundations across Google, Meta & YouTube', img:'uploads/googleads.webp', x:8.4, y:31.8, w:38.4, fr:0.833 },
+          { type:'image', pillLg:true, capOmni:true, title:'Paid Media Campaign Simulations', line:'Built Performance Marketing Foundations across Google, Meta & YouTube', img:'uploads/googleads.webp', x:8.4, y:31.8, w:38.4, fr:0.833 },
           { type:'image', pillLg:true, capOmni:true, title:'Campaign Performance', line:'Learned to Translate Campaign\nMetrics into Insights', img:'uploads/omni_meta_crop.webp', x:55.2, y:10.1, w:38.4, fr:0.778 }
         ]
       }
@@ -1030,6 +1042,11 @@ class Component extends DCLogic {
     const started = wk ? wk.getBoundingClientRect().top <= vh * 0.45 : window.scrollY > vh * 0.55;
     const inWork = narrow ? (started && owner !== -1) : started;
     if (inWork !== this.state.inWork) patch.inWork = inWork;
+    /* Once contact is coming up, the last section's "Let's talk" pill has served its
+       purpose — hide it so it never hangs over the contact panel. */
+    const ct = document.getElementById('contact');
+    const root0 = this.rootRef.current;
+    if (root0) root0.setAttribute('data-atcontact', (ct && ct.getBoundingClientRect().top <= vh * 0.92) ? 'true' : 'false');
     this.release(boxes[boxes.length - 1], vh);
     if (Object.keys(patch).length){
       const activeChanged = ('active' in patch);
@@ -1066,6 +1083,25 @@ class Component extends DCLogic {
     if (this._typeTimer) clearInterval(this._typeTimer);
   }
 
+  goNext(i){
+    const nx = this.data[i + 1];
+    if (!nx){
+      const el = document.getElementById('contact');
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'smooth' });
+      return;
+    }
+    const root = this.rootRef.current;
+    const b = root && root.querySelector('[data-idx="' + (i + 1) + '"]');
+    if (!b) { this.goTo(i + 1); return; }
+    /* Land where the next section's own CTA is on screen and this one has scrolled
+       away: its bottom edge parked just inside the viewport, never above its top. */
+    const r = b.getBoundingClientRect();
+    const top = r.top + window.scrollY;
+    const alignTop = top - 80;
+    const showCta = top + r.height - window.innerHeight + 26;
+    window.scrollTo({ top: Math.max(alignTop, showCta), behavior: 'smooth' });
+  }
+
   goTo(i){
     const root = this.rootRef.current; if (!root) return;
     const b = root.querySelector('[data-idx="' + i + '"]');
@@ -1091,6 +1127,10 @@ class Component extends DCLogic {
       }
       const sx = a.x + a.w / 2, sy = fBottom(a), ex = b.x + b.w / 2, ey = fTop(b), dy = Math.max(4, (ey - sy) / 2);
       return 'M ' + r1(sx) + ' ' + r1(sy) + ' C ' + r1(sx) + ' ' + r1(sy + dy) + ', ' + r1(ex) + ' ' + r1(ey - dy) + ', ' + r1(ex) + ' ' + r1(ey);
+    };
+    const nextOf = (i) => {
+      const n = this.data[i + 1];
+      return n ? { label: n.short || n.name, accent: n.accent } : { label: 'Let\u2019s talk', accent: '#ff6a1a' };
     };
     const companies = this.data.map((c, i) => {
       const srcSet = new Set(), tgtSet = new Set();
@@ -1144,7 +1184,8 @@ class Component extends DCLogic {
         idx: i, accent: c.accent, heading: c.heading || '', headingPill: c.headingPill || '', isClout: c.id === 'clout' ? 'true' : '',
         inview: seen[i] ? 'true' : 'false',
         hasRail: (c.leftRail ? 'true' : ''), railY: (railY != null ? r1(railY) + '%' : '50%'),
-        nodes, edges, railSegs: rg.segs, railDots: rg.dots, railCaps: rg.caps || []
+        nodes, edges, railSegs: rg.segs, railDots: rg.dots, railCaps: rg.caps || [],
+        nextLabel: nextOf(i).label, nextAccent: nextOf(i).accent, goNext: () => this.goNext(i)
       };
     });
     const fills = { enparadigm:'#f4f4f2', cocacola:'#e51f26', oml:'#4a63d8', clout:'#f6c518', omnicom:'#eef1f4' };
@@ -1236,7 +1277,7 @@ class Component extends DCLogic {
       onResume, onProtocol, onCopyEmail,
       rootRef: this.rootRef, popupRef: this.popupRef, tabRowRef: this.tabRowRef, pillRef: this.pillRef,
       companies, layers, tabs,
-      activeRole: ac.role,
+      activeRole: ac.role, activeDates: ac.dates || '', activeAccent: ac.accent,
       typedScope: this.state.typed || '', typing: this._typeTimer ? 'true' : 'false',
       topRef: this.topRef,
       onTop: () => { try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch(_) { window.scrollTo(0,0); } },

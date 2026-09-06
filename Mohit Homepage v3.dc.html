@@ -66,7 +66,7 @@
 
     <nav class="mj-nav" style="position:absolute; top:24px; left:66px; right:66px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; font-size:19px; letter-spacing:-0.01em; z-index:70;">
       <div style="display:flex; gap:34px; justify-self:start;">
-        <a href="#top" class="mj-nav-about" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px; text-decoration-line:underline;">about my life</a>
+        <a href="#top" class="mj-nav-about" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px; text-decoration-line:underline;">about me</a>
         <a href="#work" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">work</a>
         <a href="https://areymohit.vercel.app/" target="_blank" rel="noopener" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">arey mohit (passion project)</a>
       </div>
@@ -126,7 +126,7 @@
           <span class="mj-eyebrow" style="display:block; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#d40000;">presence</span>
           <h2 class="mj-h" style="margin:6px 0 0; font-family:var(--font-display); font-weight:700; font-size:26px; line-height:1.08; letter-spacing:-0.015em; color:#0e0e0e; transition:font-size 420ms cubic-bezier(0.4,0,0.2,1);">How Do I Show Up?</h2>
           <div class="mj-desc" style="max-height:0; opacity:0; overflow:hidden; transition:max-height 460ms cubic-bezier(0.4,0,0.2,1), opacity 320ms ease, margin-top 460ms cubic-bezier(0.4,0,0.2,1); margin-top:0;">
-            <p style="margin:0; font-family:var(--font-display); font-weight:400; font-size:19px; line-height:1.5; color:#1a1616; text-wrap:pretty;">I show up with energy, curiosity, and a bias for people. I like conversations, teams, rooms, and situations where listening well matters as much as speaking clearly.</p>
+            <p style="margin:0; font-family:var(--font-display); font-weight:400; font-size:19px; line-height:1.5; color:#1a1616; text-wrap:pretty;">I show up with energy, curiosity, and a bias for people. I ask questions early, listen closely, and usually find my footing quickly in new teams and unfamiliar rooms.</p>
           </div>
         </div>
       </div>
@@ -155,7 +155,7 @@
         <rect x="4.2" y="3.2" width="21.6" height="39.6" rx="10.8" fill="none" stroke="#f4f4f5" stroke-width="2.1" opacity="0.9"></rect>
         <circle cx="15" cy="13.5" r="2.9" fill="#f4f4f5" style="animation:mjWheel 1.6s cubic-bezier(0.4,0,0.2,1) infinite;"></circle>
       </svg>
-      <div style="flex:1 1 auto; min-width:0; font-size:15px; line-height:1.35; letter-spacing:-0.004em; color:#f4f4f5; max-height:41px; overflow:hidden;">{{ typed }}<span style="display:inline-block; width:1.5px; height:13px; margin-left:3px; background:#ff6a1a; vertical-align:-1px; animation:mjCaret 1.05s steps(1) infinite;"></span></div>
+      <div style="flex:1 1 auto; min-width:0; font-size:14px; line-height:1.2; letter-spacing:-0.008em; color:#f4f4f5; white-space:nowrap; overflow:hidden;">{{ typed }}<span style="display:inline-block; width:1.5px; height:13px; margin-left:3px; background:#ff6a1a; vertical-align:-1px; animation:mjCaret 1.05s steps(1) infinite;"></span></div>
       <span style="flex:0 0 auto; width:44px; height:44px; border-radius:999px; background:#312c2c; color:#f4f4f5; display:flex; align-items:center; justify-content:center;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       </span>
@@ -176,7 +176,7 @@ const ANCHORS = [
 ];
 const HERO_C = { l: 660, t: 148, w: 599, h: 750 };
 const heroAt = (l) => ({ l: l, t: 148, w: 599, h: 750 });
-const PROMPT_TEXT = 'Pick your box or scroll down to explore more...';
+const PROMPT_TEXT = 'Pick a box, or scroll to see my work';
 const box = (l, t) => ({ l: l, t: t, w: SMALL.w, h: SMALL.h });
 const TILT = [0, 1.1, -1.2, 1.4, -1];
 
@@ -367,7 +367,7 @@ class Component extends DCLogic {
     const tint = cards[act] ? (cards[act].dataset.ink || cards[act].dataset.color) : '#0e0e0e';
     const name = this.nameRef.current;
     if (name) name.style.color = tint;
-    /* The nav lives only on the homepage, so "about my life" reads as the current
+    /* The nav lives only on the homepage, so "about me" reads as the current
        section — tinted and underlined in step with the wordmark. */
     const about = stage && stage.querySelector('.mj-nav-about');
     if (about){ about.style.color = tint; about.style.textDecorationColor = tint; }
