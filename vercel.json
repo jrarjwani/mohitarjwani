@@ -1,5 +1,16 @@
 {
+  "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/areymohit/myinnings.html",
+      "destination": "/areymohit/myinnings",
+      "permanent": true
+    },
+    {
+      "source": "/areymohit/index.html",
+      "destination": "/areymohit",
+      "permanent": true
+    },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
