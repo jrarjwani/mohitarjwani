@@ -1,4 +1,18 @@
 {
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
+      "destination": "https://mohitarjwani.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.mohitarjwani.com" }],
+      "destination": "https://mohitarjwani.com/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/uploads/(.*)",

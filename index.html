@@ -7,6 +7,8 @@
 <meta name="description" content="Mohit Arjwani — marketing and brand work across enParadigm, Coca-Cola, OML, Clout and Omnicom, plus Arey Mohit, a cricket passion project.">
 <meta property="og:title" content="Mohit Arjwani">
 <meta property="og:description" content="Marketer, storyteller, restless learner. Work, story and contact.">
+<link rel="canonical" href="https://mohitarjwani.com/">
+<meta property="og:url" content="https://mohitarjwani.com/">
 <meta name="theme-color" content="#0b0b0c">
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preload" as="image" href="uploads/hero_poster.webp">
@@ -340,15 +342,357 @@
       .mj-totop{ right:14px; bottom:16px; height:44px; padding:0 18px 0 15px; }
     }
     @media (prefers-reduced-motion: reduce){ .mj-totop{ transition:opacity 160ms linear; } }
+
+    /* ============================ MOBILE (<=767px) ============================
+       A purpose-built phone experience. Everything below lives inside the
+       max-width:767px query, and the desktop tree is hidden there — so no rule
+       in this block can reach a tablet or desktop viewport. */
+    .mb-root{ display:none; }
+    @media (max-width: 767px){
+      #mj-namebar,
+      [data-wk-root] > .mb-dhide,
+      [data-wk-root] > .wk-stage,
+      [data-wk-root] > .wk-popup-fixed,
+      [data-wk-root] > .wk-split,
+      [data-wk-root] > .ct-sec,
+      [data-wk-root] > .mj-totop{ display:none !important; }
+
+      .mb-root{ display:block; position:relative; padding-top:58px; background:#090909; -webkit-tap-highlight-color:transparent; }
+      .mb-root *{ box-sizing:border-box; }
+      .mb-root :focus-visible{ outline:2px solid #ff6a1a; outline-offset:3px; border-radius:6px; }
+      .mb-root button{ font-family:inherit; color:inherit; background:none; border:0; }
+
+      .mb-head{ position:fixed; top:0; left:0; right:0; z-index:120; height:58px; display:flex; align-items:center; justify-content:space-between; padding:0 20px; background:rgba(9,9,9,0.93); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid #1d1b19; }
+      .mb-wm{ font-family:'Newsreader',serif; font-weight:600; font-size:21px; line-height:1; letter-spacing:-0.02em; color:#f4f4f5; }
+      .mb-burger{ width:44px; height:44px; margin-right:-11px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; }
+      .mb-burger i{ display:block; width:20px; height:1.7px; border-radius:2px; background:#f4f4f5; }
+      .mb-burger[data-x="true"] i:nth-child(1){ transform:translateY(3.4px) rotate(45deg); }
+      .mb-burger[data-x="true"] i:nth-child(2){ opacity:0; }
+      .mb-burger[data-x="true"] i:nth-child(3){ transform:translateY(-3.4px) rotate(-45deg); }
+      .mb-burger i{ transition:transform 220ms cubic-bezier(.4,0,.2,1), opacity 140ms linear; }
+
+      .mb-menu{ position:fixed; inset:0; z-index:130; display:flex; flex-direction:column; padding:0 20px calc(30px + env(safe-area-inset-bottom)); background:#0b0b0c; opacity:0; transform:translateY(-10px); pointer-events:none; transition:opacity 200ms linear, transform 240ms cubic-bezier(.4,0,.2,1); }
+      .mb-menu[data-open="true"]{ opacity:1; transform:none; pointer-events:auto; }
+      .mb-menu-top{ flex:none; height:58px; display:flex; align-items:center; justify-content:space-between; margin:0 -20px; padding:0 20px; border-bottom:1px solid #1a1817; }
+      .mb-menu-list{ display:flex; flex-direction:column; margin-top:14px; }
+      .mb-mi{ display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:64px; padding:8px 0; border-bottom:1px solid #1a1817; font-family:'Newsreader',serif; font-weight:500; font-size:29px; letter-spacing:-0.02em; color:#f4f4f5; }
+      .mb-mi-a{ font-family:'Hanken Grotesk',sans-serif; font-size:16px; color:#ff6a1a; }
+      .mb-mi:active{ color:#ff6a1a; }
+      .mb-menu-ft{ margin:auto 0 0; padding-top:24px; font-size:13px; line-height:1.5; color:#7a7a80; }
+
+      .mb-bar{ position:fixed; top:58px; left:0; right:0; z-index:110; height:54px; display:flex; align-items:center; gap:10px; padding:0 12px; background:rgba(15,14,13,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid #201d1b; opacity:0; transform:translateY(-100%); pointer-events:none; transition:transform 240ms cubic-bezier(.4,0,.2,1), opacity 180ms linear; }
+      .mb-bar[data-show="true"]{ opacity:1; transform:none; pointer-events:auto; }
+      .mb-bar-back{ flex:0 0 auto; display:flex; align-items:center; gap:6px; height:44px; padding:0 10px; border-radius:10px; font-size:13.5px; font-weight:600; color:#c9c9cd; }
+      .mb-bar-n{ flex:1 1 auto; min-width:0; display:flex; align-items:center; gap:8px; font-size:14.5px; font-weight:600; letter-spacing:-0.01em; color:#f4f4f5; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .mb-bar-dot{ flex:0 0 auto; width:7px; height:7px; border-radius:999px; background:var(--mb-a,#ff6a1a); box-shadow:0 0 0 3px color-mix(in oklab, var(--mb-a,#ff6a1a) 22%, transparent); }
+      .mb-bar-sw{ flex:0 0 auto; display:flex; align-items:center; gap:7px; height:44px; padding:0 12px; border-radius:11px; border:1px solid #2a2624; background:#151312; font-size:12.5px; font-weight:700; letter-spacing:0.04em; color:#dcdcdf; }
+      .mb-bar-sw span{ font-size:10px; color:var(--mb-a,#ff6a1a); }
+
+      .mb-sec{ padding:58px 20px 0; }
+      .mb-sec#m-home{ padding-top:12px; }
+      [data-wk-root]{ padding-top:0 !important; }
+      .mb-dots{ background-image:radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size:22px 22px; }
+      .mb-lbl{ display:block; font-size:11px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#ff6a1a; }
+      .mb-h1{ margin:14px 0 0; font-family:'Newsreader',serif; font-weight:600; font-size:clamp(40px,12.6vw,50px); line-height:1.0; letter-spacing:-0.028em; color:#f7f7f7; text-wrap:balance; }
+      .mb-h2{ margin:14px 0 0; font-family:'Newsreader',serif; font-weight:600; font-size:clamp(31px,9vw,37px); line-height:1.06; letter-spacing:-0.022em; color:#f5f5f5; text-wrap:pretty; }
+      .mb-p{ margin:14px 0 0; font-size:16px; line-height:1.55; color:#9d9da4; text-wrap:pretty; }
+      .mb-role{ display:inline-flex; align-items:center; gap:9px; margin-top:18px; padding:8px 14px; border-radius:999px; border:1px solid #2a2624; background:#131110; font-size:13.5px; font-weight:600; letter-spacing:-0.005em; color:#e8e6e3; }
+      .mb-role-d{ width:7px; height:7px; border-radius:999px; background:#ff6a1a; box-shadow:0 0 0 3px rgba(255,106,26,0.18); }
+
+      .mb-cta{ display:flex; flex-direction:column; gap:11px; margin-top:26px; }
+      .mb-btn{ display:flex; align-items:center; justify-content:center; gap:9px; min-height:52px; padding:0 20px; border-radius:14px; font-size:16px; font-weight:600; letter-spacing:-0.006em; transition:transform 140ms ease, background 180ms, border-color 180ms; }
+      .mb-btn[data-k="fill"]{ background:#ff6a1a; border:1px solid #ff6a1a; color:#12100f; }
+      .mb-btn[data-k="out"]{ background:#111110; border:1.5px solid #ff6a1a; color:#f4f4f5; }
+      .mb-btn[data-k="ghost"]{ background:#111110; border:1px solid #2a2624; color:#dcdcdf; }
+      .mb-btn:active{ transform:scale(0.985); }
+
+      .mb-hero{ position:relative; margin-top:30px; border-radius:22px; overflow:hidden; border:1px solid #201d1b; background:#141312; aspect-ratio:4/5; }
+      .mb-hero img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 24%; display:block; }
+
+      .mb-grid{ display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-top:24px; }
+      .mb-ac{ display:flex; flex-direction:column; text-align:left; border-radius:20px; overflow:hidden; border:1px solid #221f1d; background:#131211; cursor:pointer; transition:border-color 180ms; }
+      .mb-ac:active{ border-color:var(--mb-a,#ff6a1a); }
+      .mb-ac-img{ position:relative; display:block; aspect-ratio:1/1; background:#1b1a19; }
+      .mb-ac-img img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+      .mb-ac-img video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+      .mb-ac-b{ display:block; padding:12px 13px 15px; }
+      .mb-ac-l{ display:block; font-size:9.5px; font-weight:700; letter-spacing:0.17em; text-transform:uppercase; }
+      .mb-ac-t{ display:block; margin-top:7px; font-family:'Newsreader',serif; font-weight:600; font-size:20px; line-height:1.1; letter-spacing:-0.015em; color:#f2f2f2; }
+      .mb-ac-more{ display:block; margin-top:9px; font-size:12px; font-weight:600; color:#83838a; }
+
+      .mb-wl{ display:flex; flex-direction:column; gap:11px; margin-top:24px; }
+      .mb-wr{ display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px; width:100%; min-height:78px; padding:14px 15px; border-radius:18px; border:1px solid #221f1d; background:#131211; text-align:left; cursor:pointer; transition:border-color 180ms, background 180ms; }
+      .mb-wr:active{ border-color:var(--mb-a,#ff6a1a); background:#171514; }
+      .mb-wr[data-cur="true"]{ border-color:var(--mb-a,#ff6a1a); }
+      .mb-wr-m{ flex:0 0 auto; width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; letter-spacing:-0.01em; color:#0b0b0c; background:var(--mb-a,#ff6a1a); }
+      .mb-wr-x{ display:block; min-width:0; }
+      .mb-wr-n{ display:block; font-size:16px; font-weight:600; letter-spacing:-0.012em; color:#f2f2f2; }
+      .mb-wr-r{ display:block; margin-top:4px; font-size:12.5px; line-height:1.38; color:#8f8f96; text-wrap:pretty; }
+      .mb-wr-d{ display:block; margin-top:6px; font-size:10.5px; font-weight:700; letter-spacing:0.14em; color:var(--mb-a,#ff6a1a); }
+      .mb-wr-a{ flex:0 0 auto; font-size:17px; color:#6a6a70; }
+
+      .mb-cs{ padding:66px 20px 0; scroll-margin-top:118px; }
+      .mb-flow[data-hide="true"]{ display:none; }
+      .mb-cases{ display:none; }
+      .mb-cases[data-open="true"]{ display:block; padding-bottom:40px; }
+      .mb-cs[data-cur="false"]{ display:none; }
+      .mb-backb{ display:flex; align-items:center; justify-content:center; gap:10px; min-height:54px; margin-top:26px; border-radius:16px; border:1px solid #2a2724; background:#131211; font-size:15.5px; font-weight:600; color:#e8e8eb; width:100%; cursor:pointer; }
+      .mb-backb:active{ border-color:#ff6a1a; color:#ff6a1a; }
+      .mb-sum{ position:relative; border-radius:22px; border:1px solid #221f1d; background:#121110; padding:20px 18px 22px 21px; overflow:hidden; }
+      .mb-sum::before{ content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--mb-a,#ff6a1a); }
+      .mb-sum-p{ display:block; font-size:10.5px; font-weight:700; letter-spacing:0.17em; text-transform:uppercase; color:var(--mb-a,#ff6a1a); }
+      .mb-sum-n{ margin:12px 0 0; font-family:'Newsreader',serif; font-weight:600; font-size:29px; line-height:1.07; letter-spacing:-0.022em; color:#f5f5f5; text-wrap:pretty; }
+      .mb-sum-r{ margin-top:11px; font-size:14.5px; font-weight:600; line-height:1.4; color:#e0dedb; text-wrap:pretty; }
+      .mb-sum-d{ margin-top:9px; font-size:11px; font-weight:700; letter-spacing:0.15em; color:#98989f; }
+      .mb-sum-s{ margin:15px 0 0; font-size:15.5px; line-height:1.55; color:#9d9da4; text-wrap:pretty; }
+
+      .mb-story{ display:flex; flex-direction:column; gap:18px; margin-top:20px; }
+      .mb-card{ border-radius:20px; border:1px solid #221f1d; background:#111110; overflow:hidden; }
+      .mb-card-h{ padding:15px 16px 0; }
+      .mb-pill{ display:inline-flex; align-items:center; max-width:100%; padding:6px 12px; border-radius:9px; background:var(--mb-a,#ff6a1a); font-size:12.5px; font-weight:700; letter-spacing:-0.008em; line-height:1.25; color:#12100f; text-wrap:pretty; }
+      .mb-card-i{ position:relative; margin:13px 13px 0; border-radius:12px; overflow:hidden; background:#181716; }
+      .mb-card-i img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:block; }
+      .mb-card-c{ margin:0; padding:14px 16px 17px; font-size:14.5px; line-height:1.5; color:#a5a5ac; text-wrap:pretty; }
+      .mb-card-c strong{ font-weight:600; color:#efece8; }
+      .mb-mtr{ padding:16px 18px 20px; }
+      .mb-mtr-n{ font-family:'Newsreader',serif; font-weight:500; font-size:46px; line-height:0.95; letter-spacing:-0.03em; color:#fff; }
+      .mb-mtr-s{ margin:10px 0 0; font-size:14.5px; line-height:1.5; color:#a5a5ac; }
+
+      .mb-nextb{ display:flex; align-items:center; gap:12px; min-height:62px; margin-top:22px; padding:0 18px; border-radius:16px; border:1px solid color-mix(in oklab, var(--mb-n,#ff6a1a) 50%, #241f1c); background:#121110; font-size:15.5px; font-weight:600; letter-spacing:-0.008em; color:#f4f4f5; }
+      .mb-nextb-d{ flex:0 0 auto; width:9px; height:9px; border-radius:999px; background:var(--mb-n,#ff6a1a); }
+      .mb-nextb span:nth-child(2){ flex:1 1 auto; }
+      .mb-nextb-a{ flex:0 0 auto; color:var(--mb-n,#ff6a1a); }
+      .mb-nextb:active{ background:#181615; }
+
+      .mb-arey{ position:relative; margin-top:26px; border-radius:22px; overflow:hidden; border:1px solid #201d1b; background:#141312; aspect-ratio:4/5; }
+      .mb-arey img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 34%; display:block; }
+
+      .mb-ct{ margin-top:22px; padding:8px 18px 20px; border-radius:22px; border:1px solid rgba(255,255,255,0.08); background:#191817; }
+      .mb-crow{ display:flex; align-items:center; justify-content:space-between; gap:14px; min-height:58px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.07); }
+      .mb-crow-k{ font-size:15.5px; font-weight:600; color:#e8e8eb; }
+      .mb-crow-v{ font-size:13px; color:#9a9aa1; white-space:nowrap; }
+      .mb-crow:active .mb-crow-k{ color:#ff6a1a; }
+
+      .mb-ft{ margin-top:44px; padding:22px 20px calc(30px + env(safe-area-inset-bottom)); border-top:1px solid #1a1a1d; display:flex; flex-direction:column; gap:14px; font-size:12.5px; color:#8a8a90; }
+      .mb-ft-o{ display:inline-flex; align-items:center; gap:9px; }
+      .mb-ft-d{ width:7px; height:7px; border-radius:999px; background:#ff6a1a; box-shadow:0 0 0 4px rgba(255,106,26,0.16); }
+      .mb-ft-b{ display:flex; align-items:center; justify-content:space-between; gap:14px; }
+      .mb-ft-t{ min-height:44px; display:inline-flex; align-items:center; font-size:13px; font-weight:600; color:#c9c9cd; }
+
+      .mb-sheet{ position:fixed; inset:0; z-index:140; pointer-events:none; }
+      .mb-sheet[data-open="true"]{ pointer-events:auto; }
+      .mb-sheet-bd{ position:absolute; inset:0; background:rgba(5,5,6,0.62); opacity:0; transition:opacity 220ms linear; }
+      .mb-sheet[data-open="true"] .mb-sheet-bd{ opacity:1; }
+      .mb-sheet-pn{ position:absolute; left:0; right:0; bottom:0; max-height:90vh; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:8px 20px calc(26px + env(safe-area-inset-bottom)); background:#111110; border-top:1px solid #262220; border-radius:24px 24px 0 0; transform:translateY(101%); transition:transform 280ms cubic-bezier(.4,0,.2,1); }
+      .mb-sheet[data-open="true"] .mb-sheet-pn{ transform:none; }
+      .mb-grab{ width:42px; height:4px; border-radius:999px; background:#33302d; margin:6px auto 16px; }
+      .mb-sheet-img{ position:relative; background-repeat:no-repeat; border-radius:18px; overflow:hidden; border:1px solid #221f1d; background:#1b1a19; aspect-ratio:4/3; }
+      .mb-sheet-img img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+      .mb-sheet-t{ margin:8px 0 0; font-family:'Newsreader',serif; font-weight:600; font-size:29px; line-height:1.08; letter-spacing:-0.022em; color:#f5f5f5; }
+      .mb-sheet-p{ margin:13px 0 0; font-size:16px; line-height:1.58; color:#a3a3aa; text-wrap:pretty; }
+
+      .mb-rev{ opacity:0; transform:translateY(11px); transition:opacity 320ms cubic-bezier(.4,0,.2,1), transform 340ms cubic-bezier(.4,0,.2,1); }
+      .mb-rev[data-in="true"]{ opacity:1; transform:none; }
+    }
+    @media (max-width: 359px){
+      .mb-sec, .mb-cs{ padding-left:16px; padding-right:16px; }
+      .mb-ft{ padding-left:16px; padding-right:16px; }
+      .mb-grid{ display:flex; gap:12px; margin-left:-16px; margin-right:-16px; padding:0 16px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+      .mb-grid::-webkit-scrollbar{ display:none; }
+      .mb-ac{ flex:0 0 74%; scroll-snap-align:start; }
+    }
+    @media (max-width: 767px) and (prefers-reduced-motion: reduce){
+      .mb-rev{ opacity:1 !important; transform:none !important; transition:none !important; }
+      .mb-menu, .mb-bar, .mb-sheet-pn, .mb-sheet-bd, .mb-burger i{ transition:none !important; }
+    }
   </style>
 </helmet>
 <div data-wk-root ref="{{ rootRef }}" data-bgdrift="{{ bgDrift }}" style="position:relative; background:#0b0b0c; color:#f4f4f5; font-family:'Hanken Grotesk', var(--font-sans), sans-serif; min-height:100vh;">
+
+  <div class="mb-root">
+    <header class="mb-head">
+      <a class="mb-wm" href="#m-home" onClick="{{ mbGoHome }}">mohit arjwani</a>
+      <button type="button" class="mb-burger" data-x="{{ mbMenuOpen }}" aria-label="Open menu" aria-expanded="{{ mbMenuOpen }}" onClick="{{ mbToggleMenu }}"><i></i><i></i><i></i></button>
+    </header>
+
+    <div class="mb-bar" data-show="{{ mbBarShow }}" style="--mb-a:{{ mbBarAccent }};">
+      <button type="button" class="mb-bar-back" onClick="{{ mbCloseCase }}"><span>&larr;</span><span>Work</span></button>
+      <span class="mb-bar-n"><span class="mb-bar-dot"></span>{{ mbBarName }}</span>
+      <button type="button" class="mb-bar-sw" onClick="{{ mbOpenWorkSheet }}" aria-label="Switch company">{{ mbBarNum }}<span>&#9662;</span></button>
+    </div>
+
+    <div class="mb-flow" data-hide="{{ mbCaseOpen }}">
+    <section class="mb-sec" id="m-home">
+      <span class="mb-lbl mb-rev">Hi, I&rsquo;m Mohit</span>
+      <h1 class="mb-h1 mb-rev">Growth, Brand &amp; GTM.</h1>
+      <span class="mb-role mb-rev"><span class="mb-role-d"></span>Growth Marketing Consultant</span>
+      <p class="mb-p mb-rev">A marketer, storyteller, and restless learner who likes figuring out what makes people stop, care, click, share, and remember.</p>
+      <div class="mb-cta mb-rev">
+        <a class="mb-btn" data-k="fill" href="#m-work" onClick="{{ mbGoWork }}">View My Work</a>
+        <a class="mb-btn" data-k="out" href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener">Download Resume</a>
+      </div>
+    </section>
+
+    <section class="mb-sec mb-dots" id="m-about">
+      <span class="mb-lbl mb-rev">About Me</span>
+      <h2 class="mb-h2 mb-rev">A little more than a CV.</h2>
+      <p class="mb-p mb-rev">Four things that shape how I work. Tap any one to read it.</p>
+      <div class="mb-grid">
+        <sc-for list="{{ mbAboutCards }}" as="a" hint-placeholder-count="4">
+          <button type="button" class="mb-ac mb-rev" onClick="{{ a.open }}" style="--mb-a:{{ a.accent }};">
+            <span class="mb-ac-img">
+              <sc-if value="{{ a.hasVid }}" hint-placeholder-val=""><video src="{{ a.vid }}" poster="{{ a.img }}" autoplay loop muted playsinline preload="auto" aria-label="{{ a.alt }}" onEnded="{{ mbVidLoop }}" onCanPlay="{{ mbVidLoop }}"></video></sc-if>
+              <sc-if value="{{ a.noVid }}" hint-placeholder-val="{{ true }}"><img decoding="async" loading="lazy" src="{{ a.img }}" alt="{{ a.alt }}"></sc-if>
+            </span>
+            <span class="mb-ac-b">
+              <span class="mb-ac-l" style="color:{{ a.accent }};">{{ a.label }}</span>
+              <span class="mb-ac-t">{{ a.title }}</span>
+              <span class="mb-ac-more">Read &rarr;</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section class="mb-sec mb-dots" id="m-work">
+      <span class="mb-lbl mb-rev">Work</span>
+      <h2 class="mb-h2 mb-rev">Brands I&rsquo;ve Built With</h2>
+      <p class="mb-p mb-rev">From performance and creators to commercial growth and GTM, here&rsquo;s the work that shaped how I market.</p>
+      <div class="mb-wl">
+        <sc-for list="{{ mbCompanies }}" as="c" hint-placeholder-count="5">
+          <button type="button" class="mb-wr mb-rev" onClick="{{ c.goSec }}" style="--mb-a:{{ c.accent }};">
+            <span class="mb-wr-m">{{ c.mono }}</span>
+            <span class="mb-wr-x">
+              <span class="mb-wr-n">{{ c.name }}</span>
+              <span class="mb-wr-r">{{ c.role }}</span>
+              <span class="mb-wr-d">{{ c.dates }}</span>
+            </span>
+            <span class="mb-wr-a">&rarr;</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+
+    <section class="mb-sec" id="m-arey">
+      <span class="mb-lbl mb-rev">More Than Work</span>
+      <h2 class="mb-h2 mb-rev">Arey Mohit</h2>
+      <p class="mb-p mb-rev">Cricket was my first love, and that love never really left. Arey Mohit is where I stay connected to the game, building my own space to talk about cricket, stories, opinions, and everything in between.</p>
+      <div class="mb-arey mb-rev"><img decoding="async" loading="lazy" src="uploads/areymohit.webp" alt="Arey Mohit cricket content thumbnails"></div>
+      <a class="mb-btn mb-rev" data-k="out" href="https://areymohit.vercel.app/" target="_blank" rel="noopener" style="margin-top:24px;">Explore Arey Mohit &nearr;</a>
+    </section>
+
+    <section class="mb-sec" id="m-contact">
+      <span class="mb-lbl mb-rev">Contact</span>
+      <h2 class="mb-h2 mb-rev">Don&rsquo;t make it weird. Just say hi.</h2>
+      <p class="mb-p mb-rev">For full-time roles, interesting teams, career conversations, or cricket opinions that need defending.</p>
+      <div class="mb-ct mb-rev">
+        <a class="mb-crow" role="button" tabindex="0" onClick="{{ onCopyEmail }}" style="cursor:pointer;"><span class="mb-crow-k" data-lbl="true">Email</span><span class="mb-crow-v">marjwani@gmail.com</span></a>
+        <a class="mb-crow" href="https://www.linkedin.com/in/mohit-arjwani-6881031a1/" target="_blank" rel="noopener"><span class="mb-crow-k">LinkedIn</span><span class="mb-crow-v">mohit-arjwani &rarr;</span></a>
+        <a class="mb-crow" href="https://www.instagram.com/jr.arjwani/" target="_blank" rel="noopener"><span class="mb-crow-k">Instagram</span><span class="mb-crow-v">jr.arjwani &rarr;</span></a>
+        <a class="mb-crow" href="tel:+918989439880" onClick="{{ onProtocol }}" target="_top" rel="noopener"><span class="mb-crow-k">Phone</span><span class="mb-crow-v">+91 89894 39880</span></a>
+        <div class="mb-cta" style="margin-top:22px;">
+          <a class="mb-btn" data-k="fill" href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ onResume }}" target="_blank" rel="noopener">Download My Resume</a>
+          <a class="mb-btn" data-k="out" role="button" tabindex="0" onClick="{{ onCopyEmail }}" style="cursor:pointer;"><span data-lbl="true">Get In Touch</span></a>
+          <a class="mb-btn" data-k="ghost" href="tel:+918989439880" onClick="{{ onProtocol }}" target="_top" rel="noopener">Call Me</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mb-ft">
+      <span class="mb-ft-o"><span class="mb-ft-d"></span>Open to the right next move.</span>
+      <div class="mb-ft-b"><span>&copy; 2026 Mohit Arjwani</span><a class="mb-ft-t" href="#m-home" onClick="{{ mbGoHome }}">&uarr; Back to top</a></div>
+    </footer>
+    </div>
+
+    <div class="mb-cases" data-open="{{ mbCaseOpen }}">
+    <sc-for list="{{ mbCompanies }}" as="c" hint-placeholder-count="5">
+      <section class="mb-cs mb-dots" data-mb-cs data-cur="{{ c.isCurS }}" id="{{ c.secId }}" data-screen-label="{{ c.short }}" style="--mb-a:{{ c.accent }};">
+        <div class="mb-sum mb-rev">
+          <span class="mb-sum-p">{{ c.sector }}</span>
+          <h2 class="mb-sum-n">{{ c.name }}</h2>
+          <div class="mb-sum-r">{{ c.role }}</div>
+          <div class="mb-sum-d">{{ c.dates }}</div>
+          <p class="mb-sum-s">{{ c.scope }}</p>
+        </div>
+        <div class="mb-story">
+          <sc-for list="{{ c.cards }}" as="k" hint-placeholder-count="3">
+            <article class="mb-card mb-rev">
+              <sc-if value="{{ k.pill }}"><div class="mb-card-h"><span class="mb-pill">{{ k.pill }}</span></div></sc-if>
+              <sc-if value="{{ k.isMetric }}">
+                <div class="mb-mtr">
+                  <div class="mb-mtr-n">{{ k.metric }}</div>
+                  <p class="mb-mtr-s">{{ k.metricSub }}</p>
+                </div>
+              </sc-if>
+              <sc-if value="{{ k.img }}" hint-placeholder-val="{{ false }}">
+                <div class="mb-card-i" style="aspect-ratio:{{ k.ar }};"><img decoding="async" loading="lazy" src="{{ k.img }}" alt="{{ k.alt }}"></div>
+              </sc-if>
+              <sc-if value="{{ k.hasLine }}">
+                <p class="mb-card-c"><sc-for list="{{ k.lineParts }}" as="lp" hint-placeholder-count="0"><sc-if value="{{ lp.br }}"><br></sc-if><sc-if value="{{ lp.b }}"><strong>{{ lp.t }}</strong></sc-if><sc-if value="{{ lp.nb }}"><span>{{ lp.t }}</span></sc-if></sc-for></p>
+              </sc-if>
+            </article>
+          </sc-for>
+        </div>
+        <button type="button" class="mb-backb mb-rev" onClick="{{ mbCloseCase }}"><span>&larr;</span><span>Back to all work</span></button>
+      </section>
+    </sc-for>
+    </div>
+
+    <div class="mb-menu" data-open="{{ mbMenuOpen }}" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="mb-menu-top">
+        <span class="mb-wm">mohit arjwani</span>
+        <button type="button" class="mb-burger" data-x="true" aria-label="Close menu" onClick="{{ mbToggleMenu }}"><i></i><i></i><i></i></button>
+      </div>
+      <nav class="mb-menu-list">
+        <a class="mb-mi" href="#m-about" onClick="{{ mbGoAbout }}"><span>About Me</span><span class="mb-mi-a">&rarr;</span></a>
+        <a class="mb-mi" href="#m-work" onClick="{{ mbGoWork }}"><span>Work</span><span class="mb-mi-a">&rarr;</span></a>
+        <a class="mb-mi" href="https://areymohit.vercel.app/" target="_blank" rel="noopener" onClick="{{ mbCloseMenu }}"><span>Arey Mohit</span><span class="mb-mi-a">&nearr;</span></a>
+        <a class="mb-mi" href="#m-contact" onClick="{{ mbGoContact }}"><span>Contact</span><span class="mb-mi-a">&rarr;</span></a>
+        <a class="mb-mi" href="uploads/MohitArjwani_Resume.pdf" download="MohitArjwani_Resume.pdf" onClick="{{ mbResume }}" target="_blank" rel="noopener"><span>Resume</span><span class="mb-mi-a">&darr;</span></a>
+      </nav>
+      <p class="mb-menu-ft">Open to roles with ambitious teams doing interesting work.</p>
+    </div>
+
+    <div class="mb-sheet" data-open="{{ mbSheetOpen }}" role="dialog" aria-modal="true" aria-label="Details">
+      <div class="mb-sheet-bd" onClick="{{ mbCloseSheet }}"></div>
+      <div class="mb-sheet-pn">
+        <div class="mb-grab"></div>
+        <sc-if value="{{ mbSheetAbout }}">
+          <div>
+            <div class="mb-sheet-img" role="img" aria-label="{{ mbSheetAlt }}" style="background-image:{{ mbSheetImgBg }}; background-size:cover; background-position:center;"></div>
+            <span class="mb-ac-l" style="display:block; margin-top:18px; color:{{ mbSheetAccent }};">{{ mbSheetLabel }}</span>
+            <h3 class="mb-sheet-t">{{ mbSheetTitle }}</h3>
+            <p class="mb-sheet-p">{{ mbSheetText }}</p>
+            <button type="button" class="mb-btn" data-k="ghost" onClick="{{ mbCloseSheet }}" style="width:100%; margin-top:24px;">Close</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ mbSheetWork }}">
+          <div>
+            <span class="mb-lbl">Jump to a company</span>
+            <div class="mb-wl" style="margin-top:14px;">
+              <sc-for list="{{ mbCompanies }}" as="c" hint-placeholder-count="5">
+                <button type="button" class="mb-wr" data-cur="{{ c.isCur }}" onClick="{{ c.goSecClose }}" style="--mb-a:{{ c.accent }};">
+                  <span class="mb-wr-m">{{ c.mono }}</span>
+                  <span class="mb-wr-x"><span class="mb-wr-n">{{ c.name }}</span><span class="mb-wr-d">{{ c.dates }}</span></span>
+                  <span class="mb-wr-a">&rarr;</span>
+                </button>
+              </sc-for>
+            </div>
+            <button type="button" class="mb-btn" data-k="ghost" onClick="{{ mbCloseSheet }}" style="width:100%; margin-top:16px;">Close</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
 
   <div id="mj-namebar" style="display:none; position:fixed; top:0; left:0; right:0; z-index:95; align-items:center; justify-content:center; height:48px; background:#12100f; border-bottom:1px solid #26221f;">
     <a href="#top" style="font-family:'Newsreader', var(--font-display), serif; font-weight:600; font-size:22px; line-height:1; letter-spacing:-0.02em; color:#f4f4f5;">mohit arjwani</a>
   </div>
 
-  <dc-import name="Mohit Homepage v3" hint-size="100%,100vh" style="position:relative; z-index:3; display:block;"></dc-import>
+  <div class="mb-dhide" style="position:relative; z-index:3;">
+    <dc-import name="Mohit Homepage v3" hint-size="100%,100vh" style="position:relative; z-index:3; display:block;"></dc-import>
+  </div>
 
   <div class="wk-stage" aria-hidden="true">
     <sc-for list="{{ layers }}" as="ly" hint-placeholder-count="5">
@@ -623,7 +967,7 @@
 class Component extends DCLogic {
   constructor(props){
     super(props);
-    this.state = { active: 0, seen: {}, inWork: false, typed: '' };
+    this.state = { active: 0, seen: {}, inWork: false, typed: '', mbMenu: false, mbSheet: '', mbAbout: 0, mbCs: -1 };
     this.rootRef = React.createRef();
     this.popupRef = React.createRef();
     this.tabRowRef = React.createRef();
@@ -718,7 +1062,7 @@ class Component extends DCLogic {
         id:'omnicom', name:'Omnicom Media Group', short:'Omnicom', sector:'Performance Marketing \u00b7 Paid Media',
         bg:'uploads/final1.webp', accent:'#2f6bff',
         role:'Performance Marketing Intern', dates:'May 2022 – Jun 2022',
-        scope:'Built a foundation in paid media campaigns, platform thinking, analytics, engagement, and conversion-led digital marketing.',
+        scope:'Built a foundation in paid media campaign simulations, platform thinking, analytics, engagement, and conversion-led digital marketing.',
         tags:['Paid Media','Meta','Google','Analytics'],
         rails:[],
         railsRaw:[
@@ -735,6 +1079,74 @@ class Component extends DCLogic {
         ]
       }
     ];
+    /* Mobile only. The four personality dimensions from the homepage deck, with the
+       accents lifted for contrast on the dark phone ground (same hues). */
+    this.mbAbout = [
+      { label:'Origins', title:'Who Am I?', accent:'#ff8a4c', img:'uploads/hero_poster.webp', vid:'uploads/hero3.mp4', alt:'Mohit Arjwani', text:'I\u2019m a marketer, storyteller, and restless learner shaped by growing up across seven cities. Every move taught me to read rooms quickly, adapt without losing myself, and turn change into perspective.' },
+      { label:'Brand Sense', title:'What Do I Notice?', accent:'#a37dff', img:'uploads/brandsense.webp', alt:'Reading feeds, moodboards and content trends on a live canvas', text:'I notice what makes people stop, care, click, share, and remember. That instinct shapes how I think about brands, creators, campaigns, content, and culture.' },
+      { label:'XLRI Graduate', title:'How Do I Think?', accent:'#4ecb8a', img:'uploads/xlri.webp', alt:'Receiving the XLRI PGDM diploma at convocation', text:'XLRI gave structure to the instinct. It sharpened how I break down markets, consumers, research, strategy, and business problems before turning them into action.' },
+      { label:'Presence', title:'How Do I Show Up?', accent:'#ff6b6b', img:'uploads/untitled5.webp', alt:'Snorkelling, mask on, both hands up', text:'I show up with energy, curiosity, and a bias for people. I ask questions early, listen closely, and usually find my footing quickly in new teams and unfamiliar rooms.' }
+    ];
+    /* Clout has no desktop node cards (it ships as one composite illustration), so the
+       phone story is built from the same assets and the same verified copy. */
+    this.mbClout = [
+      { pill:'Content Analysis', metric:'3,000+', metricSub:'content pieces analyzed for creator growth.' },
+      { pill:'Influencer Growth & Management', line:'Managed artists\u2019 events, shoots, PR & more.', img:'uploads/clout_fit.webp', ar:1.309, alt:'Influencer growth and management' },
+      { pill:'Content Ideation', line:'Conceptualized and shaped content ideas, many of which went **viral**.', img:'uploads/clout_full_trim.webp', ar:1.432, alt:'Clout, Pocket Aces \u2014 creator growth and content work' }
+    ];
+    this.mbMono = { enparadigm:'eP', cocacola:'CC', oml:'OML', clout:'CL', omnicom:'OM' };
+  }
+
+  /* ---------------------------------------------------------------- mobile ---- */
+  mbLock(on){
+    try { document.documentElement.style.overflow = on ? 'hidden' : ''; } catch (_) {}
+  }
+  mbScrollTo(y){
+    const t = Math.max(0, y || 0);
+    try { window.scrollTo({ top: t, behavior: 'smooth' }); } catch (_) {}
+    /* Smooth behavior is a no-op in some embedded contexts — land it for sure. */
+    setTimeout(() => {
+      if (Math.abs((window.scrollY || 0) - t) > 4) {
+        try { window.scrollTo(0, t); } catch (_) {}
+        try { document.documentElement.scrollTop = t; document.body.scrollTop = t; } catch (_) {}
+      }
+    }, 280);
+  }
+  mbGo(id, off){
+    const el = document.getElementById(id);
+    if (!el) return;
+    this.mbScrollTo(el.getBoundingClientRect().top + window.scrollY - (off == null ? 70 : off));
+  }
+  mbOpenCase(i){
+    if (this.state.mbCs < 0) this.mbFlowY = window.scrollY || 0;
+    this.setState({ mbCs: i, mbSheet: '', mbMenu: false });
+    this.mbLock(false);
+    try { window.scrollTo({ top: 0, behavior: 'auto' }); } catch (_) { window.scrollTo(0, 0); }
+  }
+  mbAfterLayout(fn){
+    setTimeout(fn, 0);
+    setTimeout(fn, 120);
+    setTimeout(fn, 320);
+  }
+  mbCloseCase(scrollToWork){
+    this.setState({ mbCs: -1, mbSheet: '', mbMenu: false });
+    this.mbLock(false);
+    if (scrollToWork === false) return;
+    this.mbAfterLayout(() => {
+      const el = document.getElementById('m-work');
+      const y = el ? (el.getBoundingClientRect().top + window.scrollY - 66) : (this.mbFlowY || 0);
+      window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
+    });
+  }
+  mbTrack(){
+    const line = 58 + 54 + 12;
+    const secs = document.querySelectorAll('[data-mb-cs]');
+    let cur = -1;
+    secs.forEach((s, i) => {
+      const r = s.getBoundingClientRect();
+      if (r.top <= line && r.bottom > line + 60) cur = i;
+    });
+    if (cur !== this.state.mbCs) this.setState({ mbCs: cur });
   }
 
   parseLine(s){
@@ -843,6 +1255,23 @@ class Component extends DCLogic {
       img.addEventListener('load', this._refit, { once: true });
       img.addEventListener('error', this._refit, { once: true });
     });
+    /* Mobile sections rise in once, then stay put. */
+    try {
+      this.mbIo = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.setAttribute('data-in', 'true');
+          this.mbIo.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.01 });
+      root.querySelectorAll('.mb-rev').forEach((el) => this.mbIo.observe(el));
+    } catch (_) {}
+    setTimeout(() => {
+      root.querySelectorAll('.mb-rev:not([data-in])').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.height && r.top < window.innerHeight) el.setAttribute('data-in', 'true');
+      });
+    }, 700);
     this.track();
     this.updateTabs();
     setTimeout(() => { this.updateTopBtn(); this.updateTabs(); }, 300);
@@ -850,6 +1279,7 @@ class Component extends DCLogic {
   }
   updateTopBtn(){
     const el = this.topRef && this.topRef.current; if (!el) return;
+    if (window.innerWidth <= 767){ el.setAttribute('data-show', 'false'); return; }
     const root = this.rootRef.current;
     const work = root && root.querySelector('#work');
     /* Park the pill above the copyright rule: once its resting spot is reached it
@@ -877,6 +1307,7 @@ class Component extends DCLogic {
   }
   componentDidUpdate(){ this.updateTabs(); this.fitPlanes(); }
   fitPlanes(){
+    if (window.innerWidth <= 767) return;
     const root = this.rootRef.current; if (!root) return;
     const narrow = window.innerWidth <= 780;
     root.querySelectorAll('.wk-canvas').forEach((cv) => {
@@ -945,6 +1376,7 @@ class Component extends DCLogic {
     });
   }
   updateTabs(){
+    if (window.innerWidth <= 767) return;
     const row = this.tabRowRef.current; if (!row) return;
     const tabs = row.querySelectorAll('.wk-tab');
     const el = tabs[this.state.active]; if (!el) return;
@@ -992,6 +1424,9 @@ class Component extends DCLogic {
   }
 
   track(){
+    /* Phone runs an entirely separate layout — none of the desktop canvas
+       measurement below applies (and its elements are display:none there). */
+    if (window.innerWidth <= 767){ return; }
     const root = this.rootRef.current; if (!root) return;
     const boxes = Array.from(root.querySelectorAll('[data-company-box]'));
     if (!boxes.length) return;
@@ -1075,6 +1510,8 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount(){
+    this.mbLock(false);
+    try { if (this.mbIo) this.mbIo.disconnect(); } catch (_) {}
     try { if (this.ro) this.ro.disconnect(); } catch (_) {}
     if (this._rafId) cancelAnimationFrame(this._rafId);
     if (this.io) this.io.disconnect();
@@ -1273,7 +1710,77 @@ class Component extends DCLogic {
         ta.remove();
       } catch (_) {}
     };
+    /* ---- mobile view model: same data, phone-shaped ---- */
+    const mbCompanies = this.data.map((c, i) => {
+      const src = (c.id === 'clout') ? this.mbClout : (c.cards || []);
+      const cards = src.map((cd) => ({
+        pill: cd.pill || cd.title || '',
+        isMetric: cd.metric ? 'true' : '',
+        metric: cd.metric || '', metricSub: cd.metricSub || '',
+        img: cd.img || '', alt: cd.alt || cd.title || '',
+        ar: (cd.ar != null ? cd.ar : (1 / (cd.fr || 0.72))).toFixed(3),
+        hasLine: cd.line ? 'true' : '',
+        lineParts: this.parseLine(cd.line || '')
+      }));
+      const nx = this.data[i + 1];
+      const jump = (target, off) => (e) => { if (e && e.preventDefault) e.preventDefault(); this.mbGo(target, off); };
+      return {
+        idx: i, secId: 'm-cs-' + i, name: c.name, short: c.short || c.name, sector: c.sector || '',
+        accent: c.accent, mono: this.mbMono[c.id] || '', role: c.role,
+        dates: (c.dates || '').toUpperCase(), scope: c.scope || '', cards,
+        isCur: i === this.state.mbCs ? 'true' : '',
+        nextAccent: nx ? nx.accent : '#ff6a1a',
+        nextLabelM: nx ? (nx.short || nx.name) : 'Let\u2019s talk',
+        nextHref: nx ? ('#m-cs-' + (i + 1)) : '#m-contact',
+        goNextM: jump(nx ? ('m-cs-' + (i + 1)) : 'm-contact', nx ? 118 : 60),
+        isCurS: (this.state.mbCs === i) ? 'true' : 'false',
+        goSec: (e) => { if (e && e.preventDefault) e.preventDefault(); this.mbOpenCase(i); },
+        goSecClose: (e) => {
+          if (e && e.preventDefault) e.preventDefault();
+          this.setState({ mbSheet: '' }); this.mbLock(false);
+          this.mbOpenCase(i);
+        }
+      };
+    });
+    const mbAboutCards = this.mbAbout.map((a, i) => ({
+      label: a.label, title: a.title, accent: a.accent, img: a.img, alt: a.alt,
+      vid: a.vid || '', hasVid: a.vid ? true : false, noVid: a.vid ? false : true,
+      open: () => { this.setState({ mbSheet: 'about', mbAbout: i }); this.mbLock(true); }
+    }));
+    const sh = this.state.mbSheet;
+    const ab = this.mbAbout[this.state.mbAbout] || this.mbAbout[0];
+    const cs = this.state.mbCs;
+    const bar = cs >= 0 ? this.data[cs] : null;
+    const mbCloseSheet = () => { this.setState({ mbSheet: '' }); this.mbLock(false); };
+    const mbCloseMenu = () => { this.setState({ mbMenu: false }); this.mbLock(false); };
+    const mbNav = (id, off) => (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      mbCloseMenu();
+      if (this.state.mbCs >= 0) { this.setState({ mbCs: -1 }); this.mbAfterLayout(() => this.mbGo(id, off)); }
+      else this.mbGo(id, off);
+    };
     return {
+      mbCompanies, mbAboutCards, mbCloseSheet, mbCloseMenu,
+      mbMenuOpen: this.state.mbMenu ? 'true' : 'false',
+      mbToggleMenu: () => { const on = !this.state.mbMenu; this.setState({ mbMenu: on }); this.mbLock(on); },
+      mbGoHome: (e) => { if (e && e.preventDefault) e.preventDefault(); mbCloseMenu(); if (this.state.mbCs >= 0) this.setState({ mbCs: -1 }); this.mbScrollTo(0); },
+      mbGoAbout: mbNav('m-about', 66),
+      mbGoWork: mbNav('m-work', 66),
+      mbGoContact: mbNav('m-contact', 66),
+      mbResume: (e) => { mbCloseMenu(); onResume(e); },
+      mbOpenWorkSheet: () => { this.setState({ mbSheet: 'work' }); this.mbLock(true); },
+      mbSheetOpen: sh ? 'true' : 'false',
+      mbSheetAbout: sh === 'about' ? 'true' : '',
+      mbSheetWork: sh === 'work' ? 'true' : '',
+      mbSheetImg: ab.img, mbSheetImgBg: ab.img ? ('url("' + ab.img + '")') : 'none', mbSheetAlt: ab.alt, mbSheetLabel: ab.label,
+      mbSheetTitle: ab.title, mbSheetText: ab.text, mbSheetAccent: ab.accent,
+      mbVidLoop: (e) => { const v = e && e.currentTarget; if (!v) return; v.loop = true; v.muted = true; if (v.ended) v.currentTime = 0; const p = v.play(); if (p && p.catch) p.catch(() => {}); },
+      mbCaseOpen: bar ? 'true' : 'false',
+      mbCloseCase: () => this.mbCloseCase(true),
+      mbBarShow: bar ? 'true' : 'false',
+      mbBarName: bar ? bar.name : '',
+      mbBarNum: bar ? ((cs + 1) + '/' + this.data.length) : '',
+      mbBarAccent: bar ? bar.accent : '#ff6a1a',
       onResume, onProtocol, onCopyEmail,
       rootRef: this.rootRef, popupRef: this.popupRef, tabRowRef: this.tabRowRef, pillRef: this.pillRef,
       companies, layers, tabs,
