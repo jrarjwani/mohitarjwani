@@ -68,7 +68,7 @@
       <div style="display:flex; gap:34px; justify-self:start;">
         <a href="#top" class="mj-nav-about" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px; text-decoration-line:underline;">about me</a>
         <a href="#work" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">work</a>
-        <a href="areymohit/index.html" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">arey mohit (passion project)</a>
+        <a href="areymohit/" style="transition:color 180ms; text-underline-offset:6px; text-decoration-thickness:2px;" style-hover="{ color: 'var(--accent)', textDecoration: 'underline', textDecorationColor: 'var(--accent)' }">arey mohit (passion project)</a>
       </div>
       <a href="#top" ref="{{ nameRef }}" style="justify-self:center; font-family:var(--font-display); font-weight:600; font-size:55px; line-height:1; letter-spacing:-0.02em; color:var(--accent, #e8590c); transition:color 260ms cubic-bezier(0.4,0,0.2,1);">mohit arjwani</a>
       <div style="display:flex; gap:34px; justify-self:end; align-items:center;">
@@ -478,7 +478,7 @@ class Component extends DCLogic {
         const i = this.indexOf(e);
         if (i === null) return;
         if (i === 4 && this.state.active === 4){
-          window.location.href = 'areymohit/index.html';
+          window.location.href = 'areymohit/';
           return;
         }
         this.setState({ locked: this.state.locked === i ? null : i });
