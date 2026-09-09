@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Innings — Mohit Arjwani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — CR7-Inspired Design System
+   ============================================================ */
+:root{
+  --palette-black:#000000; --palette-near-black:#0b0b0b; --palette-dark-1:#151515;
+  --palette-orange:#f54f00; --palette-orange-bright:#ff671f; --palette-white:#fff; --palette-gray:#999;
+
+  --color-primary:#f54f00; --color-primary-hover:#ff671f; --color-secondary:#ff671f;
+  --color-bg:#000; --color-bg-secondary:#0b0b0b; --color-surface-raised:#151515;
+  --color-text:#fff; --color-text-secondary:#999; --color-text-on-accent:#fff;
+  --color-border:#0b0b0b; --color-border-strong:#222; --color-focus-ring:#f54f00;
+
+  --font-heading:'Barlow Condensed','proxima-nova-condensed','Oswald',sans-serif;
+  --font-body:'Barlow','proxima-nova',system-ui,sans-serif;
+
+  --radius-sm:8px; --radius-md:16px; --radius-card:30px; --radius-lg:50px; --radius-pill:999px;
+  --shadow-accent:0 8px 30px rgba(245,79,0,.35);
+
+  --tracking-display:6px; --tracking-heading:2px; --tracking-label:1.5px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--color-bg); color:var(--color-text);
+  font-family:var(--font-body); font-size:16px; line-height:1.45;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-primary);color:#fff}
+
+body::-webkit-scrollbar{width:10px}
+body::-webkit-scrollbar-track{background:#000}
+body::-webkit-scrollbar-thumb{background:#1c1c1c;border-radius:99px}
+body::-webkit-scrollbar-thumb:hover{background:#2a2a2a}
+
+.eyebrow{
+  font-family:var(--font-body); font-weight:600; font-size:13px;
+  text-transform:uppercase; letter-spacing:var(--tracking-label);
+  color:var(--color-primary);
+}
+.section-label{
+  font-family:var(--font-heading); font-weight:700; text-transform:uppercase;
+  letter-spacing:var(--tracking-display); line-height:.95;
+  font-size:clamp(44px,7vw,104px);
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px clamp(20px,4vw,56px);
+  transition:background .3s ease, backdrop-filter .3s ease, padding .3s ease, border-color .3s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(0,0,0,.82); backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px); padding-top:16px; padding-bottom:16px;
+  border-bottom:1px solid var(--color-border-strong);
+}
+.brand{display:flex; flex-direction:column; line-height:1; gap:4px}
+.brand .name{
+  font-family:var(--font-heading); font-weight:700; font-size:23px;
+  text-transform:uppercase; letter-spacing:3px;
+}
+.brand .handle{
+  font-size:11.5px; letter-spacing:1.5px; color:var(--color-text-secondary);
+  font-weight:500;
+}
+.nav-links{display:flex; align-items:center; gap:clamp(18px,2.6vw,40px)}
+.nav-links a{
+  font-family:var(--font-body); font-weight:600; font-size:13px;
+  text-transform:uppercase; letter-spacing:var(--tracking-label);
+  color:#cfcfcf; position:relative; padding:6px 0; transition:color .2s ease;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+  background:var(--color-primary); transition:width .25s ease;
+}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--font-body)!important; padding:9px 20px!important;
+  border:1px solid var(--color-border-strong); border-radius:var(--radius-pill);
+  color:#fff!important;
+}
+.nav-cta::after{display:none}
+.nav-cta:hover{background:var(--color-primary); border-color:var(--color-primary)}
+.menu-btn{display:none; background:none; border:none; color:#fff; cursor:pointer; padding:6px}
+
+/* ============================================================
+   HERO / HEADER
+   ============================================================ */
+.arc-hero{
+  position:relative; overflow:hidden;
+  padding:clamp(128px,17vh,190px) clamp(20px,4vw,56px) clamp(40px,6vh,64px);
+}
+.arc-glow{
+  position:absolute; top:-14%; left:50%; transform:translateX(-50%);
+  width:1100px; height:760px; max-width:130vw; pointer-events:none; z-index:0;
+  background:radial-gradient(ellipse at center, rgba(245,79,0,.20), rgba(245,79,0,0) 62%);
+}
+.arc-hero-inner{position:relative; z-index:2; max-width:1320px; margin:0 auto}
+.back-home{
+  display:inline-flex; align-items:center; gap:9px; margin-bottom:26px;
+  font-family:var(--font-body); font-weight:600; font-size:12px;
+  text-transform:uppercase; letter-spacing:1.6px; color:#cfcfcf;
+  padding:9px 16px 9px 13px; border:1px solid var(--color-border-strong);
+  border-radius:var(--radius-pill); transition:background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+.back-home svg{transition:transform .25s ease}
+.back-home:hover{color:#fff; border-color:var(--color-primary); background:rgba(245,79,0,.10)}
+.back-home:hover svg{transform:translateX(-3px)}
+.arc-hero h1{margin:10px 0 16px}
+.arc-hero h1 .thin{
+  color:var(--color-text); -webkit-text-stroke:1.5px var(--color-text); -webkit-text-fill-color:transparent;
+}
+.arc-lead{
+  font-size:clamp(16px,1.7vw,21px); color:#c4c4c4; max-width:600px; font-weight:400; text-wrap:pretty;
+}
+
+/* ============================================================
+   FILTER BAR
+   ============================================================ */
+.filterbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(0,0,0,.82); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--color-border-strong); border-bottom:1px solid var(--color-border-strong);
+  padding:14px clamp(20px,4vw,56px);
+}
+.filterbar-inner{
+  max-width:1320px; margin:0 auto;
+  display:flex; align-items:center; gap:18px 24px; flex-wrap:wrap; justify-content:space-between;
+}
+.chips{display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+.chip{
+  font-family:var(--font-body); font-weight:600; font-size:12px;
+  text-transform:uppercase; letter-spacing:1.2px; color:#bdbdbd;
+  padding:8px 15px; border:1px solid var(--color-border-strong); background:transparent;
+  border-radius:var(--radius-pill); cursor:pointer; white-space:nowrap;
+  transition:color .18s ease, background .18s ease, border-color .18s ease;
+}
+.chip .n{opacity:.55; margin-left:6px; font-variant-numeric:tabular-nums}
+.chip:hover{color:#fff; border-color:#3a3a3a}
+.chip.active{background:var(--color-primary); border-color:var(--color-primary); color:#fff}
+.chip.active .n{opacity:.85}
+.sortwrap{display:flex; align-items:center; gap:10px}
+.sortwrap .lbl{font-size:11px; text-transform:uppercase; letter-spacing:1.6px; color:var(--color-text-secondary); white-space:nowrap}
+.sort-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-body); font-weight:600; font-size:12px;
+  text-transform:uppercase; letter-spacing:1.2px; color:#e6e6e6;
+  padding:8px 15px; border:1px solid var(--color-border-strong); background:transparent;
+  border-radius:var(--radius-pill); cursor:pointer; white-space:nowrap;
+  transition:border-color .18s ease, color .18s ease;
+}
+.sort-btn:hover{border-color:var(--color-primary); color:#fff}
+.sort-btn svg{transition:transform .3s ease}
+.sort-btn.asc svg{transform:rotate(180deg)}
+
+/* ============================================================
+   GRID
+   ============================================================ */
+.arc-body{max-width:1320px; margin:0 auto; padding:clamp(30px,5vh,54px) clamp(20px,4vw,56px) clamp(80px,12vh,130px)}
+.count-line{
+  font-family:var(--font-body); font-size:13px; letter-spacing:1.4px; text-transform:uppercase;
+  color:var(--color-text-secondary); margin-bottom:22px;
+}
+.count-line b{color:#fff; font-family:var(--font-heading); font-size:17px; letter-spacing:2px; margin-right:2px}
+.grid{
+  display:grid; gap:clamp(16px,1.6vw,24px);
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.card{
+  position:relative; aspect-ratio:9/16; border-radius:18px; overflow:hidden;
+  background:#0a0a0a; border:1px solid rgba(255,255,255,.06); cursor:pointer;
+  transform:translateY(0) scale(1);
+  transition:transform .4s cubic-bezier(.2,.7,.2,1), box-shadow .4s ease, border-color .3s ease, opacity .35s ease;
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.025); z-index:5;
+  border-color:var(--color-primary); box-shadow:var(--shadow-accent);
+}
+.card .thumb{position:absolute; inset:0}
+.card .thumb img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease}
+.card:hover .thumb img{transform:scale(1.06)}
+.card .scrim{
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0) 44%, rgba(0,0,0,.62) 74%, rgba(0,0,0,.95) 100%);
+}
+.card-index{
+  position:absolute; top:8px; right:15px; z-index:3;
+  font-family:var(--font-heading); font-weight:700; font-size:42px;
+  color:rgba(255,255,255,.14); line-height:1; pointer-events:none;
+}
+.card-top{
+  position:absolute; top:13px; left:14px; right:50px; z-index:3;
+  display:flex; align-items:center; gap:8px;
+}
+.date{
+  font-family:ui-monospace,Menlo,monospace; font-size:10px; font-weight:600;
+  letter-spacing:1px; text-transform:uppercase; white-space:nowrap; color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.7);
+}
+.card-body{
+  position:absolute; left:0; right:0; bottom:0; z-index:3;
+  padding:18px 18px 20px; display:flex; flex-direction:column; gap:9px;
+}
+.tagpill{
+  align-self:flex-start;
+  font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:1.2px;
+  padding:4px 9px; border-radius:99px; background:rgba(245,79,0,.16); color:#ffb891;
+  border:1px solid rgba(245,79,0,.35); backdrop-filter:blur(4px);
+}
+.card-title{
+  font-family:var(--font-heading); font-weight:700; font-size:22px; line-height:1.03;
+  text-transform:uppercase; letter-spacing:.5px; color:#fff;
+  text-shadow:0 1px 6px rgba(0,0,0,.5);
+}
+.card-reveal{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  max-height:0; opacity:0; overflow:hidden;
+  transition:max-height .45s ease, opacity .35s ease, margin .35s ease;
+}
+.card:hover .card-reveal{max-height:60px; opacity:1; margin-top:3px}
+.view-reel{
+  display:inline-flex; align-items:center; gap:7px;
+  font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:1px; color:#fff;
+}
+.view-reel svg{transition:transform .25s ease}
+.card:hover .view-reel svg{transform:translateX(3px)}
+.platforms{display:flex; gap:8px}
+.plat{
+  width:34px; height:34px; border-radius:50%;
+  display:grid; place-items:center; background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.16); color:#fff;
+  transition:background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.plat:hover{background:var(--color-primary); border-color:var(--color-primary); transform:translateY(-2px)}
+.plat svg{width:17px; height:17px}
+
+.empty{
+  grid-column:1/-1; text-align:center; padding:70px 20px; color:var(--color-text-secondary);
+  font-size:15px;
+}
+
+/* future work note */
+.arc-future{
+  max-width:1320px; margin:0 auto clamp(70px,10vh,110px); padding:0 clamp(20px,4vw,56px);
+}
+.arc-future-card{
+  border:1px dashed var(--color-border-strong); border-radius:var(--radius-card);
+  padding:clamp(28px,4vw,44px); text-align:center; background:var(--color-bg-secondary);
+}
+.arc-future-card .eyebrow{margin-bottom:10px; display:block}
+.arc-future-card h3{
+  font-family:var(--font-heading); font-weight:700; text-transform:uppercase;
+  letter-spacing:2px; font-size:clamp(24px,3vw,36px); margin-bottom:8px;
+}
+.arc-future-card p{color:#a7a7a7; max-width:520px; margin:0 auto; font-size:15px}
+
+/* footer */
+.footer{
+  border-top:1px solid var(--color-border-strong);
+  padding:40px clamp(20px,4vw,56px);
+  display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.fbrand{font-family:var(--font-heading); font-weight:700; text-transform:uppercase; letter-spacing:3px; font-size:20px}
+.flinks{display:flex; gap:26px; flex-wrap:wrap}
+.flinks a{font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#bdbdbd; transition:color .2s ease}
+.flinks a:hover{color:var(--color-primary)}
+.fcopy{font-size:12px; color:var(--color-text-secondary); letter-spacing:.5px}
+
+@media (max-width:760px){
+  .nav-links{
+    position:fixed; inset:0 0 auto auto; top:0; right:0; height:100vh; width:min(78vw,320px);
+    flex-direction:column; align-items:flex-start; justify-content:center; gap:26px;
+    background:#050505; border-left:1px solid var(--color-border-strong);
+    padding:40px; transform:translateX(100%); transition:transform .3s ease;
+  }
+  .nav-links.open{transform:translateX(0)}
+  .menu-btn{display:block; z-index:110}
+  .filterbar-inner{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="brand" aria-label="Mohit Arjwani home">
+    <span class="name">Mohit Arjwani</span>
+    <span class="handle">@AreyMohit._</span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Portfolio</a>
+    <a href="index.html#work">My Innings</a>
+    <a href="index.html#about">Behind The Mic</a>
+    <a href="index.html#socials">Channels</a>
+    <a href="index.html#contact" class="nav-cta">Partnership</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="arc-hero" data-screen-label="My Innings">
+  <div class="arc-glow"></div>
+  <div class="arc-hero-inner">
+    <a class="back-home" href="index.html">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Back to home
+    </a>
+    <span class="eyebrow">The Full Scorebook</span>
+    <h1 class="section-label">My <span class="thin">Innings</span></h1>
+    <p class="arc-lead">A complete scorebook of my cricket stories, reels, and analysis.</p>
+  </div>
+</header>
+
+<!-- ============ FILTER BAR ============ -->
+<div class="filterbar">
+  <div class="filterbar-inner">
+    <div class="chips" id="chips"></div>
+    <div class="sortwrap">
+      <span class="lbl">Sort</span>
+      <button class="sort-btn" id="sortBtn" aria-label="Toggle sort order">
+        <span id="sortLabel">Newest</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GRID ============ -->
+<main class="arc-body">
+  <p class="count-line"><b id="count">0</b> <span id="countWord">stories</span> <span id="countScope"></span></p>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- ============ FUTURE WORK ============ -->
+<section class="arc-future">
+  <div class="arc-future-card">
+    <span class="eyebrow">More Coming</span>
+    <h3>Beyond The Reels</h3>
+    <p>Long-form edits, campaigns, and collaborations will be added to this innings as they go live.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <span class="fbrand">Mohit Arjwani</span>
+  <div class="flinks">
+    <a href="index.html#work">My Innings</a>
+    <a href="index.html#about">Behind The Mic</a>
+    <a href="index.html#socials">Channels</a>
+    <a href="index.html#contact">Partnership</a>
+  </div>
+  <span class="fcopy">© 2026 · Built for the story.</span>
+</footer>
+
+<script>
+/* ---------- platform icons ---------- */
+const IG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>';
+const YT = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>';
+
+/* ---------- reels data (full archive) ---------- */
+const reels = [
+  { cat:'Record',   title:'Same Old Trafford',  date:'04 Jul 2026', img:'images/reel-14.png', ig:'https://www.instagram.com/p/DaX-f7qs-u1/', yt:'https://www.youtube.com/shorts/UnYHojlqKC8' },
+  { cat:'Debate',   title:'Future Or Past?',    date:'02 Jul 2026', img:'images/reel-13.png', ig:'https://www.instagram.com/p/DaSzueTg0pl/', yt:'https://www.youtube.com/shorts/ks79c_NDgnY' },
+  { cat:'Ashes',    title:'Not Over?',          date:'01 Jul 2026', img:'images/reel-12.png', ig:'https://www.instagram.com/p/DaQL0tFypE8/', yt:'https://youtube.com/shorts/B3YwUTC81rE' },
+  { cat:'Tribute',  title:'End Of An Era',      date:'29 Jun 2026', img:'images/reel-11.jpg', ig:'https://www.instagram.com/p/DaLE7frsQoW/', yt:'https://www.youtube.com/shorts/ZV6T-gWxaF4' },
+  { cat:'Analysis', title:"India's Heartbreak", date:'29 Jun 2026', img:'images/reel-10.jpg', ig:'https://www.instagram.com/p/DaKLEZlMB9S/', yt:'https://www.youtube.com/shorts/JO_KtxgF89k' },
+  { cat:'News',     title:'Ben Stokes Retires', date:'28 Jun 2026', img:'images/reel-9.jpg',  ig:'https://www.instagram.com/p/DaIrKKFAlkN/', yt:'https://www.youtube.com/shorts/XOe5ZRWvPyQ' },
+  { cat:'Tribute',  title:'Thank You, Hitman',  date:'23 Jun 2026', img:'images/reel-8.jpg',  ig:'https://www.instagram.com/p/DZ79aQIMz-o/', yt:'https://www.youtube.com/shorts/vOQQFkzzfN8' },
+  { cat:'Debate',   title:"They're Back",       date:'23 Jun 2026', img:'images/reel-7.jpg',  ig:'https://www.instagram.com/p/DZ7MK8lMctn/', yt:'https://www.youtube.com/shorts/D2hcqczmcpY' },
+  { cat:'Opinion',  title:'Justice For KL',     date:'22 Jun 2026', img:'images/reel-6.jpg',  ig:'https://www.instagram.com/p/DZ6jxbEMPt0/', yt:'https://www.youtube.com/shorts/IqsQPEZib3A' },
+  { cat:'Hot Take', title:'Drop Vaibhav Now',   date:'21 Jun 2026', img:'images/reel-5.jpg',  ig:'https://www.instagram.com/p/DZ2Ohj8sYGN/', yt:'https://www.youtube.com/shorts/Oq-ZqcfSGtc' },
+  { cat:'Reaction', title:'Leave Them Alone',   date:'20 Jun 2026', img:'images/reel-4.jpg',  ig:'https://www.instagram.com/p/DZ0GAbQM09B/', yt:'https://www.youtube.com/shorts/2s0mM-yKEXE' },
+  { cat:'News',     title:'IPL Trade News',     date:'20 Jun 2026', img:'images/reel-3.jpg',  ig:'https://www.instagram.com/p/DZyyvVssPcF/', yt:'https://www.youtube.com/shorts/T0Z5ShSrjcE' },
+  { cat:'Debate',   title:'Is Stokes Over?',    date:'19 Jun 2026', img:'images/reel-2.jpg',  ig:'https://www.instagram.com/p/DZxKs2XshhE/', yt:'https://www.youtube.com/shorts/EXzw1Uma0fM' },
+  { cat:'Story',    title:'Failed Cricketer',   date:'18 Jun 2026', img:'images/reel-1.jpg',  ig:'https://www.instagram.com/p/DZurkVyNCEM/', yt:'https://www.youtube.com/shorts/7p1YyBbMzLA' },
+];
+
+/* parse "04 Jul 2026" -> timestamp for sorting */
+const MON={Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+function ts(d){ const p=d.split(' '); return new Date(+p[2], MON[p[1]]||0, +p[0]).getTime(); }
+reels.forEach((r,i)=>{ r._id=i; r._ts=ts(r.date); });
+
+/* resolve image paths to inlined blob URLs when running as a bundled standalone file */
+function res(path){
+  if(window.__resources && path){
+    const m=path.match(/images\/(.+)\.(?:jpg|png)/);
+    if(m){ const id=m[1].replace(/-/g,''); if(window.__resources[id]) return window.__resources[id]; }
+  }
+  return path;
+}
+
+/* ---------- state ---------- */
+let activeCat='All';
+let sortDesc=true; /* newest first */
+
+const grid=document.getElementById('grid');
+const chipsWrap=document.getElementById('chips');
+
+/* build category chips with counts */
+const cats=[...new Set(reels.map(r=>r.cat))].sort((a,b)=>a.localeCompare(b));
+function renderChips(){
+  const items=[{name:'All', n:reels.length}, ...cats.map(c=>({name:c, n:reels.filter(r=>r.cat===c).length}))];
+  chipsWrap.innerHTML=items.map(it=>`
+    <button class="chip ${it.name===activeCat?'active':''}" data-cat="${it.name}">${it.name}<span class="n">${it.n}</span></button>
+  `).join('');
+  chipsWrap.querySelectorAll('.chip').forEach(ch=>{
+    ch.addEventListener('click',()=>{ activeCat=ch.dataset.cat; renderChips(); renderGrid(); });
+  });
+}
+
+function cardHTML(r,idx){
+  return `
+  <article class="card" data-cat="${r.cat}">
+    <div class="thumb"><img src="${res(r.img)}" alt="${r.title}" loading="lazy"></div>
+    <div class="scrim"></div>
+    <span class="card-index">${String(idx+1).padStart(2,'0')}</span>
+    <div class="card-top"><span class="date">${r.date}</span></div>
+    <div class="card-body">
+      <span class="tagpill">${r.cat}</span>
+      <h3 class="card-title"><a href="${r.ig}" target="_blank" rel="noopener">${r.title}</a></h3>
+      <div class="card-reveal">
+        <a class="view-reel" href="${r.ig}" target="_blank" rel="noopener">View Reel
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="platforms">
+          <a class="plat" href="${r.ig}" target="_blank" rel="noopener" aria-label="Instagram" title="Open on Instagram">${IG}</a>
+          <a class="plat" href="${r.yt}" target="_blank" rel="noopener" aria-label="YouTube" title="Open on YouTube">${YT}</a>
+        </div>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderGrid(){
+  let list=reels.filter(r=>activeCat==='All'||r.cat===activeCat);
+  list.sort((a,b)=> sortDesc ? b._ts-a._ts : a._ts-b._ts);
+
+  grid.innerHTML = list.length
+    ? list.map((r,i)=>cardHTML(r,i)).join('')
+    : `<p class="empty">No stories in this category yet.</p>`;
+
+  document.getElementById('count').textContent=list.length;
+  document.getElementById('countWord').textContent=list.length===1?'story':'stories';
+  document.getElementById('countScope').textContent=activeCat==='All'?'in the archive':`in “${activeCat}”`;
+}
+
+/* sort toggle */
+const sortBtn=document.getElementById('sortBtn');
+sortBtn.addEventListener('click',()=>{
+  sortDesc=!sortDesc;
+  sortBtn.classList.toggle('asc',!sortDesc);
+  document.getElementById('sortLabel').textContent=sortDesc?'Newest':'Oldest';
+  renderGrid();
+});
+
+renderChips();
+renderGrid();
+
+/* ---------- nav scroll + mobile menu ---------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{ nav.classList.toggle('scrolled', scrollY>20); },{passive:true});
+const menuBtn=document.getElementById('menuBtn'), navLinks=document.getElementById('navLinks');
+menuBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+/* ---------- robust cross-page navigation (works even if the host swallows default anchor clicks) ---------- */
+document.querySelectorAll('.nav-links a, .flinks a, .brand, .back-home').forEach(a=>{
+  a.addEventListener('click',(e)=>{
+    const href=a.getAttribute('href')||'';
+    if(href.startsWith('#')) return;
+    e.preventDefault();
+    navLinks.classList.remove('open');
+    window.location.assign(a.href);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohit Arjwani — Creator · Storyteller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS — CR7-Inspired Design System
+   ============================================================ */
+:root{
+  --palette-black:#000000; --palette-near-black:#0b0b0b; --palette-dark-1:#151515;
+  --palette-orange:#f54f00; --palette-orange-bright:#ff671f; --palette-white:#fff; --palette-gray:#999;
+
+  --color-primary:#f54f00; --color-primary-hover:#ff671f; --color-secondary:#ff671f;
+  --color-bg:#000; --color-bg-secondary:#0b0b0b; --color-surface-raised:#151515;
+  --color-text:#fff; --color-text-secondary:#999; --color-text-on-accent:#fff;
+  --color-border:#0b0b0b; --color-border-strong:#222; --color-focus-ring:#f54f00;
+
+  --font-heading:'Barlow Condensed','proxima-nova-condensed','Oswald',sans-serif;
+  --font-body:'Barlow','proxima-nova',system-ui,sans-serif;
+
+  --radius-sm:8px; --radius-md:16px; --radius-card:30px; --radius-lg:50px; --radius-pill:999px;
+  --shadow-accent:0 8px 30px rgba(245,79,0,.35);
+
+  --tracking-display:6px; --tracking-heading:2px; --tracking-label:1.5px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--color-bg); color:var(--color-text);
+  font-family:var(--font-body); font-size:16px; line-height:1.45;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--color-primary);color:#fff}
+
+/* scrollbar */
+body::-webkit-scrollbar{width:10px}
+body::-webkit-scrollbar-track{background:#000}
+body::-webkit-scrollbar-thumb{background:#1c1c1c;border-radius:99px}
+body::-webkit-scrollbar-thumb:hover{background:#2a2a2a}
+
+.eyebrow{
+  font-family:var(--font-body); font-weight:600; font-size:13px;
+  text-transform:uppercase; letter-spacing:var(--tracking-label);
+  color:var(--color-primary);
+}
+.section-label{
+  font-family:var(--font-heading); font-weight:700; text-transform:uppercase;
+  letter-spacing:var(--tracking-display); line-height:.95;
+  font-size:clamp(44px,7vw,104px);
+}
+.muted{color:var(--color-text-secondary)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px clamp(20px,4vw,56px);
+  transition:background .3s ease, backdrop-filter .3s ease, padding .3s ease, border-color .3s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(0,0,0,.82); backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px); padding-top:16px; padding-bottom:16px;
+  border-bottom:1px solid var(--color-border-strong);
+}
+.brand{display:flex; flex-direction:column; line-height:1; gap:4px}
+.brand .name{
+  font-family:var(--font-heading); font-weight:700; font-size:23px;
+  text-transform:uppercase; letter-spacing:3px;
+}
+.brand .handle{
+  font-size:11.5px; letter-spacing:1.5px; color:var(--color-text-secondary);
+  font-weight:500;
+}
+.nav-links{display:flex; align-items:center; gap:clamp(18px,2.6vw,40px)}
+.nav-links a{
+  font-family:var(--font-body); font-weight:600; font-size:13px;
+  text-transform:uppercase; letter-spacing:var(--tracking-label);
+  color:#cfcfcf; position:relative; padding:6px 0; transition:color .2s ease;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+  background:var(--color-primary); transition:width .25s ease;
+}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  font-family:var(--font-body)!important; padding:9px 20px!important;
+  border:1px solid var(--color-border-strong); border-radius:var(--radius-pill);
+  color:#fff!important;
+}
+.nav-cta::after{display:none}
+.nav-cta:hover{background:var(--color-primary); border-color:var(--color-primary)}
+.menu-btn{display:none; background:none; border:none; color:#fff; cursor:pointer; padding:6px}
+
+/* ============================================================
+   SECTION 1 — MY WORK / CAROUSEL
+   ============================================================ */
+.work{position:relative; min-height:100vh; padding-top:118px; display:flex; flex-direction:column}
+.work-glow{
+  position:absolute; top:8%; left:50%; transform:translateX(-50%);
+  width:1100px; height:760px; pointer-events:none; z-index:0;
+  background:radial-gradient(ellipse at center, rgba(245,79,0,.18), rgba(245,79,0,0) 62%);
+}
+.cricket-hero{
+  position:absolute; top:0; right:0; z-index:1; pointer-events:none;
+  height:min(98vh,1040px); width:auto; object-fit:contain; object-position:top right;
+  opacity:.92; mix-blend-mode:screen;
+}
+.work-head{
+  position:relative; z-index:2;
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:32px; flex-wrap:wrap;
+  padding:0 clamp(20px,4vw,56px) 22px;
+}
+.work-head .titlewrap{max-width:760px}
+.work-head .section-label{margin:8px 0 12px}
+.work-head .section-label .thin{color:var(--color-text); -webkit-text-stroke:1.5px var(--color-text); -webkit-text-fill-color:transparent}
+.work-sub{font-size:clamp(15px,1.5vw,19px); color:#b9b9b9; max-width:520px; font-weight:400}
+.work-title-link{display:block; text-decoration:none; color:inherit; cursor:pointer; transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.work-title-link:hover{transform:translateY(-6px)}
+.work-title-link:hover .work-sub{color:#dcdcdc}
+.reels-head{position:relative; z-index:2; padding:0 clamp(20px,4vw,56px); margin-bottom:-6px}
+.work-title-link::after{content:"View all →"; display:inline-block; margin-top:12px; font-family:var(--font-heading); font-weight:700; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--color-primary); opacity:0; transform:translateX(-6px); transition:opacity .25s ease, transform .25s ease}
+.work-title-link:hover::after{opacity:1; transform:translateX(0)}
+.work-counter{
+  font-family:var(--font-heading); font-weight:700; letter-spacing:3px;
+  font-size:15px; color:var(--color-text-secondary); white-space:nowrap;
+}
+.work-counter b{color:#fff; font-size:30px; vertical-align:-3px}
+
+/* carousel */
+.carousel{position:relative; z-index:2; flex:1; display:flex; align-items:center; min-height:60vh}
+.track{
+  display:flex; align-items:center; gap:26px;
+  padding:30px clamp(20px,4vw,56px) 40px;
+  overflow-x:auto; scroll-snap-type:x mandatory;
+  width:100%; cursor:grab; scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.track::-webkit-scrollbar{display:none}
+.track.dragging{cursor:grabbing; scroll-snap-type:none}
+.track.focus-on .card:not(.is-hover){opacity:.26; filter:grayscale(1) brightness(.38)}
+
+.card{
+  position:relative; flex:0 0 auto;
+  width:clamp(228px,20.5vw,292px); aspect-ratio:9/16;
+  border-radius:18px; overflow:hidden;
+  scroll-snap-align:center; background:#0a0a0a;
+  border:1px solid rgba(255,255,255,.05);
+  filter:grayscale(1) brightness(.46) contrast(1.04);
+  transform:scale(.87); transform-origin:center;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1), filter .5s ease, opacity .35s ease, box-shadow .45s ease, border-color .3s ease;
+  user-select:none;
+}
+.card.is-active{transform:scale(1); filter:grayscale(.12) brightness(1) contrast(1); border-color:rgba(255,255,255,.12)}
+.card.is-hover{
+  transform:scale(1.05); filter:grayscale(0) brightness(1.06) contrast(1); z-index:5;
+  border-color:var(--color-primary); box-shadow:var(--shadow-accent);
+}
+/* thumb placeholder (full-bleed cinematic; swap for IG thumbnail img) */
+.thumb{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(125% 75% at 50% 16%, #2a2a2a, #111 58%, #060606 100%),
+    linear-gradient(180deg, rgba(0,0,0,0) 42%, rgba(0,0,0,.6) 80%, rgba(0,0,0,.96) 100%);
+}
+.thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.card-index{
+  position:absolute; top:10px; right:16px; z-index:3;
+  font-family:var(--font-heading); font-weight:700; font-size:46px;
+  color:rgba(255,255,255,.10); line-height:1; pointer-events:none;
+}
+/* top row: date (always) + preview indicator (hover). Colour set dynamically for contrast. */
+.card-top{
+  position:absolute; top:13px; left:14px; right:54px; z-index:4;
+  display:flex; align-items:center; gap:8px; color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.55);
+}
+.date{font-family:ui-monospace,Menlo,monospace; font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; white-space:nowrap; color:inherit}
+/* playing indicator (hover) */
+.playing{
+  display:flex; align-items:center; gap:7px;
+  max-width:0; opacity:0; overflow:hidden; white-space:nowrap;
+  transition:max-width .4s cubic-bezier(.2,.7,.2,1), opacity .3s ease;
+}
+.card.is-hover .playing{max-width:130px; opacity:1}
+.playing .eq{display:flex; align-items:flex-end; gap:2px; height:13px}
+.playing .eq span{width:2.5px; background:var(--color-primary); border-radius:2px; animation:eq 900ms ease-in-out infinite}
+.playing .eq span:nth-child(2){animation-delay:.15s} .playing .eq span:nth-child(3){animation-delay:.3s} .playing .eq span:nth-child(4){animation-delay:.45s}
+@keyframes eq{0%,100%{height:3px}50%{height:13px}}
+.playing .lbl{font-family:ui-monospace,Menlo,monospace; font-size:9.5px; letter-spacing:1px; color:inherit; text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){.playing .eq span{animation:none;height:9px}}
+/* scanning sweep on hover to imply playback */
+.card.is-hover .thumb::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(245,79,0,0) 0%, rgba(245,79,0,.10) 50%, rgba(245,79,0,0) 100%);
+  animation:sweep 2.4s linear infinite;
+}
+@keyframes sweep{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+
+/* card overlay content */
+.card-body{
+  position:absolute; left:0; right:0; bottom:0; z-index:4;
+  padding:20px 20px 22px; display:flex; flex-direction:column; gap:10px;
+}
+.card-meta{display:flex; align-items:center; gap:8px}
+.tagpill{
+  font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:1.2px;
+  padding:4px 9px; border-radius:99px; background:rgba(255,255,255,.1); color:#eaeaea;
+  backdrop-filter:blur(4px);
+}
+.card-title{
+  font-family:var(--font-heading); font-weight:700; font-size:23px; line-height:1.02;
+  text-transform:uppercase; letter-spacing:.5px;
+  transform:translateY(8px); opacity:0; transition:transform .4s ease, opacity .4s ease;
+}
+.card.is-hover .card-title, .card.is-active .card-title{transform:none; opacity:1}
+.card-title a{color:inherit; text-decoration:none}
+.card-title a:hover{color:var(--color-primary)}
+.card-reveal{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  max-height:0; opacity:0; overflow:hidden;
+  transition:max-height .45s ease, opacity .35s ease, margin .35s ease;
+}
+.card.is-hover .card-reveal{max-height:60px; opacity:1; margin-top:2px}
+.view-reel{
+  display:inline-flex; align-items:center; gap:7px;
+  font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:1px;
+  color:#fff;
+}
+.view-reel svg{transition:transform .25s ease}
+.card.is-hover .view-reel svg{transform:translateX(3px)}
+.platforms{display:flex; gap:8px}
+.plat{
+  width:34px; height:34px; border-radius:50%;
+  display:grid; place-items:center; background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14); color:#fff;
+  transition:background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.plat:hover{background:var(--color-primary); border-color:var(--color-primary); transform:translateY(-2px)}
+.plat svg{width:17px; height:17px}
+
+/* arrows + progress */
+.carousel-foot{
+  position:relative; z-index:2;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  padding:6px clamp(20px,4vw,56px) 40px;
+}
+.arrows{display:flex; gap:12px}
+.arrow{
+  width:54px; height:54px; border-radius:50%;
+  border:1px solid var(--color-border-strong); background:transparent; color:#fff;
+  display:grid; place-items:center; cursor:pointer;
+  transition:background .2s ease, border-color .2s ease, transform .15s ease;
+}
+.arrow:hover{background:var(--color-primary); border-color:var(--color-primary)}
+.arrow:active{transform:scale(.95)}
+.arrow:disabled{opacity:.3; cursor:default}
+.arrow:disabled:hover{background:transparent; border-color:var(--color-border-strong)}
+.progress{flex:1; max-width:340px; height:3px; background:#1a1a1a; border-radius:99px; overflow:hidden}
+.progress .bar{height:100%; width:18%; background:var(--color-primary); border-radius:99px; transition:width .2s ease, transform .2s ease}
+.scroll-hint{
+  display:flex; align-items:center; gap:9px; font-size:11px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--color-text-secondary);
+}
+
+/* ============================================================
+   SECTION 2 — WHO AM I
+   ============================================================ */
+.about{position:relative; padding:clamp(90px,12vh,150px) clamp(20px,4vw,56px); background:var(--color-bg)}
+.about-inner{
+  max-width:1240px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(40px,6vw,90px); align-items:center;
+}
+.about-photo{
+  position:relative; aspect-ratio:4/5; border-radius:var(--radius-lg); overflow:hidden;
+  border:1px solid var(--color-border-strong); background:#0c0c0c;
+}
+.about-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 28%; transition:opacity .35s ease}
+.about-photo::after{content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(160deg, rgba(245,79,0,.12), rgba(0,0,0,0) 48%), linear-gradient(0deg, rgba(0,0,0,.45), rgba(0,0,0,0) 42%)}
+.about-photo .badge-yrs{
+  position:absolute; top:20px; right:20px; text-align:right; z-index:2;
+}
+.about-photo .badge-yrs b{display:block; font-family:var(--font-heading); font-weight:700; font-size:54px; line-height:.9; color:#fff}
+.about-photo .badge-yrs span{font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--color-primary); font-weight:700}
+.about-copy .section-label{margin:14px 0 26px}
+.about-copy p{font-size:clamp(16px,1.5vw,19.5px); line-height:1.6; color:#c9c9c9; max-width:560px; text-wrap:pretty}
+.about-copy p .hl{color:#fff; font-weight:600}
+.tags{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px}
+.tag{
+  font-family:var(--font-heading); font-weight:600; text-transform:uppercase; letter-spacing:1.5px;
+  font-size:14px; padding:10px 22px; border-radius:var(--radius-pill); cursor:pointer;
+  background:rgba(245,79,0,.12); border:1px solid rgba(245,79,0,.30); color:#fff;
+  transition:transform .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
+}
+.tag:hover,.tag.active{background:var(--color-primary); border-color:var(--color-primary); color:#fff; transform:translateY(-3px) scale(1.04); box-shadow:var(--shadow-accent)}
+.tag.active{animation:tagSlide .5s cubic-bezier(.16,.84,.36,1) both}
+@keyframes tagSlide{from{opacity:.15; transform:translateY(-3px) scale(1.04) translateX(-18px)} to{opacity:1; transform:translateY(-3px) scale(1.04) translateX(0)}}
+.about-photo img{will-change:transform,opacity}
+
+/* ============================================================
+   SECTION 3 — SOCIALS
+   ============================================================ */
+.socials{padding:clamp(80px,11vh,140px) clamp(20px,4vw,56px); background:var(--color-bg-secondary); position:relative}
+.socials-head{max-width:1240px; margin:0 auto 54px; text-align:center}
+.socials-head .section-label{margin:10px 0 14px}
+.socials-head p{color:#b3b3b3; font-size:clamp(15px,1.5vw,18px)}
+.social-grid{
+  max-width:1240px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+}
+.social-card{
+  position:relative; padding:38px 32px 32px; border-radius:var(--radius-card);
+  background:var(--color-bg); border:1px solid var(--color-border-strong);
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px;
+  overflow:hidden; transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.social-card::before{
+  content:""; position:absolute; top:-40%; left:50%; transform:translateX(-50%);
+  width:280px; height:240px; opacity:0; transition:opacity .35s ease;
+  background:radial-gradient(ellipse at center, rgba(245,79,0,.22), rgba(245,79,0,0) 65%);
+  pointer-events:none;
+}
+.social-card:hover{transform:translateY(-6px); border-color:var(--color-primary); box-shadow:var(--shadow-accent)}
+.social-card:hover::before{opacity:1}
+.social-avatar{
+  position:relative; width:96px; height:96px; border-radius:50%; margin-bottom:14px;
+  border:2px solid var(--color-border-strong); overflow:hidden;
+  background:repeating-linear-gradient(125deg,#191919 0 12px,#131313 12px 24px);
+  transition:border-color .3s ease;
+}
+.social-card:hover .social-avatar{border-color:var(--color-primary)}
+.social-avatar img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.social-plat-badge{
+  position:absolute; right:-2px; bottom:-2px; width:34px; height:34px; border-radius:50%;
+  display:grid; place-items:center; background:var(--color-bg); border:2px solid var(--color-bg);
+}
+.social-plat-badge svg{width:20px;height:20px}
+.social-platform{font-family:var(--font-heading); font-weight:700; text-transform:uppercase; letter-spacing:2px; font-size:14px; color:var(--color-text-secondary)}
+.social-user{font-family:var(--font-heading); font-weight:700; font-size:27px; letter-spacing:.5px}
+.social-desc{font-size:13.5px; color:#9a9a9a; margin-top:2px}
+.social-follow{
+  margin-top:20px; display:inline-flex; align-items:center; gap:8px;
+  font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:1.2px;
+  padding:11px 22px; border-radius:var(--radius-pill);
+  border:1px solid var(--color-border-strong); color:#fff;
+  transition:background .2s ease, border-color .2s ease, gap .2s ease;
+}
+.social-card:hover .social-follow{background:var(--color-primary); border-color:var(--color-primary); gap:11px}
+
+/* ============================================================
+   SECTION 4 — CONTACT
+   ============================================================ */
+.contact{position:relative; padding:clamp(96px,13vh,170px) clamp(20px,4vw,56px); overflow:hidden; text-align:center}
+.contact-glow{
+  position:absolute; bottom:-30%; left:50%; transform:translateX(-50%);
+  width:900px; height:700px; pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(245,79,0,.16), rgba(245,79,0,0) 62%);
+}
+.contact-inner{position:relative; z-index:2; max-width:920px; margin:0 auto}
+.contact .section-label{font-size:clamp(52px,9vw,140px); margin:12px 0 22px}
+.contact p.lead{font-size:clamp(17px,2vw,23px); color:#cfcfcf; max-width:560px; margin:0 auto 18px; text-wrap:pretty}
+.contact-details{
+  display:flex; gap:14px 40px; justify-content:center; flex-wrap:wrap; margin:30px 0 42px;
+}
+.contact-details a{display:flex; flex-direction:column; gap:3px}
+.contact-details .k{font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--color-primary); font-weight:600}
+.contact-details .v{font-family:var(--font-heading); font-weight:600; font-size:24px; letter-spacing:.5px; transition:color .2s}
+.contact-details a:hover .v{color:var(--color-primary)}
+.contact-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap}
+.btn{
+  display:inline-flex; align-items:center; gap:10px; cursor:pointer;
+  font-family:var(--font-body); font-weight:600; font-size:15px;
+  text-transform:uppercase; letter-spacing:var(--tracking-label);
+  padding:16px 30px; border-radius:var(--radius-pill); border:1px solid transparent;
+  transition:transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
+}
+.btn:active{transform:scale(.97)}
+.btn-contact{background:rgba(245,79,0,.12); color:#fff; border-color:rgba(245,79,0,.30)}
+.btn-contact svg{color:var(--color-primary); transition:color .2s ease}
+.btn-contact:hover{background:var(--color-primary); border-color:var(--color-primary); box-shadow:var(--shadow-accent); transform:translateY(-3px) scale(1.03)}
+.btn-contact:hover svg{color:#fff}
+.btn svg{width:19px; height:19px}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{
+  border-top:1px solid var(--color-border-strong); background:#000;
+  padding:34px clamp(20px,4vw,56px);
+  display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+}
+.footer .fbrand{font-family:var(--font-heading); font-weight:700; letter-spacing:3px; text-transform:uppercase; font-size:18px}
+.footer .fcopy{font-size:12.5px; color:#777; letter-spacing:.5px}
+.footer .flinks{display:flex; gap:22px}
+.footer .flinks a{font-size:12px; text-transform:uppercase; letter-spacing:1.5px; color:#aaa; transition:color .2s}
+.footer .flinks a:hover{color:var(--color-primary)}
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+/* Visible by default (failsafe for paused/backgrounded/print contexts).
+   Hidden start + entrance only when body.anim is set AND motion is allowed. */
+.reveal{opacity:1; transform:none}
+body.anim .reveal{opacity:0; transform:translateY(26px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+body.anim .reveal.in{opacity:1; transform:none}
+@media (prefers-reduced-motion:reduce){body.anim .reveal{opacity:1; transform:none}}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .about-inner{grid-template-columns:1fr; gap:40px}
+  .about-photo{max-width:420px}
+  .social-grid{grid-template-columns:1fr; max-width:440px}
+  .cricket-hero{opacity:.4; height:62vh}
+  .nav-links{position:fixed; inset:0 0 0 auto; width:min(78vw,320px);
+    flex-direction:column; align-items:flex-start; justify-content:center; gap:8px;
+    background:rgba(8,8,8,.97); backdrop-filter:blur(16px); padding:0 32px;
+    transform:translateX(100%); transition:transform .35s cubic-bezier(.2,.7,.2,1);
+    border-left:1px solid var(--color-border-strong);}
+  .nav-links.open{transform:none}
+  .nav-links a{font-size:18px; padding:12px 0}
+  .nav-cta{margin-top:10px}
+  .menu-btn{display:grid; place-items:center; z-index:120}
+}
+@media (max-width:560px){
+  .card{width:78vw}
+  .work-head{align-items:flex-start; flex-direction:column}
+  .contact-details{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <a href="#work" class="brand" aria-label="Mohit Arjwani home">
+    <span class="name">Mohit Arjwani</span>
+    <span class="handle">@AreyMohit._</span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Portfolio</a>
+    <a href="myinnings.html">My Innings</a>
+    <a href="#about">Behind The Mic</a>
+    <a href="#socials">Channels</a>
+    <a href="#contact" class="nav-cta">Partnership</a>
+  </div>
+</nav>
+
+<!-- ============ SECTION 1 — MY WORK ============ -->
+<header class="work" id="work" data-screen-label="My Innings">
+  <div class="work-glow"></div>
+  <img class="cricket-hero" src="images/cricket-hero.png" alt="Mohit Arjwani raising his bat">
+
+  <div class="work-head reveal">
+    <div class="titlewrap">
+      <a class="work-title-link" href="myinnings.html">
+        <h1 class="section-label">My <span class="thin">Innings</span></h1>
+        <p class="work-sub">Every match has a headline. I look for the story behind it. Stories written, edited, and built for the game we obsess over.</p>
+      </a>
+    </div>
+    <div class="work-counter"><b id="cIndex">01</b> / <span id="cTotal">11</span> &nbsp;REELS</div>
+  </div>
+
+  <div class="reels-head reveal"><span class="eyebrow">The Big Hits</span></div>
+  <div class="carousel">
+    <div class="track" id="track"><!-- cards injected --></div>
+  </div>
+
+  <div class="carousel-foot reveal">
+    <div class="arrows">
+      <button class="arrow" id="prev" aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="arrow" id="next" aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+    <div class="progress"><div class="bar" id="progressBar"></div></div>
+    <div class="scroll-hint">
+      <span>Drag · Scroll</span>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SECTION 2 — WHO AM I ============ -->
+<section class="about" id="about" data-screen-label="Behind The Mic">
+  <div class="about-inner">
+    <div class="about-photo reveal">
+      <img src="images/about-mohit.jpg" alt="Mohit Arjwani">
+      <div class="badge-yrs"><b>24</b><span>Years on and off field &amp; frame</span></div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section-label">Behind <span style="color:var(--color-primary)">The Mic</span></h2>
+      <p>I'm <span class="hl">Mohit Arjwani</span>, a content creator and creative storyteller who looks at content the way I once looked at cricket: with <span class="hl">discipline, instinct, timing, and performance</span>. From playing cricket to building stories for digital platforms, my journey has always been about understanding people, moments, and pressure. Today, I create content, build narratives, and work on projects that sit at the intersection of <span class="hl">creativity, culture, and communication</span>.</p>
+      <div class="tags">
+        <span class="tag" data-img="images/about-creator.png">Content Creator</span>
+        <span class="tag" data-img="images/about-scuba.jpg">Storyteller</span>
+        <span class="tag" data-img="images/about-cricket.jpg">Former Cricketer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 — SOCIALS ============ -->
+<section class="socials" id="socials" data-screen-label="Channels">
+  <div class="socials-head reveal">
+    <span class="eyebrow">Connect with me on different</span>
+    <h2 class="section-label">Channels</h2>
+    <p>Find me where the stories go live.</p>
+  </div>
+  <div class="social-grid" id="socialGrid"><!-- injected --></div>
+</section>
+
+<!-- ============ SECTION 4 — CONTACT ============ -->
+<section class="contact" id="contact" data-screen-label="Partnership">
+  <div class="contact-glow"></div>
+  <div class="contact-inner reveal">
+    <span class="eyebrow">Let's build a</span>
+    <h2 class="section-label">Partnership</h2>
+    <p class="lead">Want to collaborate, create, or just talk content? Reach out.</p>
+    <div class="contact-details">
+      <a href="mailto:marjwani@gmail.com"><span class="k">Email</span><span class="v">marjwani@gmail.com</span></a>
+      <a href="tel:8989439880"><span class="k">Mobile</span><span class="v">+91 89894 39880</span></a>
+    </div>
+    <div class="contact-ctas">
+      <a class="btn btn-contact" href="mailto:marjwani@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        EMAIL
+      </a>
+      <a class="btn btn-contact" href="tel:+918989439880">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        CALL
+      </a>
+      <a class="btn btn-contact" href="https://wa.me/918989439880" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.74-.86-2-.96-.27-.1-.47-.15-.66.15-.2.3-.76.95-.93 1.15-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.57-.48-.5-.66-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.08 1.74-.71 1.99-1.4.24-.69.24-1.28.17-1.4-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.56.93.95-3.47-.22-.36a9.38 9.38 0 0 1-1.44-5.02c0-5.18 4.22-9.4 9.41-9.4 2.51 0 4.87.98 6.65 2.76a9.34 9.34 0 0 1 2.75 6.65c0 5.18-4.22 9.4-9.4 9.4zm8-17.4A11.32 11.32 0 0 0 12.04.86C5.81.86.74 5.93.74 12.16c0 1.99.52 3.93 1.5 5.64L.65 23.65l6-1.57a11.28 11.28 0 0 0 5.39 1.37h.01c6.23 0 11.3-5.07 11.3-11.3 0-3.02-1.18-5.86-3.31-7.99z"/></svg>
+        WHATSAPP
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <span class="fbrand">Mohit Arjwani</span>
+  <div class="flinks">
+    <a href="myinnings.html">My Innings</a>
+    <a href="#about">Behind The Mic</a>
+    <a href="#socials">Channels</a>
+    <a href="#contact">Partnership</a>
+  </div>
+  <span class="fcopy">© 2026 · Built for the story.</span>
+</footer>
+
+<script>
+/* ---------- platform icons ---------- */
+const IG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>';
+const YT = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-2C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19c1.71.46 8.59.46 8.59.46s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02V8.48l5.75 3.27z"/></svg>';
+
+/* ---------- reels data (newest first / leftmost). All 2026. Add real IG/YT links to ig/yt. ---------- */
+const reels = [
+  { cat:'Record',   title:'Same Old Trafford',  date:'04 Jul 2026', img:'images/reel-14.png', ig:'https://www.instagram.com/p/DaX-f7qs-u1/', yt:'https://www.youtube.com/shorts/UnYHojlqKC8' },
+  { cat:'Debate',   title:'Future Or Past?',    date:'02 Jul 2026', img:'images/reel-13.png', ig:'https://www.instagram.com/p/DaSzueTg0pl/', yt:'https://www.youtube.com/shorts/ks79c_NDgnY' },
+  { cat:'Ashes',    title:'Not Over?',          date:'01 Jul 2026', img:'images/reel-12.png', ig:'https://www.instagram.com/p/DaQL0tFypE8/', yt:'https://youtube.com/shorts/B3YwUTC81rE' },
+  { cat:'Tribute',  title:'End Of An Era',      date:'29 Jun 2026', img:'images/reel-11.jpg', ig:'https://www.instagram.com/p/DaLE7frsQoW/', yt:'https://www.youtube.com/shorts/ZV6T-gWxaF4' },
+  { cat:'Analysis', title:"India's Heartbreak",  date:'29 Jun 2026', img:'images/reel-10.jpg', ig:'https://www.instagram.com/p/DaKLEZlMB9S/', yt:'https://www.youtube.com/shorts/JO_KtxgF89k' },
+  { cat:'News',     title:'Ben Stokes Retires',  date:'28 Jun 2026', img:'images/reel-9.jpg',  ig:'https://www.instagram.com/p/DaIrKKFAlkN/', yt:'https://www.youtube.com/shorts/XOe5ZRWvPyQ' },
+  { cat:'Tribute',  title:'Thank You, Hitman',   date:'23 Jun 2026', img:'images/reel-8.jpg',  ig:'https://www.instagram.com/p/DZ79aQIMz-o/', yt:'https://www.youtube.com/shorts/vOQQFkzzfN8' },
+  { cat:'Debate',   title:"They're Back",        date:'23 Jun 2026', img:'images/reel-7.jpg',  ig:'https://www.instagram.com/p/DZ7MK8lMctn/', yt:'https://www.youtube.com/shorts/D2hcqczmcpY' },
+  { cat:'Opinion',  title:'Justice For KL',      date:'22 Jun 2026', img:'images/reel-6.jpg',  ig:'https://www.instagram.com/p/DZ6jxbEMPt0/', yt:'https://www.youtube.com/shorts/IqsQPEZib3A' },
+  { cat:'Hot Take', title:'Drop Vaibhav Now',    date:'21 Jun 2026', img:'images/reel-5.jpg',  ig:'https://www.instagram.com/p/DZ2Ohj8sYGN/', yt:'https://www.youtube.com/shorts/Oq-ZqcfSGtc' },
+  { cat:'Reaction', title:'Leave Them Alone',    date:'20 Jun 2026', img:'images/reel-4.jpg',  ig:'https://www.instagram.com/p/DZ0GAbQM09B/', yt:'https://www.youtube.com/shorts/2s0mM-yKEXE' },
+  { cat:'News',     title:'IPL Trade News',      date:'20 Jun 2026', img:'images/reel-3.jpg',  ig:'https://www.instagram.com/p/DZyyvVssPcF/', yt:'https://www.youtube.com/shorts/T0Z5ShSrjcE' },
+  { cat:'Debate',   title:'Is Stokes Over?',     date:'19 Jun 2026', img:'images/reel-2.jpg',  ig:'https://www.instagram.com/p/DZxKs2XshhE/', yt:'https://www.youtube.com/shorts/EXzw1Uma0fM' },
+  { cat:'Story',    title:'Failed Cricketer',    date:'18 Jun 2026', img:'images/reel-1.jpg',  ig:'https://www.instagram.com/p/DZurkVyNCEM/', yt:'https://www.youtube.com/shorts/7p1YyBbMzLA' },
+];
+
+const track = document.getElementById('track');
+/* resolve image paths to inlined blob URLs when running as a bundled standalone file */
+function res(path){
+  if(window.__resources && path){
+    const m=path.match(/images\/(.+)\.(?:jpg|png)/);
+    if(m){ const id=m[1].replace(/-/g,''); if(window.__resources[id]) return window.__resources[id]; }
+  }
+  return path;
+}
+track.innerHTML = reels.map((r,i)=>`
+  <article class="card" data-i="${i}">
+    <div class="thumb"><img src="${res(r.img)}" alt="${r.title}" loading="lazy"></div>
+    <span class="card-index">${String(i+1).padStart(2,'0')}</span>
+    <div class="card-top">
+      <span class="playing"><span class="eq"><span></span><span></span><span></span><span></span></span><span class="lbl">Preview</span></span>
+      <span class="date">${r.date}</span>
+    </div>
+    <div class="card-body">
+      <div class="card-meta"><span class="tagpill">${r.cat}</span></div>
+      <h3 class="card-title"><a href="${r.ig}" target="_blank" rel="noopener">${r.title}</a></h3>
+      <div class="card-reveal">
+        <a class="view-reel" href="${r.ig}" target="_blank" rel="noopener">View Reel
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <div class="platforms">
+          <a class="plat" href="${r.ig}" target="_blank" rel="noopener" aria-label="Instagram" title="Open on Instagram">${IG}</a>
+          <a class="plat" href="${r.yt}" target="_blank" rel="noopener" aria-label="YouTube" title="Open on YouTube">${YT}</a>
+        </div>
+      </div>
+    </div>
+  </article>`).join('');
+
+document.getElementById('cTotal').textContent = String(reels.length).padStart(2,'0');
+const cards = [...track.querySelectorAll('.card')];
+
+/* hover focus: dim others + sequence follows the cursor */
+cards.forEach((card,i)=>{
+  const img=card.querySelector('.thumb img');
+  const apply=()=>setContrast(card,img);
+  if(img.complete && img.naturalWidth) apply(); else img.addEventListener('load',apply);
+  card.addEventListener('mouseenter',()=>{
+    track.classList.add('focus-on'); card.classList.add('is-hover');
+    document.getElementById('cIndex').textContent=String(i+1).padStart(2,'0');
+  });
+  card.addEventListener('mouseleave',()=>{
+    track.classList.remove('focus-on'); card.classList.remove('is-hover');
+    updateActive();
+  });
+});
+/* set the top-row text colour to contrast the thumbnail's top-left region */
+function setContrast(card,img){
+  try{
+    const cv=document.createElement('canvas'); cv.width=32; cv.height=20;
+    const cx=cv.getContext('2d');
+    cx.drawImage(img, 0,0, Math.max(1,img.naturalWidth*0.62), Math.max(1,img.naturalHeight*0.15), 0,0,32,20);
+    const d=cx.getImageData(0,0,32,20).data; let s=0,n=0;
+    for(let p=0;p<d.length;p+=4){ s+=0.299*d[p]+0.587*d[p+1]+0.114*d[p+2]; n++; }
+    const top=card.querySelector('.card-top');
+    if(s/n>148){ top.style.color='#0b0b0b'; top.style.textShadow='0 1px 2px rgba(255,255,255,.55)'; }
+    else { top.style.color='#ffffff'; top.style.textShadow='0 1px 3px rgba(0,0,0,.6)'; }
+  }catch(e){}
+}
+
+/* active card + counter, driven by scroll position so it reaches 01 and the last reel */
+const cIndex = document.getElementById('cIndex');
+const bar = document.getElementById('progressBar');
+function updateActive(){
+  const max=track.scrollWidth-track.clientWidth;
+  const step=cardStep();
+  let idx=Math.round(track.scrollLeft/step);
+  if(track.scrollLeft>=max-2) idx=cards.length-1;
+  idx=Math.max(0,Math.min(cards.length-1,idx));
+  cards.forEach((c,i)=>c.classList.toggle('is-active',i===idx));
+  cIndex.textContent=String(idx+1).padStart(2,'0');
+  const p=max>0?track.scrollLeft/max:0;
+  bar.style.transform = `translateX(${p* (bar.parentElement.clientWidth - bar.clientWidth)}px)`;
+  document.getElementById('prev').disabled = track.scrollLeft<=2;
+  document.getElementById('next').disabled = track.scrollLeft>=max-2;
+}
+track.addEventListener('scroll',()=>requestAnimationFrame(updateActive),{passive:true});
+window.addEventListener('resize',updateActive);
+
+/* arrows */
+function cardStep(){ const c=cards[0]; const gap=26; return c.getBoundingClientRect().width+gap; }
+document.getElementById('next').addEventListener('click',()=>track.scrollBy({left:cardStep(),behavior:'smooth'}));
+document.getElementById('prev').addEventListener('click',()=>track.scrollBy({left:-cardStep(),behavior:'smooth'}));
+
+/* wheel behaviour over the reels:
+   - plain vertical wheel  -> let the PAGE scroll up/down (no hijack)
+   - Shift + wheel          -> scroll the reels left/right (mouse users)
+   - trackpad horiz swipe   -> scroll the reels left/right (deltaX) */
+track.addEventListener('wheel',(e)=>{
+  if(e.shiftKey){ track.scrollLeft+=(e.deltaY||e.deltaX); e.preventDefault(); return; }
+  if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){ track.scrollLeft+=e.deltaX; e.preventDefault(); }
+},{passive:false});
+
+/* drag to scroll — only hijack the pointer once a real drag starts, so clicks on
+   links (heading, View Reel, platform icons) still fire normally */
+let down=false,startX=0,startL=0,moved=false,dragPid=null;
+track.addEventListener('pointerdown',e=>{ if(e.button!==0)return; down=true;moved=false;dragPid=e.pointerId;startX=e.clientX;startL=track.scrollLeft; });
+track.addEventListener('pointermove',e=>{
+  if(!down)return;
+  const dx=e.clientX-startX;
+  if(!moved && Math.abs(dx)>5){ moved=true; track.classList.add('dragging'); try{track.setPointerCapture(dragPid);}catch(_){} }
+  if(moved) track.scrollLeft=startL-dx;
+});
+function endDrag(){ down=false; track.classList.remove('dragging'); if(dragPid!=null){try{track.releasePointerCapture(dragPid);}catch(_){}} dragPid=null; }
+track.addEventListener('pointerup',endDrag);
+track.addEventListener('pointercancel',endDrag);
+/* stop native image ghost-drag from blocking the drag-scroll */
+track.addEventListener('dragstart',e=>e.preventDefault());
+/* swallow the click only if it concluded a real drag */
+track.addEventListener('click',e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); moved=false; } },true);
+
+/* ---------- socials ---------- */
+const socials=[
+  { plat:'Instagram', icon:IG, user:'@AreyMohit._', desc:'Creator account', dp:'images/dp-creator.png', url:'https://instagram.com/AreyMohit._' },
+  { plat:'YouTube',   icon:YT, user:'AreyMohitt',   desc:'Videos, stories & experiments', dp:'images/dp-youtube.png', url:'https://youtube.com/@AreyMohitt' },
+  { plat:'Instagram', icon:IG, user:'@jr.arjwani',  desc:'Personal account', dp:'images/dp-personal.png', url:'https://instagram.com/jr.arjwani' },
+];
+document.getElementById('socialGrid').innerHTML = socials.map(s=>`
+  <a class="social-card reveal" href="${s.url}" target="_blank" rel="noopener">
+    <div class="social-avatar">
+      <img src="${res(s.dp)}" alt="${s.user}">
+      <span class="social-plat-badge">${s.icon}</span>
+    </div>
+    <span class="social-platform">${s.plat}</span>
+    <span class="social-user">${s.user}</span>
+    <span class="social-desc">${s.desc}</span>
+    <span class="social-follow">${s.plat==='YouTube'?'Subscribe':'Follow'}
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
+  </a>`).join('');
+
+/* ---------- Who Am I: hover an identity tag to swap the portrait ---------- */
+(function(){
+  const photo=document.querySelector('.about-photo img');
+  const tagsWrap=document.querySelector('.about .tags');
+  if(!photo||!tagsWrap) return;
+  const defaultSrc=photo.getAttribute('src');
+  const tagEls=[...tagsWrap.querySelectorAll('.tag')];
+
+  /* cycle order: default (no tag) -> each tag in turn -> back to default */
+  const states=[{src:defaultSrc, tag:-1}, ...tagEls.map((t,i)=>({src:res(t.dataset.img), tag:i}))];
+  states.forEach(s=>{ if(s.src){ const im=new Image(); im.src=s.src; } }); // preload
+
+  function applyTags(active){
+    tagEls.forEach((t,i)=>{
+      const on=i===active;
+      t.classList.remove('active');
+      if(on){ void t.offsetWidth; t.classList.add('active'); } // restart slide anim
+    });
+  }
+  /* decode the incoming image BEFORE animating, so the slide-in never shows the
+     old frame first. Image + tag highlight are triggered on the same frame. */
+  let token=0;
+  async function apply(i,dir){
+    const my=++token;                 // cancels any transition still in flight
+    const s=states[i];
+    const changing = s.src && photo.getAttribute('src')!==s.src;
+
+    if(changing){
+      try{ const pre=new Image(); pre.src=s.src; await (pre.decode?pre.decode():Promise.resolve()); }catch(_){}
+      if(my!==token) return;          // a newer transition superseded this one
+
+      const from=dir>=0?'56px':'-56px';
+      photo.style.transition='none';
+      photo.style.opacity='0';
+      photo.style.transform='translateX('+from+')';
+      photo.src=s.src;                // swap while hidden AND fully decoded
+      // force the hidden state to commit, then animate in + highlight together
+      requestAnimationFrame(()=>{
+        void photo.offsetWidth;
+        photo.style.transition='transform .6s cubic-bezier(.16,.84,.36,1), opacity .45s ease';
+        photo.style.opacity='1';
+        photo.style.transform='translateX(0)';
+        applyTags(s.tag);
+      });
+    } else {
+      applyTags(s.tag);
+    }
+  }
+
+  let idx=0, timer=null;
+  function start(){ stop(); timer=setInterval(()=>{ idx=(idx+1)%states.length; apply(idx,1); },3000); }
+  function stop(){ if(timer){clearInterval(timer); timer=null;} }
+
+  apply(0,1);
+  start();
+
+  /* hover a tag = pause + jump to it; leaving resumes the auto-cycle from default */
+  tagEls.forEach((t,i)=>{ t.addEventListener('mouseenter',()=>{ stop(); idx=i+1; apply(idx,1); }); });
+  tagsWrap.addEventListener('mouseleave',()=>{ idx=0; apply(0,-1); start(); });
+})();
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
+const navLinks=document.getElementById('navLinks');
+document.getElementById('menuBtn').addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+/* ---------- in-page section links: smooth scroll, leave the URL unchanged ---------- */
+document.querySelectorAll('.nav-links a, .flinks a, .brand').forEach(a=>{
+  a.addEventListener('click',(e)=>{
+    const href=a.getAttribute('href')||'';
+    if(!href.startsWith('#')) return;              /* cross-page links behave normally */
+    const el=document.getElementById(href.slice(1));
+    if(!el) return;
+    e.preventDefault();
+    navLinks.classList.remove('open');
+    const y=el.getBoundingClientRect().top + window.scrollY - (nav.offsetHeight - 4);
+    window.scrollTo({top:Math.max(0,y), behavior:'smooth'});
+  });
+});
+
+/* ---------- reveal on scroll ---------- */
+/* Only opt into the hidden->visible entrance when the page is actually
+   foreground and motion is allowed; otherwise everything stays visible. */
+const motionOK = matchMedia('(prefers-reduced-motion: no-preference)').matches && !document.hidden;
+if(motionOK){
+  document.body.classList.add('anim');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.16});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  /* failsafe: never let content stay hidden */
+  setTimeout(()=>document.querySelectorAll('.reveal:not(.in)').forEach(el=>el.classList.add('in')),2600);
+}
+
+/* init */
+requestAnimationFrame(()=>{updateActive();});
+</script>
+</body>
+</html>
